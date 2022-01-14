@@ -1,4 +1,4 @@
-package com.smarttoolfactory.lib
+package com.smarttoolfactory.speechbubble
 
 import org.junit.Test
 
