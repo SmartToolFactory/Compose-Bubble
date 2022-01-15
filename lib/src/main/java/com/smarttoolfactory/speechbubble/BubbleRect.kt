@@ -16,12 +16,12 @@ data class BubbleRect(
 
     val height: Float
         get() {
-            return right - left
+            return bottom - top
         }
 
     val width: Float
         get() {
-            return bottom - top
+            return right - left
         }
 
     override fun toString(): String {

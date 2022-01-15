@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -31,17 +28,21 @@ class MainActivity : ComponentActivity() {
             ComposeSpeechBubbleTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Column(modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.LightGray)
-                        .padding(8.dp)) {
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color(0xffFBE9E7))
+                            .padding(8.dp)
+                    ) {
+
 
                         val bubbleState = rememberBubbleState().apply {
-                            arrowAlignment = LEFT_TOP
-//                            arrowWidth = 20f
-//                            arrowHeight = 15f
-//                            arrowOffsetY = 3f
-//                            arrowShape = ArrowShape.TRIANGLE_ISOSCELES
+                            arrowAlignment = LEFT_CENTER
+                            arrowWidth = 20f
+                            arrowHeight = 15f
+//                            arrowOffsetY = 5f
+                            arrowShape = ArrowShape.TRIANGLE_ISOSCELES
                         }
 
 

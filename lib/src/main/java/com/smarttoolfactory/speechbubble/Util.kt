@@ -1,6 +1,7 @@
 package com.smarttoolfactory.speechbubble
 
 
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Path
@@ -102,33 +103,22 @@ private fun getRoundedRectPath(
         }
     }
 
-    val radii = floatArrayOf(
-        cornerRadius.topLeft,
-        cornerRadius.topLeft,
-        cornerRadius.topRight,
-        cornerRadius.topRight,
-        cornerRadius.bottomRight,
-        cornerRadius.bottomRight,
-        cornerRadius.bottomLeft,
-        cornerRadius.bottomLeft
-    )
-
     path.addRoundRect(
         RoundRect(
             rect = Rect(contentRect.left, contentRect.top, contentRect.right, contentRect.bottom),
-            topLeft = androidx.compose.ui.geometry.CornerRadius(
+            topLeft = CornerRadius(
                 cornerRadius.topLeft,
                 cornerRadius.topLeft
             ),
-            topRight = androidx.compose.ui.geometry.CornerRadius(
+            topRight = CornerRadius(
                 cornerRadius.topRight,
                 cornerRadius.topRight
             ),
-            bottomRight = androidx.compose.ui.geometry.CornerRadius(
+            bottomRight = CornerRadius(
                 cornerRadius.bottomRight,
                 cornerRadius.bottomRight
             ),
-            bottomLeft = androidx.compose.ui.geometry.CornerRadius(
+            bottomLeft = CornerRadius(
                 cornerRadius.bottomLeft,
                 cornerRadius.bottomLeft
             )

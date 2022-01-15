@@ -38,6 +38,7 @@ fun createHorizontalArrowPath(
 //            contentHeight - radiusSumOnArrowSide else modifier.arrowHeight
 
     val arrowHeight = state.arrowHeight.coerceAtMost(contentHeight)
+
     state.arrowHeight = arrowHeight
 
     // This is offset from top/bottom or center for arrows on left or right.
@@ -49,6 +50,11 @@ fun createHorizontalArrowPath(
     val arrowBottom = arrowTop + arrowHeight
     state.arrowBottom = arrowBottom
 
+    println("🚛 createHorizontalArrowPath() contentHeight: $contentHeight, " +
+            "contentLeft: $contentLeft, contentRight: $contentRight, contentTop: $contentTop, arrowWidth: $arrowWidth")
+
+    println("🚛🚛 ARROW top: $arrowTop, arrowBottom: $arrowBottom, " +
+            "CENTER: ${(arrowTop+arrowBottom)/2f} arrowHeight: $arrowHeight")
     val arrowShape = state.arrowShape
 
     when (alignment) {
