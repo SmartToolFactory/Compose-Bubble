@@ -23,14 +23,14 @@ fun getBubbleClipPath(
 
     path.reset()
 
-    if (state.withArrow) {
-        if (isArrowHorizontalPosition(state.arrowAlignment)) {
+    if (state.drawArrow) {
+        if (state.isArrowHorizontalPosition()) {
             createHorizontalArrowPath(
                 path = path,
                 contentRect = contentRect,
                 state = state
             )
-        } else if (isArrowVerticalPosition(state.arrowAlignment)) {
+        } else if (state.isArrowVerticalPosition()) {
             createVerticalArrowPath(
                 path = path,
                 contentRect = contentRect,
@@ -48,7 +48,7 @@ private fun getRoundedRectPath(
     contentRect: BubbleRect
 ) {
 
-    val alignment = state.arrowAlignment
+    val alignment = state.alignment
 
     val cornerRadius = state.cornerRadiusBundle
 
@@ -61,10 +61,10 @@ private fun getRoundedRectPath(
         bottomLeft = min(bottomLeft, maxRadius)
     }
 
-    val isWithArrow = state.withArrow
+    val drawArrow = state.drawArrow
 
 
-    if (isWithArrow) {
+    if (drawArrow) {
         when (alignment) {
             // Arrow on left side of the bubble
             ArrowAlignment.LEFT_TOP, ArrowAlignment.LEFT_CENTER, ArrowAlignment.LEFT_BOTTOM -> {

@@ -38,9 +38,8 @@ class MainActivity : ComponentActivity() {
                             .padding(8.dp)
                     ) {
 
-
                         val bubbleState = rememberBubbleState().apply {
-                            arrowAlignment = ArrowAlignment.NONE
+                            alignment = ArrowAlignment.NONE
                             arrowWidth = 20f
                             arrowHeight = 15f
 //                            arrowOffsetY = 5f
@@ -59,6 +58,25 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        val bubbleState2 = rememberBubbleState().apply {
+                            alignment = ArrowAlignment.LEFT_TOP
+//                            arrowOffsetY = 5f
+                            shadow = BubbleShadow(
+                                elevation = 3.dp)
+                        }
+
+                        BubbleLayout(bubbleState = bubbleState2) {
+                            Text(
+                                "Hello World",
+                                fontSize = 16.sp,
+                                modifier = Modifier
+//                                    .background(Color(0x33000000))
+                                    .padding(8.dp)
+                            )
+                        }
+
                         Spacer(modifier = Modifier.height(8.dp))
 
                         Column(

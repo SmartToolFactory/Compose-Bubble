@@ -11,7 +11,7 @@ fun createHorizontalArrowPath(
     contentRect: BubbleRect,
     state: BubbleState
 ) {
-    val alignment = state.arrowAlignment
+    val alignment = state.alignment
     if (alignment == ArrowAlignment.NONE) return
 
     val contentHeight = contentRect.height
@@ -20,23 +20,6 @@ fun createHorizontalArrowPath(
     val contentTop = contentRect.top
 
     val arrowWidth = state.arrowWidth
-
-    val cornerRadius = state.cornerRadiusBundle
-
-    val radiusSumOnArrowSide = when {
-        isHorizontalLeftAligned(alignment) -> {
-            cornerRadius.topLeft + cornerRadius.bottomLeft
-        }
-        else -> {
-            cornerRadius.topRight + cornerRadius.bottomRight
-        }
-    }
-
-    // Height of the arrow is limited to height of the bubble
-//    val arrowHeight =
-//        if (modifier.arrowHeight + radiusSumOnArrowSide > contentHeight)
-//            contentHeight - radiusSumOnArrowSide else modifier.arrowHeight
-
     val arrowHeight = state.arrowHeight.coerceAtMost(contentHeight)
 
     state.arrowHeight = arrowHeight
@@ -49,12 +32,6 @@ fun createHorizontalArrowPath(
 
     val arrowBottom = arrowTop + arrowHeight
     state.arrowBottom = arrowBottom
-
-    println("🚛 createHorizontalArrowPath() contentHeight: $contentHeight, " +
-            "contentLeft: $contentLeft, contentRight: $contentRight, contentTop: $contentTop, arrowWidth: $arrowWidth")
-
-    println("🚛🚛 ARROW top: $arrowTop, arrowBottom: $arrowBottom, " +
-            "CENTER: ${(arrowTop+arrowBottom)/2f} arrowHeight: $arrowHeight")
     val arrowShape = state.arrowShape
 
     when (alignment) {
@@ -215,14 +192,11 @@ private fun calculateArrowTopPosition(
     contentTop: Float,
     contentHeight: Float
 ): Float {
-
-    val alignment = state.arrowAlignment
-
     var arrowTop = when {
-        isHorizontalTopAligned(alignment) -> {
+        state.isHorizontalTopAligned() -> {
             contentTop + state.arrowOffsetY
         }
-        isHorizontalBottomAligned(alignment) -> {
+        state.isHorizontalBottomAligned() -> {
             contentHeight + state.arrowOffsetY - arrowHeight
         }
         else -> {
@@ -242,7 +216,7 @@ private fun calculateArrowTopPosition(
  */
 fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleState) {
 
-    val alignment = state.arrowAlignment
+    val alignment = state.alignment
 
     if (alignment == ArrowAlignment.NONE) return
 
@@ -342,7 +316,6 @@ fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleSt
 
         else -> Unit
     }
-
     path.close()
 }
 
@@ -352,14 +325,11 @@ private fun calculateArrowLeftPosition(
     contentLeft: Float,
     contentWidth: Float
 ): Float {
-
-    val alignment = state.arrowAlignment
-
     var arrowLeft = when {
-        isVerticalLeftAligned(alignment) -> {
+        state.isVerticalLeftAligned() -> {
             contentLeft + state.arrowOffsetX
         }
-        isVerticalRightAligned(alignment) -> {
+        state.isVerticalRightAligned() -> {
             contentWidth + state.arrowOffsetX - arrowWidth
         }
         else -> {
@@ -372,70 +342,4 @@ private fun calculateArrowLeftPosition(
     if (arrowLeft + arrowWidth > contentWidth) arrowLeft = contentWidth - arrowWidth
 
     return arrowLeft
-}
-
-/**
- * Arrow is on left side of the bubble
- */
-internal fun isHorizontalLeftAligned(alignment: ArrowAlignment): Boolean {
-    return (alignment == ArrowAlignment.LEFT_TOP
-            || alignment == ArrowAlignment.LEFT_BOTTOM
-            || alignment == ArrowAlignment.LEFT_CENTER)
-}
-
-/**
- * Arrow is on right side of the bubble
- */
-internal fun isHorizontalRightAligned(alignment:ArrowAlignment): Boolean {
-    return (alignment == ArrowAlignment.RIGHT_TOP
-            || alignment == ArrowAlignment.RIGHT_BOTTOM
-            || alignment == ArrowAlignment.RIGHT_CENTER)
-}
-
-/**
- * Arrow is on top left or right side of the bubble
- */
-private fun isHorizontalTopAligned(alignment: ArrowAlignment): Boolean {
-    return (alignment == ArrowAlignment.LEFT_TOP || alignment == ArrowAlignment.RIGHT_TOP)
-}
-
-/**
- * Arrow is on top left or right side of the bubble
- */
-private fun isHorizontalBottomAligned(alignment: ArrowAlignment): Boolean {
-    return (alignment == ArrowAlignment.LEFT_BOTTOM || alignment == ArrowAlignment.RIGHT_BOTTOM)
-}
-
-
-/**
- * Check if arrow is horizontally positioned either on left or right side
- */
-internal fun isArrowHorizontalPosition(alignment: ArrowAlignment): Boolean {
-    return isHorizontalLeftAligned(alignment)
-            || isHorizontalRightAligned(alignment)
-}
-
-internal fun isVerticalBottomAligned(alignment: ArrowAlignment): Boolean {
-    return alignment == ArrowAlignment.BOTTOM_LEFT || alignment == ArrowAlignment.BOTTOM_RIGHT || alignment == ArrowAlignment.BOTTOM_CENTER
-}
-
-/**
- * Arrow is on left side of the bubble
- */
-internal fun isVerticalLeftAligned(alignment: ArrowAlignment): Boolean {
-    return (alignment == ArrowAlignment.BOTTOM_LEFT)
-}
-
-/**
- * Arrow is on right side of the bubble
- */
-internal fun isVerticalRightAligned(alignment: ArrowAlignment): Boolean {
-    return (alignment == ArrowAlignment.BOTTOM_RIGHT)
-}
-
-/**
- * Check if arrow is vertically positioned either on top or at the bottom of bubble
- */
-internal fun isArrowVerticalPosition(alignment: ArrowAlignment): Boolean {
-    return isVerticalBottomAligned(alignment)
 }

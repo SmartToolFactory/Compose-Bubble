@@ -12,7 +12,7 @@ fun rememberBubbleState(): BubbleState {
     }
 }
 
-class BubbleState {
+class BubbleState internal constructor(){
 
     /**
      * Scale to set initial values as dp
@@ -52,7 +52,7 @@ class BubbleState {
      * Arrow alignment determines in which side of the bubble this arrow should be drawn.
      * When [ArrowAlignment.NONE] is selected no arrow is drawn
      */
-    var arrowAlignment: ArrowAlignment = ArrowAlignment.NONE
+    var alignment: ArrowAlignment = ArrowAlignment.NONE
 
 
     /**
@@ -93,7 +93,7 @@ class BubbleState {
      * If set to true an arrow is drawn depending on it's alignment, horizontal and vertical
      * offset.
      */
-    var withArrow = true
+    var drawArrow = true
 
 
     var shadow: BubbleShadow? = null
@@ -116,5 +116,69 @@ class BubbleState {
         arrowOffsetY *= dp
         arrowOffsetX *= dp
     }
+
+    /**
+     * Arrow is on left side of the bubble
+     */
+    fun isHorizontalLeftAligned(): Boolean =
+        (alignment == ArrowAlignment.LEFT_TOP
+                || alignment == ArrowAlignment.LEFT_BOTTOM
+                || alignment == ArrowAlignment.LEFT_CENTER)
+
+
+    /**
+     * Arrow is on right side of the bubble
+     */
+    fun isHorizontalRightAligned(): Boolean =
+        (alignment == ArrowAlignment.RIGHT_TOP
+                || alignment == ArrowAlignment.RIGHT_BOTTOM
+                || alignment == ArrowAlignment.RIGHT_CENTER)
+
+
+    /**
+     * Arrow is on top left or right side of the bubble
+     */
+    fun isHorizontalTopAligned(): Boolean =
+        (alignment == ArrowAlignment.LEFT_TOP || alignment == ArrowAlignment.RIGHT_TOP)
+
+
+    /**
+     * Arrow is on top left or right side of the bubble
+     */
+    fun isHorizontalBottomAligned(): Boolean =
+        (alignment == ArrowAlignment.LEFT_BOTTOM || alignment == ArrowAlignment.RIGHT_BOTTOM)
+
+    /**
+     * Check if arrow is horizontally positioned either on left or right side
+     */
+    fun isArrowHorizontalPosition(): Boolean =
+        isHorizontalLeftAligned()
+                || isHorizontalRightAligned()
+
+
+    fun isVerticalBottomAligned(): Boolean =
+        alignment == ArrowAlignment.BOTTOM_LEFT ||
+                alignment == ArrowAlignment.BOTTOM_RIGHT ||
+                alignment == ArrowAlignment.BOTTOM_CENTER
+
+
+    /**
+     * Arrow is on left side of the bubble
+     */
+    fun isVerticalLeftAligned(): Boolean = (alignment == ArrowAlignment.BOTTOM_LEFT)
+
+
+    /**
+     * Arrow is on right side of the bubble
+     */
+    fun isVerticalRightAligned(): Boolean = (alignment == ArrowAlignment.BOTTOM_RIGHT)
+
+
+    /**
+     * Check if arrow is vertically positioned either on top or at the bottom of bubble
+     */
+    fun isArrowVerticalPosition(): Boolean = isVerticalBottomAligned()
+
+
 }
 
