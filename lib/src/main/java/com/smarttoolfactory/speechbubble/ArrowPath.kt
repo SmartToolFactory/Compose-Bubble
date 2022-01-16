@@ -228,7 +228,7 @@ fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleSt
     val contentTop = contentRect.top
     val contentBottom = contentRect.bottom
 
-    val cornerRadius = state.cornerRadiusBundle
+    val cornerRadius = state.cornerRadius
 
     // TODO This is for bottom arrow, we take only bottom corners to have space to draw arrow
     val radiusSumOnArrowSide = cornerRadius.bottomLeft + cornerRadius.bottomRight

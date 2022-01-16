@@ -5,7 +5,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 /**
- * Creates a colorable shadow instance.
+ * Creates a shadow instance.
  *
  * @param color Color of the shadow
  * @param alpha of the color of the shadow
@@ -33,7 +33,7 @@ fun BubbleShadow(
 }
 
 /**
- * Creates a colorable shadow instance.
+ * Creates a shadow instance.
  *
  * @param color Color of the shadow
  * @param alpha of the color of the shadow

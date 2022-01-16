@@ -38,15 +38,17 @@ class MainActivity : ComponentActivity() {
                             .padding(8.dp)
                     ) {
 
-                        val bubbleState = rememberBubbleState().apply {
-                            alignment = ArrowAlignment.NONE
-                            arrowWidth = 20f
-                            arrowHeight = 15f
-//                            arrowOffsetY = 5f
-                            arrowShape = ArrowShape.TRIANGLE_ISOSCELES
+                        val bubbleState = rememberBubbleState(
+                            alignment = ArrowAlignment.NONE,
+                            cornerRadius = 8f,
+                            arrowWidth = 20f,
+                            arrowHeight = 15f,
+//                            arrowOffsetY = 5f,
+                            arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                             shadow = BubbleShadow(
-                                elevation = 1.dp)
-                        }
+                                elevation = 1.dp
+                            )
+                        )
 
                         BubbleLayout(bubbleState = bubbleState) {
                             Text(
@@ -57,15 +59,17 @@ class MainActivity : ComponentActivity() {
                                     .padding(8.dp)
                             )
                         }
-                        
+
                         Spacer(modifier = Modifier.height(8.dp))
 
-                        val bubbleState2 = rememberBubbleState().apply {
-                            alignment = ArrowAlignment.LEFT_TOP
-//                            arrowOffsetY = 5f
+                        val bubbleState2 = rememberBubbleState(
+                            alignment = ArrowAlignment.LEFT_TOP,
+                            cornerRadius = 8f,
+//                            arrowOffsetY = 5f,
                             shadow = BubbleShadow(
-                                elevation = 3.dp)
-                        }
+                                elevation = 3.dp
+                            )
+                        )
 
                         BubbleLayout(bubbleState = bubbleState2) {
                             Text(
@@ -82,7 +86,8 @@ class MainActivity : ComponentActivity() {
                         Column(
                             modifier = Modifier
                                 .shadow(1.dp, shape = RoundedCornerShape(5.dp))
-                                .background(Color(0xffE7FFDB))
+//                                .background(Color(0xffE7FFDB))
+                                .background(Color.White)
                         ) {
                             Text(
                                 "Hello World",

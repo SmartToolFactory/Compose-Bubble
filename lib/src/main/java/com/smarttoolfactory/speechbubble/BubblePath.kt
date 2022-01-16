@@ -50,7 +50,7 @@ private fun getRoundedRectPath(
 
     val alignment = state.alignment
 
-    val cornerRadius = state.cornerRadiusBundle
+    val cornerRadius: BubbleCornerRadius = state.cornerRadius
 
     val maxRadius = contentRect.height / 2f
 
