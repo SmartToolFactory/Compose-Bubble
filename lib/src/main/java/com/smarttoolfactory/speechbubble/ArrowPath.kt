@@ -1,6 +1,5 @@
 package com.smarttoolfactory.speechbubble
 
-
 import androidx.compose.ui.graphics.Path
 
 /**
@@ -15,15 +14,16 @@ fun createHorizontalArrowPath(
     val alignment = state.alignment
     if (alignment == ArrowAlignment.NONE) return
 
-    val contentHeight = contentRect.height
-    val contentLeft = contentRect.left
-    val contentRight = contentRect.right
-    val contentTop = contentRect.top
+    val contentHeight: Float = contentRect.height
+    val contentLeft: Float = contentRect.left
+    val contentRight: Float = contentRect.right
+    val contentTop: Float = contentRect.top
 
-    val arrowWidth = state.arrowWidth
-    val arrowHeight = state.arrowHeight.coerceAtMost(contentHeight)
+    val arrowWidth: Float = state.arrowWidth.value * density
+    val arrowHeight: Float = (state.arrowHeight.value * density).coerceAtMost(contentHeight)
 
-    state.arrowHeight = arrowHeight
+    // TODO Check if this required?
+//    state.arrowHeight = (arrowHeight / density).dp
 
     // This is offset from top/bottom or center for arrows on left or right.
     // Maximum offset + arrow height cannot be bigger
@@ -200,15 +200,18 @@ private fun calculateArrowTopPosition(
     contentHeight: Float,
     density: Float,
 ): Float {
+
+    val arrowOffsetY = state.arrowOffsetY.value * density
+
     var arrowTop = when {
         state.isHorizontalTopAligned() -> {
-            contentTop + state.arrowOffsetY
+            contentTop + arrowOffsetY
         }
         state.isHorizontalBottomAligned() -> {
-            contentHeight + state.arrowOffsetY - arrowHeight
+            contentHeight + arrowOffsetY - arrowHeight
         }
         else -> {
-            (contentHeight - arrowHeight) / 2f + state.arrowOffsetY
+            (contentHeight - arrowHeight) / 2f + arrowOffsetY
         }
     }
 
@@ -250,13 +253,22 @@ fun createVerticalArrowPath(
     // Width of the arrow is limited to height of the bubble minus sum of corner radius
     // of top and bottom in respective side
 
+    val arrowWidthInPx = state.arrowWidth.value * density
+
     val arrowWidth =
-        if (state.arrowWidth + radiusSumOnArrowSide > contentWidth)
-            contentWidth - radiusSumOnArrowSide else state.arrowWidth
+        if (arrowWidthInPx + radiusSumOnArrowSide > contentWidth)
+            contentWidth - radiusSumOnArrowSide else arrowWidthInPx
 
-    val arrowHeight = state.arrowHeight
+    val arrowHeight = state.arrowHeight.value * density
 
-    val arrowLeft = calculateArrowLeftPosition(state, arrowWidth, contentLeft, contentWidth)
+    val arrowLeft = calculateArrowLeftPosition(
+        state,
+        arrowWidth,
+        contentLeft,
+        contentWidth,
+        density
+    )
+
     val arrowRight = arrowLeft + arrowWidth
     val arrowBottom = contentBottom + arrowHeight
 
@@ -337,17 +349,21 @@ private fun calculateArrowLeftPosition(
     state: BubbleState,
     arrowWidth: Float,
     contentLeft: Float,
-    contentWidth: Float
+    contentWidth: Float,
+    density: Float
 ): Float {
+
+    val arrowOffsetX: Float = state.arrowOffsetX.value * density
+
     var arrowLeft = when {
         state.isVerticalLeftAligned() -> {
-            contentLeft + state.arrowOffsetX
+            contentLeft + arrowOffsetX
         }
         state.isVerticalRightAligned() -> {
-            contentWidth + state.arrowOffsetX - arrowWidth
+            contentWidth + arrowOffsetX - arrowWidth
         }
         else -> {
-            (contentWidth - arrowWidth) / 2f + state.arrowOffsetX
+            (contentWidth - arrowWidth) / 2f + arrowOffsetX
         }
     }
 

@@ -47,8 +47,8 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
         Modifier
             .layout { measurable, constraints ->
 
-                bubbleState.dp = density
-                bubbleState.init()
+                val arrowWidth = bubbleState.arrowWidth.value * density
+                val arrowHeight = bubbleState.arrowHeight.value * density
 
                 val placeable = measurable.measure(constraints)
 
@@ -58,17 +58,18 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
 
                 var desiredWidth = placeable.width
                 if (isHorizontalLeftAligned || isHorizontalRightAligned) {
-                    desiredWidth += bubbleState.arrowWidth.toInt()
+                    desiredWidth += arrowWidth.toInt()
                 }
 
                 var desiredHeight: Int = placeable.height
-                if (isVerticalBottomAligned) desiredHeight += bubbleState.arrowHeight.toInt()
+                if (isVerticalBottomAligned) desiredHeight += arrowHeight.toInt()
 
                 setContentRect(
                     bubbleState,
                     rectContent,
                     desiredWidth,
                     desiredHeight,
+                    density = density
                 )
 
                 getBubbleClipPath(
@@ -84,7 +85,7 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
                 when {
                     // Arrow on left side
                     isHorizontalLeftAligned -> {
-                        x = bubbleState.arrowWidth.roundToInt()
+                        x = arrowWidth.roundToInt()
                         y = 0
                     }
 
@@ -118,7 +119,7 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
                 println("✏️ DRAWING size: $size,")
 
                 val left =
-                    if (bubbleState.isHorizontalLeftAligned()) -bubbleState.arrowWidth else 0f
+                    if (bubbleState.isHorizontalLeftAligned()) -bubbleState.arrowWidth.toPx() else 0f
 
                 translate(left = left) {
                     drawPath(path = path, color = bubbleState.backgroundColor)
@@ -133,18 +134,20 @@ private fun setContentRect(
     rectContent: BubbleRect,
     desiredWidth: Int,
     desiredHeight: Int,
-
-    ) {
+    density: Float
+) {
 
     val isHorizontalRightAligned = bubbleState.isHorizontalRightAligned()
     val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
     val isVerticalBottomAligned = bubbleState.isVerticalBottomAligned()
 
+    val arrowWidth = bubbleState.arrowWidth.value * density
+    val arrowHeight = bubbleState.arrowHeight.value * density
 
     when {
         isHorizontalLeftAligned -> {
             rectContent.set(
-                left = bubbleState.arrowWidth,
+                left = arrowWidth,
                 top = 0f,
                 right = desiredWidth.toFloat(),
                 bottom = desiredHeight.toFloat()
@@ -156,7 +159,7 @@ private fun setContentRect(
             rectContent.set(
                 0f,
                 0f,
-                desiredWidth.toFloat() - bubbleState.arrowWidth,
+                desiredWidth.toFloat() - arrowWidth,
                 desiredHeight.toFloat()
             )
 
@@ -167,7 +170,7 @@ private fun setContentRect(
                 0f,
                 0f,
                 desiredWidth.toFloat(),
-                desiredHeight.toFloat() - bubbleState.arrowHeight
+                desiredHeight.toFloat() - arrowHeight
             )
         }
 
@@ -181,76 +184,3 @@ private fun setContentRect(
         }
     }
 }
-
-private fun Modifier.materialShadow(bubbleState: BubbleState, path: Path) = composed(
-    inspectorInfo = {
-        name = "shadow"
-        value = bubbleState.shadow
-    },
-    factory = {
-
-        val paint: Paint = remember(bubbleState) {
-            Paint()
-        }
-
-        val frameworkPaint: NativePaint = remember(bubbleState) {
-            paint.asFrameworkPaint()
-        }
-
-        bubbleState.shadow?.let { shadow: BubbleShadow ->
-            drawBehind {
-
-                val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
-
-                val left = if (isHorizontalLeftAligned) -bubbleState.arrowWidth else 0f
-
-                translate(left = left) {
-
-                    bubbleState.shadow?.let { shadow ->
-
-                        if (shadow.useSoftwareLayer) {
-                            this.drawIntoCanvas {
-
-                                val color = shadow.color
-
-                                // Interestingly 1.dp shadow is not equal to Modifier.shadow(1.dp)
-                                // so changed 1.dp to 0.5dp to match shadows with Modifier.shadow()
-                                val dx = shadow.offsetX.toPx() / 2
-                                val dy = shadow.offsetY.toPx() / 2
-                                val radius = shadow.shadowRadius.toPx() / 2
-
-                                val shadowColor = color
-                                    .copy(alpha = shadow.alpha)
-                                    .toArgb()
-                                val transparent = color
-                                    .copy(alpha = 0f)
-                                    .toArgb()
-
-                                frameworkPaint.color = transparent
-
-                                frameworkPaint.setShadowLayer(
-                                    dx,
-                                    dy,
-                                    radius,
-                                    shadowColor
-                                )
-
-                                it.drawPath(path, paint)
-                            }
-
-                        } else {
-
-                            val dx = shadow.offsetX.toPx() / 2
-                            val dy = shadow.offsetY.toPx() / 2
-
-                            translate(dx, dy) {
-                                drawPath(color = shadow.color.copy(shadow.alpha), path = path)
-                            }
-                        }
-                    }
-                    drawPath(path = path, color = shadow.color)
-                }
-            }
-        } ?: this
-    }
-)

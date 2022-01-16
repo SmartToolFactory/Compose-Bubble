@@ -39,12 +39,11 @@ class MainActivity : ComponentActivity() {
                     ) {
 
                         val bubbleState = rememberBubbleState(
-                            alignment = ArrowAlignment.NONE,
+                            alignment = ArrowAlignment.LEFT_TOP,
                             cornerRadius = 5.dp,
-                            arrowWidth = 20f,
-                            arrowHeight = 15f,
+                            arrowWidth = 12.dp,
+                            arrowHeight = 12.dp,
 //                            arrowOffsetY = 5f,
-                            arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                             shadow = BubbleShadow(
                                 elevation = 1.dp
                             )
@@ -60,12 +59,13 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+
                         Spacer(modifier = Modifier.height(8.dp))
 
                         val bubbleState2 = rememberBubbleState(
-                            alignment = ArrowAlignment.LEFT_TOP,
+                            alignment = ArrowAlignment.LEFT_CENTER,
                             cornerRadius = 40.dp,
-//                            arrowOffsetY = 5f,
+                            arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                             shadow = BubbleShadow(
                                 elevation = 1.dp
                             )
@@ -92,7 +92,6 @@ class MainActivity : ComponentActivity() {
                                 bottomLeft = 8.dp,
                                 bottomRight = 6.dp
                             ),
-//                            arrowOffsetY = 5f,
                             shadow = BubbleShadow(
                                 elevation = 1.dp
                             )

@@ -35,16 +35,14 @@ fun rememberBubbleState(
     cornerRadius: Dp = 5.dp,
     alignment: ArrowAlignment = ArrowAlignment.NONE,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
-    arrowOffsetX: Float = 0f,
-    arrowOffsetY: Float = 0f,
-    arrowWidth: Float = 14.0f,
-    arrowHeight: Float = 14.0f,
-    arrowRadius: Float = 0.0f,
+    arrowOffsetX: Dp = 0.dp,
+    arrowOffsetY: Dp =  0.dp,
+    arrowWidth: Dp = 12.dp,
+    arrowHeight: Dp = 12.dp,
+    arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null,
 ): BubbleState {
-
-    val density = LocalDensity.current.density
 
     return remember {
         BubbleState(
@@ -100,16 +98,14 @@ fun rememberBubbleState(
     ),
     alignment: ArrowAlignment = ArrowAlignment.NONE,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
-    arrowOffsetX: Float = 0f,
-    arrowOffsetY: Float = 0f,
-    arrowWidth: Float = 14.0f,
-    arrowHeight: Float = 14.0f,
-    arrowRadius: Float = 0.0f,
+    arrowOffsetX: Dp = 0.dp,
+    arrowOffsetY: Dp =  0.dp,
+    arrowWidth: Dp = 12.dp,
+    arrowHeight: Dp = 12.dp,
+    arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null,
 ): BubbleState {
-
-    val density = LocalDensity.current.density
 
     return remember {
         BubbleState(
@@ -159,19 +155,14 @@ class BubbleState internal constructor(
     ),
     var alignment: ArrowAlignment = ArrowAlignment.NONE,
     var arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
-    var arrowOffsetX: Float = 0f,
-    var arrowOffsetY: Float = 0f,
-    var arrowWidth: Float = 14.0f,
-    var arrowHeight: Float = 14.0f,
-    var arrowRadius: Float = 0.0f,
+    var arrowOffsetX: Dp = 0.dp,
+    var arrowOffsetY: Dp = 0.dp,
+    var arrowWidth: Dp = 12.dp,
+    var arrowHeight: Dp = 12.dp,
+    var arrowRadius: Dp = 0.dp,
     var drawArrow: Boolean = true,
     var shadow: BubbleShadow? = null,
 ) {
-
-    /**
-     * Scale to set initial values as dp
-     */
-    internal var dp: Float = 1f
 
     /**
      * Top position of arrow
@@ -183,21 +174,6 @@ class BubbleState internal constructor(
      */
     var arrowBottom: Float = 0f
 
-    fun init() {
-
-        cornerRadius.apply {
-            topLeft *= dp
-            topRight *= dp
-            bottomLeft *= dp
-            bottomRight *= dp
-        }
-
-        arrowWidth *= dp
-        arrowHeight *= dp
-        arrowRadius *= dp
-        arrowOffsetY *= dp
-        arrowOffsetX *= dp
-    }
 
     /**
      * Arrow is on left side of the bubble

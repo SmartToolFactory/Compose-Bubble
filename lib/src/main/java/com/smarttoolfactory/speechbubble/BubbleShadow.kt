@@ -1,8 +1,90 @@
 package com.smarttoolfactory.speechbubble
 
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+
+
+internal fun Modifier.materialShadow(bubbleState: BubbleState, path: Path) = composed(
+    inspectorInfo = {
+        name = "shadow"
+        value = bubbleState.shadow
+    },
+    factory = {
+
+        val paint: Paint = remember(bubbleState) {
+            Paint()
+        }
+
+        val frameworkPaint: NativePaint = remember(bubbleState) {
+            paint.asFrameworkPaint()
+        }
+
+        bubbleState.shadow?.let { shadow: BubbleShadow ->
+            drawBehind {
+
+                val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
+
+                val left =
+                    if (isHorizontalLeftAligned) -bubbleState.arrowWidth.value * density else 0f
+
+                translate(left = left) {
+
+                    bubbleState.shadow?.let { shadow ->
+
+                        if (shadow.useSoftwareLayer) {
+                            this.drawIntoCanvas {
+
+                                val color = shadow.color
+
+                                // Interestingly 1.dp shadow is not equal to Modifier.shadow(1.dp)
+                                // so changed 1.dp to 0.5dp to match shadows with Modifier.shadow()
+                                val dx = shadow.offsetX.toPx() / 2
+                                val dy = shadow.offsetY.toPx() / 2
+                                val radius = shadow.shadowRadius.toPx() / 2
+
+                                val shadowColor = color
+                                    .copy(alpha = shadow.alpha)
+                                    .toArgb()
+                                val transparent = color
+                                    .copy(alpha = 0f)
+                                    .toArgb()
+
+                                frameworkPaint.color = transparent
+
+                                frameworkPaint.setShadowLayer(
+                                    dx,
+                                    dy,
+                                    radius,
+                                    shadowColor
+                                )
+
+                                it.drawPath(path, paint)
+                            }
+
+                        } else {
+
+                            val dx = shadow.offsetX.toPx() / 2
+                            val dy = shadow.offsetY.toPx() / 2
+
+                            translate(dx, dy) {
+                                drawPath(color = shadow.color.copy(shadow.alpha), path = path)
+                            }
+                        }
+                    }
+                    drawPath(path = path, color = shadow.color)
+                }
+            }
+        } ?: this
+    }
+)
+
 
 /**
  * Creates a shadow instance.

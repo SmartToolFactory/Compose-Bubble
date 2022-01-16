@@ -5,7 +5,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.unit.dp
 import kotlin.math.min
 
 
@@ -43,13 +42,14 @@ fun getBubbleClipPath(
         }
     }
 
-    getRoundedRectPath(state, path, contentRect)
+    getRoundedRectPath(state, path, contentRect, density)
 }
 
 private fun getRoundedRectPath(
     state: BubbleState,
     path: Path,
-    contentRect: BubbleRect
+    contentRect: BubbleRect,
+    density: Float
 ) {
 
     val alignment = state.alignment
@@ -60,16 +60,16 @@ private fun getRoundedRectPath(
 
     val drawArrow = state.drawArrow
 
-    var topLeftInPx = cornerRadius.topLeft.value
+    var topLeftInPx = cornerRadius.topLeft.value * density
         .coerceAtMost(maxRadius)
-    var topRightInPx = cornerRadius.topRight.value
+    var topRightInPx = cornerRadius.topRight.value * density
         .coerceAtMost(maxRadius)
-    var bottomLeftInPx = cornerRadius.bottomLeft.value
+    var bottomLeftInPx = cornerRadius.bottomLeft.value * density
         .coerceAtMost(maxRadius)
-    var bottomRightInPx = cornerRadius.bottomRight.value
+    var bottomRightInPx = cornerRadius.bottomRight.value * density
         .coerceAtMost(maxRadius)
 
-    val arrowOffsetY = state.arrowOffsetY
+    val arrowOffsetY = state.arrowOffsetY.value * density
     val arrowTop = state.arrowTop
     val arrowBottom = state.arrowBottom
 
