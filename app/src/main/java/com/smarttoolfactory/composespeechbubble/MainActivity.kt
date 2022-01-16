@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
                         val bubbleState = rememberBubbleState(
                             alignment = ArrowAlignment.NONE,
-                            cornerRadius = 8f,
+                            cornerRadius = 5.dp,
                             arrowWidth = 20f,
                             arrowHeight = 15f,
 //                            arrowOffsetY = 5f,
@@ -64,10 +64,10 @@ class MainActivity : ComponentActivity() {
 
                         val bubbleState2 = rememberBubbleState(
                             alignment = ArrowAlignment.LEFT_TOP,
-                            cornerRadius = 8f,
+                            cornerRadius = 40.dp,
 //                            arrowOffsetY = 5f,
                             shadow = BubbleShadow(
-                                elevation = 3.dp
+                                elevation = 1.dp
                             )
                         )
 
@@ -83,9 +83,36 @@ class MainActivity : ComponentActivity() {
 
                         Spacer(modifier = Modifier.height(8.dp))
 
+
+                        val bubbleState3 = rememberBubbleState(
+                            alignment = ArrowAlignment.NONE,
+                            cornerRadius = BubbleCornerRadius(
+                                topLeft = 5.dp,
+                                topRight = 12.dp,
+                                bottomLeft = 8.dp,
+                                bottomRight = 6.dp
+                            ),
+//                            arrowOffsetY = 5f,
+                            shadow = BubbleShadow(
+                                elevation = 1.dp
+                            )
+                        )
+
+                        BubbleLayout(bubbleState = bubbleState3) {
+                            Text(
+                                "Hello World",
+                                fontSize = 16.sp,
+                                modifier = Modifier
+//                                    .background(Color(0x33000000))
+                                    .padding(8.dp)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
                         Column(
                             modifier = Modifier
-                                .shadow(1.dp, shape = RoundedCornerShape(5.dp))
+                                .shadow(1.dp, shape = RoundedCornerShape(40.dp))
 //                                .background(Color(0xffE7FFDB))
                                 .background(Color.White)
                         ) {

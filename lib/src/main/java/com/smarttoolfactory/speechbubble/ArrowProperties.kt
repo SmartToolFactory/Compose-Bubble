@@ -1,10 +1,13 @@
 package com.smarttoolfactory.speechbubble
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+
 class BubbleCornerRadius(
-    var topLeft: Float = 0f,
-    var topRight: Float = 0f,
-    var bottomLeft: Float = 0f,
-    var bottomRight: Float = 0f,
+    var topLeft: Dp = 0.dp,
+    var topRight: Dp = 0.dp,
+    var bottomLeft: Dp = 0.dp,
+    var bottomRight: Dp = 0.dp,
 )
 
 

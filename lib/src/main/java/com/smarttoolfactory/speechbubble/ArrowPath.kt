@@ -9,7 +9,8 @@ import androidx.compose.ui.graphics.Path
 fun createHorizontalArrowPath(
     path: Path,
     contentRect: BubbleRect,
-    state: BubbleState
+    state: BubbleState,
+    density: Float,
 ) {
     val alignment = state.alignment
     if (alignment == ArrowAlignment.NONE) return
@@ -27,7 +28,13 @@ fun createHorizontalArrowPath(
     // This is offset from top/bottom or center for arrows on left or right.
     // Maximum offset + arrow height cannot be bigger
     // than bottom of bubble or smaller than top of bubble.
-    val arrowTop = calculateArrowTopPosition(state, arrowHeight, contentTop, contentHeight)
+    val arrowTop = calculateArrowTopPosition(
+        state,
+        arrowHeight,
+        contentTop,
+        contentHeight,
+        density
+    )
     state.arrowTop = arrowTop
 
     val arrowBottom = arrowTop + arrowHeight
@@ -190,7 +197,8 @@ private fun calculateArrowTopPosition(
     state: BubbleState,
     arrowHeight: Float,
     contentTop: Float,
-    contentHeight: Float
+    contentHeight: Float,
+    density: Float,
 ): Float {
     var arrowTop = when {
         state.isHorizontalTopAligned() -> {
@@ -214,7 +222,12 @@ private fun calculateArrowTopPosition(
 /**
  * Create path for arrow that is at the bottom of the bubble
  */
-fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleState) {
+fun createVerticalArrowPath(
+    path: Path,
+    contentRect: BubbleRect,
+    state: BubbleState,
+    density: Float
+) {
 
     val alignment = state.alignment
 
@@ -231,7 +244,8 @@ fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleSt
     val cornerRadius = state.cornerRadius
 
     // TODO This is for bottom arrow, we take only bottom corners to have space to draw arrow
-    val radiusSumOnArrowSide = cornerRadius.bottomLeft + cornerRadius.bottomRight
+    val radiusSumOnArrowSide: Float =
+        (cornerRadius.bottomLeft + cornerRadius.bottomRight).value * density
 
     // Width of the arrow is limited to height of the bubble minus sum of corner radius
     // of top and bottom in respective side

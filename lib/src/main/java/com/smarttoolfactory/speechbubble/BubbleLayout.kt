@@ -6,7 +6,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.NativePaint
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.Path
@@ -72,7 +71,12 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
                     desiredHeight,
                 )
 
-                getBubbleClipPath(path = path, state = bubbleState, contentRect = rectContent)
+                getBubbleClipPath(
+                    path = path,
+                    state = bubbleState,
+                    contentRect = rectContent,
+                    density = density
+                )
 
                 var x = 0
                 var y = 0

@@ -5,6 +5,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.unit.dp
 import kotlin.math.min
 
 
@@ -18,7 +19,8 @@ import kotlin.math.min
 fun getBubbleClipPath(
     path: Path,
     state: BubbleState,
-    contentRect: BubbleRect
+    contentRect: BubbleRect,
+    density: Float,
 ) {
 
     path.reset()
@@ -28,13 +30,15 @@ fun getBubbleClipPath(
             createHorizontalArrowPath(
                 path = path,
                 contentRect = contentRect,
-                state = state
+                state = state,
+                density = density
             )
         } else if (state.isArrowVerticalPosition()) {
             createVerticalArrowPath(
                 path = path,
                 contentRect = contentRect,
-                state = state
+                state = state,
+                density = density
             )
         }
     }
@@ -54,50 +58,45 @@ private fun getRoundedRectPath(
 
     val maxRadius = contentRect.height / 2f
 
-    cornerRadius.apply {
-        topLeft = min(topLeft, maxRadius)
-        topRight = min(topRight, maxRadius)
-        bottomRight = min(bottomRight, maxRadius)
-        bottomLeft = min(bottomLeft, maxRadius)
-    }
-
     val drawArrow = state.drawArrow
 
+    var topLeftInPx = cornerRadius.topLeft.value
+        .coerceAtMost(maxRadius)
+    var topRightInPx = cornerRadius.topRight.value
+        .coerceAtMost(maxRadius)
+    var bottomLeftInPx = cornerRadius.bottomLeft.value
+        .coerceAtMost(maxRadius)
+    var bottomRightInPx = cornerRadius.bottomRight.value
+        .coerceAtMost(maxRadius)
+
+    val arrowOffsetY = state.arrowOffsetY
+    val arrowTop = state.arrowTop
+    val arrowBottom = state.arrowBottom
 
     if (drawArrow) {
         when (alignment) {
             // Arrow on left side of the bubble
             ArrowAlignment.LEFT_TOP, ArrowAlignment.LEFT_CENTER, ArrowAlignment.LEFT_BOTTOM -> {
-                cornerRadius.topLeft = min(
-                    state.arrowTop,
-                    cornerRadius.topLeft
-                )
-
-                cornerRadius.bottomLeft =
-                    min(cornerRadius.bottomLeft, (contentRect.height - state.arrowBottom))
+                topLeftInPx = min(arrowTop, topLeftInPx)
+                bottomLeftInPx = min(bottomLeftInPx, (contentRect.height - arrowBottom))
             }
 
             // Arrow on right side of the bubble
             ArrowAlignment.RIGHT_TOP, ArrowAlignment.RIGHT_CENTER, ArrowAlignment.RIGHT_BOTTOM -> {
-                cornerRadius.topRight = min(
-                    state.arrowTop,
-                    cornerRadius.topRight
-                )
-
-                cornerRadius.bottomRight =
-                    min(cornerRadius.bottomRight, (contentRect.height - state.arrowBottom))
+                topRightInPx = min(arrowTop, topRightInPx)
+                bottomRightInPx = min(bottomRightInPx, (contentRect.height - arrowBottom))
             }
 
             // Arrow at the bottom of bubble
             ArrowAlignment.BOTTOM_LEFT -> {
-                cornerRadius.bottomLeft =
-                    if (state.arrowOffsetY < maxRadius) 0f
-                    else cornerRadius.bottomLeft
+                bottomLeftInPx =
+                    if (arrowOffsetY < maxRadius) 0f
+                    else bottomLeftInPx
             }
             ArrowAlignment.BOTTOM_RIGHT -> {
-                cornerRadius.bottomRight =
-                    if (state.arrowOffsetY < maxRadius) 0f
-                    else cornerRadius.bottomRight
+                bottomRightInPx =
+                    if (arrowOffsetY < maxRadius) 0f
+                    else bottomRightInPx
             }
             else -> Unit
         }
@@ -107,20 +106,20 @@ private fun getRoundedRectPath(
         RoundRect(
             rect = Rect(contentRect.left, contentRect.top, contentRect.right, contentRect.bottom),
             topLeft = CornerRadius(
-                cornerRadius.topLeft,
-                cornerRadius.topLeft
+                topLeftInPx,
+                topLeftInPx
             ),
             topRight = CornerRadius(
-                cornerRadius.topRight,
-                cornerRadius.topRight
+                topRightInPx,
+                topRightInPx
             ),
             bottomRight = CornerRadius(
-                cornerRadius.bottomRight,
-                cornerRadius.bottomRight
+                bottomRightInPx,
+                bottomRightInPx
             ),
             bottomLeft = CornerRadius(
-                cornerRadius.bottomLeft,
-                cornerRadius.bottomLeft
+                bottomLeftInPx,
+                bottomLeftInPx
             )
         )
     )

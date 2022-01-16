@@ -3,6 +3,9 @@ package com.smarttoolfactory.speechbubble
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 
 /**
@@ -29,7 +32,7 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun rememberBubbleState(
     backgroundColor: Color = DefaultBubbleColor,
-    cornerRadius: Float = 8f,
+    cornerRadius: Dp = 5.dp,
     alignment: ArrowAlignment = ArrowAlignment.NONE,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
     arrowOffsetX: Float = 0f,
@@ -40,6 +43,9 @@ fun rememberBubbleState(
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null,
 ): BubbleState {
+
+    val density = LocalDensity.current.density
+
     return remember {
         BubbleState(
             backgroundColor = backgroundColor,
@@ -47,7 +53,7 @@ fun rememberBubbleState(
                 topLeft = cornerRadius,
                 topRight = cornerRadius,
                 bottomLeft = cornerRadius,
-                bottomRight = cornerRadius
+                bottomRight = cornerRadius,
             ),
             alignment = alignment,
             arrowShape = arrowShape,
@@ -87,10 +93,10 @@ fun rememberBubbleState(
 fun rememberBubbleState(
     backgroundColor: Color = DefaultBubbleColor,
     cornerRadius: BubbleCornerRadius = BubbleCornerRadius(
-        topLeft = 8f,
-        topRight = 8f,
-        bottomLeft = 8f,
-        bottomRight = 8f
+        topLeft = 5.dp,
+        topRight = 5.dp,
+        bottomLeft = 5.dp,
+        bottomRight = 5.dp
     ),
     alignment: ArrowAlignment = ArrowAlignment.NONE,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
@@ -102,6 +108,9 @@ fun rememberBubbleState(
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null,
 ): BubbleState {
+
+    val density = LocalDensity.current.density
+
     return remember {
         BubbleState(
             backgroundColor = backgroundColor,
@@ -143,10 +152,10 @@ fun rememberBubbleState(
 class BubbleState internal constructor(
     var backgroundColor: Color = DefaultBubbleColor,
     var cornerRadius: BubbleCornerRadius = BubbleCornerRadius(
-        topLeft = 8f,
-        topRight = 8f,
-        bottomLeft = 8f,
-        bottomRight = 8f
+        topLeft = 5.dp,
+        topRight = 5.dp,
+        bottomLeft = 5.dp,
+        bottomRight = 5.dp,
     ),
     var alignment: ArrowAlignment = ArrowAlignment.NONE,
     var arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
