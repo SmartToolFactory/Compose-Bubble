@@ -15,14 +15,15 @@ enum class ArrowShape {
 }
 
 
-
-const val NONE = 0
-const val LEFT_TOP = 1
-const val LEFT_CENTER = 2
-const val LEFT_BOTTOM = 3
-const val RIGHT_TOP = 4
-const val RIGHT_CENTER = 5
-const val RIGHT_BOTTOM = 6
-const val BOTTOM_LEFT = 7
-const val BOTTOM_CENTER = 8
-const val BOTTOM_RIGHT = 9
+enum class ArrowAlignment {
+    NONE,
+    LEFT_TOP,
+    LEFT_CENTER,
+    LEFT_BOTTOM,
+    RIGHT_TOP,
+    RIGHT_CENTER,
+    RIGHT_BOTTOM,
+    BOTTOM_LEFT,
+    BOTTOM_CENTER,
+    BOTTOM_RIGHT
+}

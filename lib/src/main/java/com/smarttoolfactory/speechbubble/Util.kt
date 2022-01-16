@@ -67,7 +67,7 @@ private fun getRoundedRectPath(
     if (isWithArrow) {
         when (alignment) {
             // Arrow on left side of the bubble
-            LEFT_TOP, LEFT_CENTER, LEFT_BOTTOM -> {
+            ArrowAlignment.LEFT_TOP, ArrowAlignment.LEFT_CENTER, ArrowAlignment.LEFT_BOTTOM -> {
                 cornerRadius.topLeft = min(
                     state.arrowTop,
                     cornerRadius.topLeft
@@ -78,7 +78,7 @@ private fun getRoundedRectPath(
             }
 
             // Arrow on right side of the bubble
-            RIGHT_TOP, RIGHT_CENTER, RIGHT_BOTTOM -> {
+            ArrowAlignment.RIGHT_TOP, ArrowAlignment.RIGHT_CENTER, ArrowAlignment.RIGHT_BOTTOM -> {
                 cornerRadius.topRight = min(
                     state.arrowTop,
                     cornerRadius.topRight
@@ -89,12 +89,12 @@ private fun getRoundedRectPath(
             }
 
             // Arrow at the bottom of bubble
-            BOTTOM_LEFT -> {
+            ArrowAlignment.BOTTOM_LEFT -> {
                 cornerRadius.bottomLeft =
                     if (state.arrowOffsetY < maxRadius) 0f
                     else cornerRadius.bottomLeft
             }
-            BOTTOM_RIGHT -> {
+            ArrowAlignment.BOTTOM_RIGHT -> {
                 cornerRadius.bottomRight =
                     if (state.arrowOffsetY < maxRadius) 0f
                     else cornerRadius.bottomRight

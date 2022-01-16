@@ -5,12 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -38,16 +40,32 @@ class MainActivity : ComponentActivity() {
 
 
                         val bubbleState = rememberBubbleState().apply {
-                            arrowAlignment = LEFT_CENTER
+                            arrowAlignment = ArrowAlignment.NONE
                             arrowWidth = 20f
                             arrowHeight = 15f
 //                            arrowOffsetY = 5f
                             arrowShape = ArrowShape.TRIANGLE_ISOSCELES
+                            shadow = BubbleShadow(
+                                elevation = 1.dp)
                         }
 
-
-
                         BubbleLayout(bubbleState = bubbleState) {
+                            Text(
+                                "Hello World",
+                                fontSize = 16.sp,
+                                modifier = Modifier
+//                                    .background(Color(0x33000000))
+                                    .padding(8.dp)
+                            )
+                        }
+                        
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Column(
+                            modifier = Modifier
+                                .shadow(1.dp, shape = RoundedCornerShape(5.dp))
+                                .background(Color(0xffE7FFDB))
+                        ) {
                             Text(
                                 "Hello World",
                                 fontSize = 16.sp,

@@ -12,7 +12,7 @@ fun createHorizontalArrowPath(
     state: BubbleState
 ) {
     val alignment = state.arrowAlignment
-    if (alignment == NONE) return
+    if (alignment == ArrowAlignment.NONE) return
 
     val contentHeight = contentRect.height
     val contentLeft = contentRect.left
@@ -59,7 +59,7 @@ fun createHorizontalArrowPath(
 
     when (alignment) {
 
-        LEFT_TOP -> {
+        ArrowAlignment.LEFT_TOP -> {
             // move to top of arrow at the top of left corner
             path.moveTo(contentLeft, arrowTop)
 
@@ -82,7 +82,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        LEFT_BOTTOM -> {
+        ArrowAlignment.LEFT_BOTTOM -> {
 
             // move to top of arrow at the bottom left corner
             path.moveTo(contentLeft, arrowTop)
@@ -107,7 +107,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        LEFT_CENTER -> {
+        ArrowAlignment.LEFT_CENTER -> {
 
             // move to top of arrow at the top of left corner
             path.moveTo(contentLeft, arrowTop)
@@ -131,7 +131,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        RIGHT_TOP -> {
+        ArrowAlignment.RIGHT_TOP -> {
 
             // move to top right corner of the content
             path.moveTo(contentRight, arrowTop)
@@ -154,7 +154,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        RIGHT_BOTTOM -> {
+        ArrowAlignment.RIGHT_BOTTOM -> {
 
             // move to bottom right corner of the content
             path.moveTo(contentRight, arrowTop)
@@ -177,7 +177,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        RIGHT_CENTER -> {
+        ArrowAlignment.RIGHT_CENTER -> {
 
             // move to top right corner of the content
             path.moveTo(contentRight, arrowTop)
@@ -244,7 +244,7 @@ fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleSt
 
     val alignment = state.arrowAlignment
 
-    if (alignment == NONE) return
+    if (alignment == ArrowAlignment.NONE) return
 
     val contentHeight = contentRect.height
     val contentWidth = contentRect.width
@@ -275,7 +275,7 @@ fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleSt
     val arrowShape = state.arrowShape
 
     when (alignment) {
-        BOTTOM_LEFT -> {
+        ArrowAlignment.BOTTOM_LEFT -> {
             path.moveTo(arrowLeft, contentBottom)
 
             when (arrowShape) {
@@ -297,7 +297,7 @@ fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleSt
 
         }
 
-        BOTTOM_RIGHT -> {
+        ArrowAlignment.BOTTOM_RIGHT -> {
             path.moveTo(arrowLeft, contentBottom)
 
             when (arrowShape) {
@@ -318,7 +318,7 @@ fun createVerticalArrowPath(path: Path, contentRect: BubbleRect, state: BubbleSt
             }
         }
 
-        BOTTOM_CENTER -> {
+        ArrowAlignment.BOTTOM_CENTER -> {
             path.moveTo(arrowLeft, contentBottom)
 
             when (arrowShape) {
@@ -377,65 +377,65 @@ private fun calculateArrowLeftPosition(
 /**
  * Arrow is on left side of the bubble
  */
-internal fun isHorizontalLeftAligned(alignment: Int): Boolean {
-    return (alignment == LEFT_TOP
-            || alignment == LEFT_BOTTOM
-            || alignment == LEFT_CENTER)
+internal fun isHorizontalLeftAligned(alignment: ArrowAlignment): Boolean {
+    return (alignment == ArrowAlignment.LEFT_TOP
+            || alignment == ArrowAlignment.LEFT_BOTTOM
+            || alignment == ArrowAlignment.LEFT_CENTER)
 }
 
 /**
  * Arrow is on right side of the bubble
  */
-internal fun isHorizontalRightAligned(alignment: Int): Boolean {
-    return (alignment == RIGHT_TOP
-            || alignment == RIGHT_BOTTOM
-            || alignment == RIGHT_CENTER)
+internal fun isHorizontalRightAligned(alignment:ArrowAlignment): Boolean {
+    return (alignment == ArrowAlignment.RIGHT_TOP
+            || alignment == ArrowAlignment.RIGHT_BOTTOM
+            || alignment == ArrowAlignment.RIGHT_CENTER)
 }
 
 /**
  * Arrow is on top left or right side of the bubble
  */
-private fun isHorizontalTopAligned(alignment: Int): Boolean {
-    return (alignment == LEFT_TOP || alignment == RIGHT_TOP)
+private fun isHorizontalTopAligned(alignment: ArrowAlignment): Boolean {
+    return (alignment == ArrowAlignment.LEFT_TOP || alignment == ArrowAlignment.RIGHT_TOP)
 }
 
 /**
  * Arrow is on top left or right side of the bubble
  */
-private fun isHorizontalBottomAligned(alignment: Int): Boolean {
-    return (alignment == LEFT_BOTTOM || alignment == RIGHT_BOTTOM)
+private fun isHorizontalBottomAligned(alignment: ArrowAlignment): Boolean {
+    return (alignment == ArrowAlignment.LEFT_BOTTOM || alignment == ArrowAlignment.RIGHT_BOTTOM)
 }
 
 
 /**
  * Check if arrow is horizontally positioned either on left or right side
  */
-internal fun isArrowHorizontalPosition(alignment: Int): Boolean {
+internal fun isArrowHorizontalPosition(alignment: ArrowAlignment): Boolean {
     return isHorizontalLeftAligned(alignment)
             || isHorizontalRightAligned(alignment)
 }
 
-internal fun isVerticalBottomAligned(alignment: Int): Boolean {
-    return alignment == BOTTOM_LEFT || alignment == BOTTOM_RIGHT || alignment == BOTTOM_CENTER
+internal fun isVerticalBottomAligned(alignment: ArrowAlignment): Boolean {
+    return alignment == ArrowAlignment.BOTTOM_LEFT || alignment == ArrowAlignment.BOTTOM_RIGHT || alignment == ArrowAlignment.BOTTOM_CENTER
 }
 
 /**
  * Arrow is on left side of the bubble
  */
-internal fun isVerticalLeftAligned(alignment: Int): Boolean {
-    return (alignment == BOTTOM_LEFT)
+internal fun isVerticalLeftAligned(alignment: ArrowAlignment): Boolean {
+    return (alignment == ArrowAlignment.BOTTOM_LEFT)
 }
 
 /**
  * Arrow is on right side of the bubble
  */
-internal fun isVerticalRightAligned(alignment: Int): Boolean {
-    return (alignment == BOTTOM_RIGHT)
+internal fun isVerticalRightAligned(alignment: ArrowAlignment): Boolean {
+    return (alignment == ArrowAlignment.BOTTOM_RIGHT)
 }
 
 /**
  * Check if arrow is vertically positioned either on top or at the bottom of bubble
  */
-internal fun isArrowVerticalPosition(alignment: Int): Boolean {
+internal fun isArrowVerticalPosition(alignment: ArrowAlignment): Boolean {
     return isVerticalBottomAligned(alignment)
 }

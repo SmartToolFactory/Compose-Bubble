@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 
-val SentMessageColor = Color(0xffE7FFDB)
 
 @Composable
 fun rememberBubbleState(): BubbleState {
@@ -24,7 +23,7 @@ class BubbleState {
     /**
      * Background of Bubble
      */
-    var backgroundColor: Color = SentMessageColor
+    var backgroundColor: Color = DefaultBubbleColor
 
     /**
      * Corner radius of bubble layout for y axis
@@ -51,9 +50,9 @@ class BubbleState {
 
     /**
      * Arrow alignment determines in which side of the bubble this arrow should be drawn.
-     * When [NONE] is selected no arrow is drawn
+     * When [ArrowAlignment.NONE] is selected no arrow is drawn
      */
-    var arrowAlignment: Int = NONE
+    var arrowAlignment: ArrowAlignment = ArrowAlignment.NONE
 
 
     /**
