@@ -43,11 +43,9 @@ internal fun Modifier.materialShadow(bubbleState: BubbleState, path: Path) = com
 
                                 val color = shadow.color
 
-                                // Interestingly 1.dp shadow is not equal to Modifier.shadow(1.dp)
-                                // so changed 1.dp to 0.5dp to match shadows with Modifier.shadow()
-                                val dx = shadow.offsetX.toPx() / 2
-                                val dy = shadow.offsetY.toPx() / 2
-                                val radius = shadow.shadowRadius.toPx() / 2
+                                val dx = shadow.offsetX.toPx()*0.2f
+                                val dy = shadow.offsetY.toPx()*0.7f
+                                val radius = shadow.shadowRadius.toPx()
 
                                 val shadowColor = color
                                     .copy(alpha = shadow.alpha)
@@ -59,9 +57,9 @@ internal fun Modifier.materialShadow(bubbleState: BubbleState, path: Path) = com
                                 frameworkPaint.color = transparent
 
                                 frameworkPaint.setShadowLayer(
-                                    dx,
-                                    dy,
                                     radius,
+                                    -dx,
+                                    dy,
                                     shadowColor
                                 )
 
@@ -73,7 +71,7 @@ internal fun Modifier.materialShadow(bubbleState: BubbleState, path: Path) = com
                             val dx = shadow.offsetX.toPx() / 2
                             val dy = shadow.offsetY.toPx() / 2
 
-                            translate(dx, dy) {
+                            translate(-dx, dy) {
                                 drawPath(color = shadow.color.copy(shadow.alpha), path = path)
                             }
                         }
@@ -98,7 +96,7 @@ internal fun Modifier.materialShadow(bubbleState: BubbleState, path: Path) = com
  */
 fun BubbleShadow(
     color: Color = ShadowColor,
-    alpha: Float = .7f,
+    alpha: Float = .8f,
     useSoftwareLayer: Boolean = true,
     dX: Dp = 1.dp,
     dY: Dp = 1.dp,
