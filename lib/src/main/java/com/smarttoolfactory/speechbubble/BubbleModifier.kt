@@ -1,6 +1,7 @@
 package com.smarttoolfactory.speechbubble
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.getValue
@@ -25,6 +26,27 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 
+/**
+ * Measures content of composable it's used with and adds bubble layout after measuring content
+ * and adding arrow based on [BubbleState.alignment]. If none is selected no space is reserved
+ * for arrow. If [BubbleState.drawArrow] is false space is reserved but arrow is not drawn.
+ * This is useful for creating secondary messages like chat apps which only first or last
+ * message have arrow.
+ *
+ * ### * Shadow
+ * To draw shadow native canvas and shadow layer is used if software layer is not supported
+ * or not working properly either set [BubbleShadow.useSoftwareLayer] false or use
+ * [drawBubbleWithShape] which draws default shadow of Android api.
+ *
+ * With [BubbleShadow] it's possible to create colored shadows unlike default shadows
+ *
+ * ### * Padding
+ * If you want to set padding for element in **bubble** use [BubbleState.padding] property.
+ *
+ * ### * Usage
+ * This modifier is suitable for one composable. If you need to add multiple elements
+ * inside bubble use a wrapper like [Column].
+ */
 fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
 
     // pass inspector information for debug
@@ -72,6 +94,28 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
     }
 )
 
+/**
+ * Measures content of composable it's used with and adds bubble layout after measuring content
+ * and adding arrow based on [BubbleState.alignment]. If none is selected no space is reserved
+ * for arrow. If [BubbleState.drawArrow] is false space is reserved but arrow is not drawn.
+ * This is useful for creating secondary messages like chat apps which only first or last
+ * message have arrow.
+ *
+ * ## Note
+ * This overloaded function does 2 layout passes to set [GenericShape] for shadow and background.
+ *
+ * ### * Shadow
+ * Uses [GenericShape] to create a shape for background and shadow.
+ *
+ * With [BubbleShadow] it's possible to create colored shadows unlike default shadows
+ *
+ * ### * Padding
+ * If you want to set padding for element in **bubble** use [BubbleState.padding] property.
+ *
+ * ### * Usage
+ * This modifier is suitable for one composable. If you need to add multiple elements
+ * inside bubble use a wrapper like [Column].
+ */
 fun Modifier.drawBubbleWithShape(bubbleState: BubbleState) = composed(
 
     // pass inspector information for debug

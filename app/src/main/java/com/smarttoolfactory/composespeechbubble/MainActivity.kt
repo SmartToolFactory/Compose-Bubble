@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -18,6 +19,7 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.unit.dp
+import com.smarttoolfactory.composespeechbubble.ui.ChatAppbar
 import com.smarttoolfactory.composespeechbubble.ui.theme.ComposeSpeechBubbleTheme
 import kotlin.math.roundToInt
 
@@ -29,8 +31,14 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
 
-//                    SimpleLayoutImplementation()
-                    BubbleImplementation()
+                    Scaffold(
+                        topBar = {
+                            ChatAppbar("Chat/Speech Bubbles")
+                        }
+                    ) {
+                                            SimpleLayoutImplementation()
+                        BubbleImplementation()
+                    }
                 }
             }
         }
