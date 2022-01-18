@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.Density
 
 /*
     ***** Custom Column to horizontally align *****
-    This is for testing Bubbles by aligning left center or end horizontally
+    This is for testing Bubbles by aligning start, center or end horizontally
  */
 
 /*

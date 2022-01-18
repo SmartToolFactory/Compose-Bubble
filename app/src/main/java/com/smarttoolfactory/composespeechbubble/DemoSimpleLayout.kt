@@ -15,7 +15,7 @@ import com.smarttoolfactory.speechbubble.*
 import kotlin.math.roundToInt
 
 @Composable
-fun SimpleLayoutImplementation() {
+fun DemoSimpleLayout() {
 
     Column(
         modifier = Modifier

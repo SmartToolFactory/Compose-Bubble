@@ -16,7 +16,7 @@ val ReceivedMessageColor = Color.White
 val DateColor = Color(0xffd4eaf4)
 
 @Composable
-fun BubbleImplementation() {
+fun BubbleDemo() {
 
 
     CustomColumnWithScope(
