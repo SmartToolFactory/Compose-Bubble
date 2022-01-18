@@ -3,16 +3,15 @@ package com.smarttoolfactory.composespeechbubble
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.unit.dp
+import com.smarttoolfactory.speechbubble.*
 import kotlin.math.roundToInt
 
 @Composable
@@ -25,66 +24,92 @@ fun SimpleLayoutImplementation() {
             .padding(8.dp)
     ) {
 
-        //                        MyComposable(modifier = Modifier.background(Color.LightGray))
+        Row(modifier = Modifier.fillMaxSize()) {
 
-//                        Spacer(modifier = Modifier.height(8.dp))
-//
-        CanvasLayout(modifier = Modifier.background(Color.LightGray)) {
-            Text("First Text")
-            Text("Second Text")
+            val bubbleStateShadow1 = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.RIGHT_TOP,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(
+                    elevation = 1.dp,
+                ),
+                padding = Padding(8.dp)
+            )
+
+            val bubbleStateShadow2 = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.LEFT_TOP,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(
+                    elevation = 1.dp,
+                ),
+                padding = Padding(8.dp)
+            )
+
+            val bubbleStateShadow3 = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.LEFT_CENTER,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(
+                    elevation = 1.dp,
+                ),
+                padding = Padding(8.dp)
+            )
+
+            BubbleLayoutWithShape(
+                modifier = Modifier.background(Color.Yellow),
+                bubbleState = bubbleStateShadow1
+            ) {
+                Text(text = "Custom")
+            }
+
+            BubbleLayoutWithShape(
+                modifier = Modifier.background(Color.Green),
+                bubbleState = bubbleStateShadow2
+            ) {
+                Text(
+                    text = "Custom",
+//                    modifier =Modifier.background(Color.LightGray)
+                )
+            }
+
+            BubbleLayoutWithShape(
+                modifier = Modifier.background(Color.Red),
+                bubbleState = bubbleStateShadow3
+            ) {
+                Text(text = "Custom", Modifier.background(Color.Magenta))
+            }
         }
     }
 }
 
+
 @Composable
-private fun CanvasLayout(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
-
-//    var widthInDp by remember { mutableStateOf(0.dp) }
-//    var heightInDp by remember { mutableStateOf(0.dp) }
-
-    var totalWidth = 0
-    var totalHeight = 0
-
-    Layout(
-        content = content,
-        modifier = modifier
-            .drawBehind {
-                println("✏️ CanvasLayout() drawBehind() widthInDp: $totalWidth, heightInDp: $totalHeight")
-
-                drawRect(Color.Red, size = Size(totalWidth.toFloat(), totalHeight.toFloat()), style = Stroke(2f))
-                drawRect(Color.Blue, size = size, style = Stroke(2f))
-            }
-    ) { measurables, constraints ->
-
-        val placeables = measurables.map { measurable ->
-            measurable.measure(constraints)
-        }
-
-        val maxWidth = placeables.maxOf { it.width }
-        val height = placeables.sumOf { it.height }
-
-
-        totalWidth = maxWidth + 50
-        totalHeight = height
-
-        var yPos = 0
-        layout(maxWidth, height) {
-            println("🚗 CanvasLayout() LAYOUT maxWidth: $maxWidth, height: $height placeables: ${placeables.size}")
-
-            placeables.forEach { placeable: Placeable ->
-                placeable.placeRelative(0, yPos)
-                yPos += placeable.height
-            }
-        }
+private fun BubbleLayout(
+    modifier: Modifier = Modifier,
+    bubbleState: BubbleState,
+    content: @Composable () -> Unit
+) {
+    Column(
+        modifier
+            .drawBubble(bubbleState)
+    ) {
+        content()
     }
+}
 
-    androidx.compose.foundation.Canvas(
-        modifier = Modifier.size(totalWidth.dp, totalHeight.dp),
-        onDraw = {
-            println("🚙 CanvasLayout() CANVAS size: $size")
-            drawRect(Color.Yellow, size = size, style = Stroke(2f))
-        }
-    )
+@Composable
+private fun BubbleLayoutWithShape(
+    modifier: Modifier = Modifier,
+    bubbleState: BubbleState,
+    content: @Composable () -> Unit
+) {
+
+    Column(
+        modifier.drawBubbleWithShape(bubbleState)
+    ) {
+        content()
+    }
 }
 
 @Composable

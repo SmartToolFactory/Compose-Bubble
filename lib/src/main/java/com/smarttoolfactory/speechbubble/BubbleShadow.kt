@@ -18,6 +18,8 @@ internal fun Modifier.materialShadow(bubbleState: BubbleState, path: Path) = com
     },
     factory = {
 
+        println("🚀 Modifier.materialShadow() align: ${bubbleState.alignment}, path EMPTY: ${path.isEmpty}")
+        println()
         val paint: Paint = remember(bubbleState) {
             Paint()
         }
@@ -96,7 +98,7 @@ internal fun Modifier.materialShadow(bubbleState: BubbleState, path: Path) = com
  */
 fun BubbleShadow(
     color: Color = ShadowColor,
-    alpha: Float = .8f,
+    alpha: Float = .7f,
     useSoftwareLayer: Boolean = true,
     dX: Dp = 1.dp,
     dY: Dp = 1.dp,

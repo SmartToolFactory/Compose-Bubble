@@ -3,7 +3,6 @@ package com.smarttoolfactory.speechbubble
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -36,12 +35,13 @@ fun rememberBubbleState(
     alignment: ArrowAlignment = ArrowAlignment.NONE,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
     arrowOffsetX: Dp = 0.dp,
-    arrowOffsetY: Dp =  0.dp,
+    arrowOffsetY: Dp = 0.dp,
     arrowWidth: Dp = 14.dp,
     arrowHeight: Dp = 14.dp,
     arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null,
+    padding: BubblePadding? = null
 ): BubbleState {
 
     return remember {
@@ -61,7 +61,8 @@ fun rememberBubbleState(
             arrowHeight = arrowHeight,
             arrowRadius = arrowRadius,
             drawArrow = drawArrow,
-            shadow = shadow
+            shadow = shadow,
+            padding = padding
         )
     }
 }
@@ -99,12 +100,13 @@ fun rememberBubbleState(
     alignment: ArrowAlignment = ArrowAlignment.NONE,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
     arrowOffsetX: Dp = 0.dp,
-    arrowOffsetY: Dp =  0.dp,
+    arrowOffsetY: Dp = 0.dp,
     arrowWidth: Dp = 14.dp,
     arrowHeight: Dp = 14.dp,
     arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null,
+    padding: BubblePadding? = null
 ): BubbleState {
 
     return remember {
@@ -119,7 +121,8 @@ fun rememberBubbleState(
             arrowHeight = arrowHeight,
             arrowRadius = arrowRadius,
             drawArrow = drawArrow,
-            shadow = shadow
+            shadow = shadow,
+            padding = padding
         )
     }
 }
@@ -162,17 +165,25 @@ class BubbleState internal constructor(
     var arrowRadius: Dp = 0.dp,
     var drawArrow: Boolean = true,
     var shadow: BubbleShadow? = null,
+    var padding: BubblePadding? = null
 ) {
 
     /**
-     * Top position of arrow
+     * Top position of arrow. This is read-only for implementation. It's calculated when arrow
+     * positions are calculated or adjusted based on width/height of bubble,
+     * offsetX/y, arrow width/height.
      */
     var arrowTop: Float = 0f
+        internal set
 
     /**
-     * Bottom position of arrow
+     * Bottom position of arrow.  This is read-only for implementation. It's calculated when arrow
+     * positions are calculated or adjusted based on width/height of bubble,
+     * offsetX/y, arrow width/height.
      */
+
     var arrowBottom: Float = 0f
+        internal set
 
 
     /**

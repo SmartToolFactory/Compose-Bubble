@@ -117,13 +117,13 @@ fun CustomColumnWithScope(
 
         val maxWidth = constraints.maxWidth
 
-        println(
-            "🤯 Constraints minWidth: ${constraints.minWidth}, " +
-                    "minHeight: ${constraints.minHeight}, " +
-                    "maxWidth: ${constraints.maxWidth}, " +
-                    "maxHeight: ${constraints.maxHeight}, " +
-                    "totalHeight: $totalHeight"
-        )
+//        println(
+//            "🤯 Constraints minWidth: ${constraints.minWidth}, " +
+//                    "minHeight: ${constraints.minHeight}, " +
+//                    "maxWidth: ${constraints.maxWidth}, " +
+//                    "maxHeight: ${constraints.maxHeight}, " +
+//                    "totalHeight: $totalHeight"
+//        )
 
         // Set the size of the layout as big as it can
         layout(maxWidth, totalHeight) {

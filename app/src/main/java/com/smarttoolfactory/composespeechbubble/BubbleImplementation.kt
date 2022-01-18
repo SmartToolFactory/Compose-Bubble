@@ -2,11 +2,9 @@ package com.smarttoolfactory.composespeechbubble
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,13 +33,12 @@ fun BubbleImplementation() {
             cornerRadius = 5.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Center),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Center),
             bubbleState = bubbleStateDate
         ) {
             Text(
@@ -63,13 +60,12 @@ fun BubbleImplementation() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.End),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
             bubbleState = bubbleStateSent1
         ) {
             Text(text = "Arrow RIGHT_TOP with offset 5dp")
@@ -83,13 +79,12 @@ fun BubbleImplementation() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.End),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
             bubbleState = bubbleStateSent2
         ) {
             Text(text = "Arrow RIGHT_BOTTOM")
@@ -104,13 +99,12 @@ fun BubbleImplementation() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.End),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
             bubbleState = bubbleStateSent3
         ) {
             Text(text = "Arrow RIGHT_BOTTOM drawArrow=false")
@@ -126,13 +120,12 @@ fun BubbleImplementation() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Start),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
             bubbleState = bubbleStateReceived1
         ) {
             Text(text = "Arrow LEFT_BOTTOM offset=-8dp")
@@ -146,13 +139,12 @@ fun BubbleImplementation() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Start),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
             bubbleState = bubbleStateReceived2
         ) {
             Text(text = "Arrow LEFT_TOP")
@@ -166,13 +158,12 @@ fun BubbleImplementation() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Start),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
             bubbleState = bubbleStateReceived3
         ) {
             Text(text = "Arrow LEFT_TOP drawArrow=false")
@@ -186,13 +177,12 @@ fun BubbleImplementation() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Start),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
             bubbleState = bubbleStateReceived4
         ) {
             Text(text = "Arrow LEFT_CENTER shape=ISOSCELES")
@@ -208,13 +198,12 @@ fun BubbleImplementation() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            )
+            ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Center),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Center),
             bubbleState = bubbleStateBottom1
         ) {
             Text(text = "Arrow BOTTOM_CENTER shape=ISOSCELES", color = Color.White)
@@ -228,13 +217,12 @@ fun BubbleImplementation() {
             shadow = BubbleShadow(
                 elevation = 3.dp
             ),
-            arrowWidth = 20.dp
+            arrowWidth = 20.dp,
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Start),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
             bubbleState = bubbleStateBottom2
         ) {
             Text(text = "Arrow BOTTOM_LEFT", color = Color.White)
@@ -249,13 +237,12 @@ fun BubbleImplementation() {
                 elevation = 4.dp,
                 color = Color(0xffEC407A)
             ),
-            arrowWidth = 20.dp
+            arrowWidth = 20.dp,
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.End),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
             bubbleState = bubbleStateBottom3
         ) {
             Text(text = "Arrow BOTTOM_RIGHT", color = Color.White)
@@ -276,12 +263,11 @@ fun BubbleImplementation() {
             shadow = BubbleShadow(
                 elevation = 1.dp,
             ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Start),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
             bubbleState = bubbleStateCustomRadius1
         ) {
             Text(text = "Arrow Custom radius1", color = Color.White)
@@ -301,12 +287,11 @@ fun BubbleImplementation() {
             shadow = BubbleShadow(
                 elevation = 1.dp,
             ),
+            padding = Padding(8.dp)
         )
 
         BubbleLayout(
-            modifier = Modifier
-                .padding(8.dp)
-                .horizontalAlign(HorizontalAlignment.Start),
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
             bubbleState = bubbleStateCustomRadius2
         ) {
             Text(text = "Arrow Custom radius2", color = Color.White)
@@ -326,68 +311,47 @@ fun BubbleImplementation() {
             shadow = BubbleShadow(
                 elevation = 1.dp,
             ),
+            padding = Padding(8.dp)
         )
 
-//        BubbleLayout(
-//            modifier = Modifier
-//                .padding(8.dp)
-//                .horizontalAlign(HorizontalAlignment.Start),
-//            bubbleState = bubbleStateCustomRadius3
-//        ) {
-//            Text(text = "Arrow Custom radius3", color = Color.White)
-//        }
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
-        // CUSTOM SHADOW
-        val bubbleStateShadow1 = rememberBubbleState(
-            backgroundColor = DefaultBubbleColor,
-            alignment = ArrowAlignment.NONE,
-            cornerRadius = 8.dp,
-            shadow = BubbleShadow(
-               elevation = 1.dp,
-            )
-        )
-
-        Row(Modifier.fillMaxWidth()) {
-
-            BubbleLayout(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .horizontalAlign(HorizontalAlignment.Start),
-                bubbleState = bubbleStateShadow1
-            ) {
-                Text(text = "Custom")
-            }
-
-            Spacer(modifier = Modifier.width(8.dp))
-            androidx.compose.material.Surface(shape = RoundedCornerShape(8.dp), elevation = 1.dp) {
-                Text(text = "Custom", modifier = Modifier.padding(8.dp))
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            Column(
-                modifier = Modifier
-                    .shadow(elevation = 1.dp, shape = RoundedCornerShape(8.dp))
-                    .background(Color.White)
-            ) {
-                Text(text = "Custom", modifier = Modifier.padding(8.dp))
-            }
+        BubbleLayout(
+            modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
+            bubbleState = bubbleStateCustomRadius3
+        ) {
+            Text(text = "Arrow Custom radius3", color = Color.White)
         }
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }
 
 @Composable
-fun BubbleLayout(
+private fun BubbleLayout(
+    modifier: Modifier = Modifier,
+    bubbleState: BubbleState,
+    content: @Composable () -> Unit
+) {
+    Column(
+        modifier.drawBubble(bubbleState)
+    ) {
+        content()
+    }
+}
+
+@Composable
+private fun BubbleLayoutWithShape(
     modifier: Modifier = Modifier,
     bubbleState: BubbleState,
     content: @Composable () -> Unit
 ) {
 
     Column(
-        Modifier
-            .drawBubble(bubbleState)
-            .then(modifier)
+        modifier
+            .drawBubbleWithShape(bubbleState)
     ) {
         content()
     }
 }
+
 
