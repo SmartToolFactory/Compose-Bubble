@@ -108,7 +108,6 @@ val bubbleState = rememberBubbleState(
 )
 
 BubbleLayout(
-    modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
     bubbleState = bubbleState
 ) {
     Text(text = "Arrow RIGHT_BOTTOM")
