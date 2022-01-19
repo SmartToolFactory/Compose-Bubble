@@ -28,43 +28,45 @@ fun DemoSimpleLayout() {
 
             val bubbleStateShadow1 = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.RIGHT_TOP,
+                alignment = ArrowAlignment.BOTTOM_CENTER,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(
-                    elevation = 1.dp,
+                    elevation = 3.dp,
                 ),
                 padding = Padding(8.dp)
             )
 
             val bubbleStateShadow2 = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.LEFT_TOP,
+                alignment = ArrowAlignment.RIGHT_TOP,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(
-                    elevation = 1.dp,
+                    elevation = 3.dp,
+                    useSoftwareLayer = false
                 ),
                 padding = Padding(8.dp)
             )
 
             val bubbleStateShadow3 = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.LEFT_CENTER,
+                alignment = ArrowAlignment.BOTTOM_LEFT,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(
-                    elevation = 1.dp,
+                    elevation = 3.dp,
                 ),
                 padding = Padding(8.dp)
             )
 
-            BubbleLayoutWithShape(
-                modifier = Modifier.background(Color.Yellow),
+            BubbleColumn(
+//                modifier = Modifier.background(Color.Yellow),
                 bubbleState = bubbleStateShadow1
             ) {
                 Text(text = "Custom")
             }
 
-            BubbleLayoutWithShape(
-                modifier = Modifier.background(Color.Green),
+            Spacer(modifier = Modifier.width(20.dp))
+            BubbleColumn(
+//                modifier = Modifier.background(Color.Green),
                 bubbleState = bubbleStateShadow2
             ) {
                 Text(
@@ -72,9 +74,9 @@ fun DemoSimpleLayout() {
 //                    modifier =Modifier.background(Color.LightGray)
                 )
             }
-
-            BubbleLayoutWithShape(
-                modifier = Modifier.background(Color.Red),
+            Spacer(modifier = Modifier.width(20.dp))
+            BubbleColumn(
+//                modifier = Modifier.background(Color.Red),
                 bubbleState = bubbleStateShadow3
             ) {
                 Text(text = "Custom", Modifier.background(Color.Magenta))

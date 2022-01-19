@@ -67,13 +67,13 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
                 println("Modifier.drawBubble() LAYOUT align:${bubbleState.alignment}")
                 measureBubbleResult(bubbleState, measurable, constraints, rectContent, path)
             }
-            .materialShadow(bubbleState, path)
+
+            .materialShadow(bubbleState, path, true)
             .drawBehind {
                 println(
                     "✏️ Modifier.drawBubble() DRAWING align:${bubbleState.alignment}," +
                             " size: $size, path: $path, rectContent: $rectContent"
                 )
-
                 val left = if (bubbleState.isHorizontalLeftAligned())
                     -bubbleState.arrowWidth.toPx() else 0f
 
@@ -232,39 +232,43 @@ internal fun MeasureScope.measureBubbleResult(
         density = density
     )
 
-    var x = 0
-    var y = 0
 
+    // Position of content(Text or Column/Row/Box for instance) in Bubble
+    // These positions effect placeable area for our content
+    // if xPos is greater than 0 it's required to translate background path(bubble) to match total
+    // area since left of  xPos is not usable(reserved for arrowWidth) otherwise
+    var xPos = 0
+    var yPos = 0
 
     when {
         // Arrow on left side
         isHorizontalLeftAligned -> {
-            x = arrowWidth.roundToInt()
-            y = 0
+            xPos = arrowWidth.roundToInt()
+            yPos = 0
         }
 
         // Arrow on right side
         isHorizontalRightAligned -> {
-            x = 0
-            y = 0
+            xPos = 0
+            yPos = 0
         }
 
         // Arrow at the bottom
         isVerticalBottomAligned -> {
-            x = 0
-            y = 0
+            xPos = 0
+            yPos = 0
         }
     }
 
     return layout(desiredWidth, desiredHeight) {
         println(
             "🤡 measureBubbleResult() LAYOUT align: ${bubbleState.alignment}\n" +
-                    "x: $x, y: $y, " +
+                    "x: $xPos, y: $yPos, " +
                     "placeable width: ${placeable.width}, " +
                     "height: ${placeable.height}, " +
                     "rect: $rectContent"
         )
 
-        placeable.place(x, y)
+        placeable.place(xPos, yPos)
     }
 }

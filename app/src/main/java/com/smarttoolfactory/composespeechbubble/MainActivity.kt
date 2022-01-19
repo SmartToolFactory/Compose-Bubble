@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                         }
                     ) {
 //                        DemoSimpleLayout()
-                        BubbleDemo()
+                        DemoBubble()
                     }
                 }
             }

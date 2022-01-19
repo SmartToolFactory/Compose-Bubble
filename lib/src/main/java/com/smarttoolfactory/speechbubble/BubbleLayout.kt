@@ -41,6 +41,8 @@ fun BubbleColumn(
         .materialShadow(bubbleState, path)
         .drawBehind {
             println("📝️ BubbleColumn() DRAWING align:${bubbleState.alignment}, size: $size, path: $path, rectContent: $contentRect")
+
+
             drawPath(path = path, color = bubbleState.backgroundColor)
 
             drawRect(
@@ -57,7 +59,7 @@ fun BubbleColumn(
                 style = Stroke(2f)
             )
         }
-        .then(bubbleModifier)
+//        .then(bubbleModifier)
         .onSizeChanged {
             println("📌 BubbleColumn() onSizeChanged() size: $it")
         }
@@ -72,7 +74,7 @@ fun BubbleColumn(
 
     ) { measurables, constraints ->
 
-        println("BubbleColumn() LAYOUT align:${bubbleState.alignment}, modifier: ${modifier.toString()}")
+        println("BubbleColumn() LAYOUT align:${bubbleState.alignment}, rect: $rect")
         measureBubbleColumnResult(
             bubbleState = bubbleState,
             measurables = measurables,
@@ -104,23 +106,23 @@ private fun MeasureScope.measureBubbleColumnResult(
     val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
     val isVerticalBottomAligned = bubbleState.isVerticalBottomAligned()
 
-    val paddingStart = (bubbleState.padding?.start ?: 0.dp).value * density
-    val paddingTop = (bubbleState.padding?.start ?: 0.dp).value * density
-    val paddingEnd = (bubbleState.padding?.start ?: 0.dp).value * density
-    val paddingBottom = (bubbleState.padding?.start ?: 0.dp).value * density
+    val paddingStart = ((bubbleState.padding?.start ?: 0.dp).value * density).toInt()
+    val paddingTop = ((bubbleState.padding?.start ?: 0.dp).value * density).toInt()
+    val paddingEnd = ((bubbleState.padding?.start ?: 0.dp).value * density).toInt()
+    val paddingBottom = ((bubbleState.padding?.start ?: 0.dp).value * density).toInt()
 
-    var desiredWidth = placeables.maxOf { it.width }
+    var desiredWidth: Int = placeables.maxOf { it.width } + (paddingStart + paddingEnd)
     if (isHorizontalLeftAligned || isHorizontalRightAligned) {
         desiredWidth += arrowWidth.toInt()
     }
 
-    var desiredHeight: Int = placeables.sumOf { it.height }
+    var desiredHeight: Int = placeables.sumOf { it.height } + (paddingTop + paddingBottom)
     if (isVerticalBottomAligned) desiredHeight += arrowHeight.toInt()
 
     rect.set(0f, 0f, desiredWidth.toFloat(), desiredHeight.toFloat())
     println(
         "🚛 measureBubbleColumnResult() align:${bubbleState.alignment}, desiredWidth: $desiredWidth, " +
-                "maxWidth: ${placeables.maxOf { it.width }}"
+                "maxWidth: ${placeables.maxOf { it.width }}, rect: $rectContent"
     )
 
     setContentRect(
@@ -144,20 +146,20 @@ private fun MeasureScope.measureBubbleColumnResult(
     when {
         // Arrow on left side
         isHorizontalLeftAligned -> {
-            x = arrowWidth.roundToInt()
-            y = 0
+            x = arrowWidth.roundToInt() + paddingStart
+            y = paddingTop
         }
 
         // Arrow on right side
         isHorizontalRightAligned -> {
-            x = 0
-            y = 0
+            x = paddingEnd
+            y = paddingTop
         }
 
         // Arrow at the bottom
         isVerticalBottomAligned -> {
-            x = 0
-            y = 0
+            x = paddingStart
+            y = paddingTop
         }
     }
 
