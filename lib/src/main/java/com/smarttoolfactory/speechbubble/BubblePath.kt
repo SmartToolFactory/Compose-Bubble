@@ -25,14 +25,14 @@ fun getBubbleClipPath(
     path.reset()
 
     if (state.drawArrow) {
-        if (state.isArrowHorizontalPosition()) {
+        if (state.isArrowHorizontallyPositioned()) {
             createHorizontalArrowPath(
                 path = path,
                 contentRect = contentRect,
                 state = state,
                 density = density
             )
-        } else if (state.isArrowVerticalPosition()) {
+        } else if (state.isArrowVerticallyPositioned()) {
             createVerticalArrowPath(
                 path = path,
                 contentRect = contentRect,

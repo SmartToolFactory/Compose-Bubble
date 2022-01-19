@@ -325,33 +325,3 @@ fun DemoBubble() {
         Spacer(modifier = Modifier.height(8.dp))
     }
 }
-
-@Composable
-private fun BubbleLayout(
-    modifier: Modifier = Modifier,
-    bubbleState: BubbleState,
-    content: @Composable () -> Unit
-) {
-    Column(
-        modifier.drawBubble(bubbleState)
-    ) {
-        content()
-    }
-}
-
-@Composable
-private fun BubbleLayoutWithShape(
-    modifier: Modifier = Modifier,
-    bubbleState: BubbleState,
-    content: @Composable () -> Unit
-) {
-
-    Column(
-        modifier
-            .drawBubbleWithShape(bubbleState)
-    ) {
-        content()
-    }
-}
-
-

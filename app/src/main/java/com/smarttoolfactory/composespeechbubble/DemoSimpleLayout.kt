@@ -28,23 +28,20 @@ fun DemoSimpleLayout() {
 
             val bubbleStateShadow1 = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.BOTTOM_CENTER,
+                alignment = ArrowAlignment.LEFT_TOP,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(
-                    elevation = 3.dp,
-                ),
-                padding = Padding(8.dp)
+                    elevation = 1.dp,
+                )
             )
 
             val bubbleStateShadow2 = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.RIGHT_TOP,
+                alignment = ArrowAlignment.LEFT_TOP,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(
-                    elevation = 3.dp,
-                    useSoftwareLayer = false
-                ),
-                padding = Padding(8.dp)
+                    elevation = 1.dp
+                )
             )
 
             val bubbleStateShadow3 = rememberBubbleState(
@@ -52,29 +49,27 @@ fun DemoSimpleLayout() {
                 alignment = ArrowAlignment.BOTTOM_LEFT,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(
-                    elevation = 3.dp,
-                ),
-                padding = Padding(8.dp)
+                    elevation = 1.dp,
+                )
             )
 
             BubbleColumn(
-//                modifier = Modifier.background(Color.Yellow),
+                modifier = Modifier.background(Color.Yellow),
                 bubbleState = bubbleStateShadow1
             ) {
-                Text(text = "Custom")
+                Text(text = "Composable1")
+                Text(text = "Composable12")
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(10.dp))
             BubbleColumn(
-//                modifier = Modifier.background(Color.Green),
+                modifier = Modifier.background(Color.Green).padding(10.dp),
                 bubbleState = bubbleStateShadow2
             ) {
-                Text(
-                    text = "Custom",
-//                    modifier =Modifier.background(Color.LightGray)
-                )
+                Text(text = "Composable1")
+                Text(text = "Composable12")
             }
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             BubbleColumn(
 //                modifier = Modifier.background(Color.Red),
                 bubbleState = bubbleStateShadow3
@@ -86,33 +81,7 @@ fun DemoSimpleLayout() {
 }
 
 
-@Composable
-private fun BubbleLayout(
-    modifier: Modifier = Modifier,
-    bubbleState: BubbleState,
-    content: @Composable () -> Unit
-) {
-    Column(
-        modifier
-            .drawBubble(bubbleState)
-    ) {
-        content()
-    }
-}
 
-@Composable
-private fun BubbleLayoutWithShape(
-    modifier: Modifier = Modifier,
-    bubbleState: BubbleState,
-    content: @Composable () -> Unit
-) {
-
-    Column(
-        modifier.drawBubbleWithShape(bubbleState)
-    ) {
-        content()
-    }
-}
 
 @Composable
 private fun MyComposable(modifier: Modifier = Modifier) {

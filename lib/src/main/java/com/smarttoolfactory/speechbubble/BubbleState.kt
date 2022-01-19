@@ -226,7 +226,7 @@ class BubbleState internal constructor(
     /**
      * Check if arrow is horizontally positioned either on left or right side
      */
-    fun isArrowHorizontalPosition(): Boolean =
+    fun isArrowHorizontallyPositioned(): Boolean =
         isHorizontalLeftAligned()
                 || isHorizontalRightAligned()
 
@@ -252,6 +252,6 @@ class BubbleState internal constructor(
     /**
      * Check if arrow is vertically positioned either on top or at the bottom of bubble
      */
-    fun isArrowVerticalPosition(): Boolean = isVerticalBottomAligned()
+    fun isArrowVerticallyPositioned(): Boolean = isVerticalBottomAligned()
 }
 

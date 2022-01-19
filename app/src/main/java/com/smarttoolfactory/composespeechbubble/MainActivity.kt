@@ -23,7 +23,8 @@ class MainActivity : ComponentActivity() {
                         }
                     ) {
 //                        DemoSimpleLayout()
-                        DemoBubble()
+//                        DemoBubble()
+                        DemoDynamicSize()
                     }
                 }
             }
