@@ -21,9 +21,7 @@ import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.debugInspectorInfo
-import androidx.compose.ui.unit.Constraints
-import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.*
 import kotlin.math.roundToInt
 
 /**
@@ -64,16 +62,16 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
 
         Modifier
             .layout { measurable, constraints ->
-                println("Modifier.drawBubble() LAYOUT align:${bubbleState.alignment}")
+//                println("Modifier.drawBubble() LAYOUT align:${bubbleState.alignment}")
                 measureBubbleResult(bubbleState, measurable, constraints, rectContent, path)
             }
 
             .materialShadow(bubbleState, path, true)
             .drawBehind {
-                println(
-                    "✏️ Modifier.drawBubble() DRAWING align:${bubbleState.alignment}," +
-                            " size: $size, path: $path, rectContent: $rectContent"
-                )
+//                println(
+//                    "✏️ Modifier.drawBubble() DRAWING align:${bubbleState.alignment}," +
+//                            " size: $size, path: $path, rectContent: $rectContent"
+//                )
                 val left = if (bubbleState.isHorizontalLeftAligned())
                     -bubbleState.arrowWidth.toPx() else 0f
 
@@ -143,10 +141,10 @@ fun Modifier.drawBubbleWithShape(bubbleState: BubbleState) = composed(
         Modifier
             // Measure layout and set content rectangle and arrow if available
             .layout { measurable, constraints ->
-                println(
-                    "🍏 drawBubbleWithShape() LAYOUT  align:${bubbleState.alignment}, " +
-                            "shape: $shape, path: $path, rect: $rectContent"
-                )
+//                println(
+//                    "🍏 drawBubbleWithShape() LAYOUT  align:${bubbleState.alignment}, " +
+//                            "shape: $shape, path: $path, rect: $rectContent"
+//                )
                 val result =
                     measureBubbleResult(bubbleState, measurable, constraints, rectContent, path)
                 if (!shapeUpdated) {
@@ -194,28 +192,39 @@ internal fun MeasureScope.measureBubbleResult(
     path: Path
 ): MeasureResult {
 
-    val arrowWidth = bubbleState.arrowWidth.value * density
-    val arrowHeight = bubbleState.arrowHeight.value * density
 
-    val placeable = measurable.measure(constraints)
+    val arrowWidth = (bubbleState.arrowWidth.value * density).roundToInt()
+    val arrowHeight = (bubbleState.arrowHeight.value * density).roundToInt()
 
     val isHorizontalRightAligned = bubbleState.isHorizontalRightAligned()
     val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
     val isVerticalBottomAligned = bubbleState.isVerticalBottomAligned()
 
-    var desiredWidth = placeable.width
-    if (isHorizontalLeftAligned || isHorizontalRightAligned) {
-        desiredWidth += arrowWidth.toInt()
-    }
+    // Offset to limit max width when arrow is horizontally placed
+    // if we don't remove arrowWidth bubble will overflow from it's parent as much as arrow
+    // width is. So we measure our placeable as content + arrow width
+    val offsetX: Int = if (bubbleState.isArrowHorizontallyPositioned()) {
+        arrowWidth
+    } else 0
+
+    // Offset to limit max height when arrow is vertically placed
+
+    val offsetY: Int = if (bubbleState.isArrowVerticallyPositioned()) {
+        arrowHeight
+    } else 0
+
+    val placeable = measurable.measure(constraints.offset(-offsetX, -offsetY))
+
+    val desiredWidth = placeable.width + offsetX
+    val limitedWidth= constraints.constrainWidth(desiredWidth)
+    val desiredHeight: Int = placeable.height + offsetY
 
     println(
-        "🚌 measureBubbleResult() align:${bubbleState.alignment}," +
-                " desiredWidth: $desiredWidth, placeableWidth: ${placeable.width}"
+        "🚌 measureBubbleResult() align:${bubbleState.alignment}, arrowWidth: $arrowWidth, " +
+                "placeableWidth: ${placeable.width}, " +
+                "desiredWidth: $desiredWidth, limitedWidth: $limitedWidth\n" +
+                "constraints: $constraints"
     )
-
-
-    var desiredHeight: Int = placeable.height
-    if (isVerticalBottomAligned) desiredHeight += arrowHeight.toInt()
 
     setContentRect(
         bubbleState,
@@ -243,7 +252,7 @@ internal fun MeasureScope.measureBubbleResult(
     when {
         // Arrow on left side
         isHorizontalLeftAligned -> {
-            xPos = arrowWidth.roundToInt()
+            xPos = arrowWidth
             yPos = 0
         }
 
@@ -261,13 +270,13 @@ internal fun MeasureScope.measureBubbleResult(
     }
 
     return layout(desiredWidth, desiredHeight) {
-        println(
-            "🤡 measureBubbleResult() LAYOUT align: ${bubbleState.alignment}\n" +
-                    "x: $xPos, y: $yPos, " +
-                    "placeable width: ${placeable.width}, " +
-                    "height: ${placeable.height}, " +
-                    "rect: $rectContent"
-        )
+//        println(
+//            "🤡 measureBubbleResult() LAYOUT align: ${bubbleState.alignment}\n" +
+//                    "x: $xPos, y: $yPos, " +
+//                    "placeable width: ${placeable.width}, " +
+//                    "height: ${placeable.height}, " +
+//                    "rect: $rectContent"
+//        )
 
         placeable.place(xPos, yPos)
     }
