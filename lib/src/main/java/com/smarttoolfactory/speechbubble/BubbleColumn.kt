@@ -12,12 +12,12 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.constrainWidth
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.offset
 import kotlin.math.roundToInt
 
 
-// FIXME This not working when padding is added to Bubble
-//  Get padding for parent modifier and set layout position and bubble rectangle accordingly
 /**
  * Bubble layout that acts as a [Column]
  * @param modifier belong to whole layout. After this modifier [drawBubble] functions is called
@@ -40,11 +40,10 @@ fun BubbleColumn(
     val newModifier = modifier
         .materialShadow(bubbleState, path)
         .drawBehind {
-            println("📝️ BubbleColumn() DRAWING align:${bubbleState.alignment}, size: $size, path: $path, rectContent: $contentRect")
-
+//            println("📝️ BubbleColumn() DRAWING align:${bubbleState.alignment}, size: $size, path: $path, rectContent: $contentRect")
 
             drawPath(path = path, color = bubbleState.backgroundColor)
-
+//
             drawRect(
                 color = Color.Red,
                 topLeft = Offset(rect.left, rect.top),
@@ -59,14 +58,7 @@ fun BubbleColumn(
                 style = Stroke(2f)
             )
         }
-//        .then(bubbleModifier)
-        .onSizeChanged {
-            println("📌 BubbleColumn() onSizeChanged() size: $it")
-        }
-        .onGloballyPositioned {
-            println("📌 BubbleColumn() onGloballyPositioned() size: ${it.size}")
-
-        }
+        .then(bubbleModifier)
 
     Layout(
         content = content,
@@ -74,7 +66,7 @@ fun BubbleColumn(
 
     ) { measurables, constraints ->
 
-        println("BubbleColumn() LAYOUT align:${bubbleState.alignment}, rect: $rect")
+//        println("BubbleColumn() LAYOUT align:${bubbleState.alignment}, rect: $rect")
         measureBubbleColumnResult(
             bubbleState = bubbleState,
             measurables = measurables,
@@ -95,34 +87,52 @@ private fun MeasureScope.measureBubbleColumnResult(
     path: Path
 ): MeasureResult {
 
-    val arrowWidth = bubbleState.arrowWidth.value * density
-    val arrowHeight = bubbleState.arrowHeight.value * density
+    val arrowWidth = (bubbleState.arrowWidth.value * density).roundToInt()
+    val arrowHeight = (bubbleState.arrowHeight.value * density).roundToInt()
 
-    val placeables = measurables.map { measurable: Measurable ->
-        measurable.measure(Constraints(0, constraints.maxWidth, 0, constraints.maxHeight))
-    }
+    val paddingStart = ((bubbleState.padding?.start ?: 0.dp).value * density).roundToInt()
+    val paddingTop = ((bubbleState.padding?.top ?: 0.dp).value * density).roundToInt()
+    val paddingEnd = ((bubbleState.padding?.end ?: 0.dp).value * density).roundToInt()
+    val paddingBottom = ((bubbleState.padding?.bottom ?: 0.dp).value * density).roundToInt()
 
     val isHorizontalRightAligned = bubbleState.isHorizontalRightAligned()
     val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
     val isVerticalBottomAligned = bubbleState.isVerticalBottomAligned()
 
-    val paddingStart = ((bubbleState.padding?.start ?: 0.dp).value * density).toInt()
-    val paddingTop = ((bubbleState.padding?.start ?: 0.dp).value * density).toInt()
-    val paddingEnd = ((bubbleState.padding?.start ?: 0.dp).value * density).toInt()
-    val paddingBottom = ((bubbleState.padding?.start ?: 0.dp).value * density).toInt()
+    // Offset to limit max width when arrow is horizontally placed
+    // if we don't remove arrowWidth bubble will overflow from it's parent as much as arrow
+    // width is. So we measure our placeable as content + arrow width + horizontal padding
+    val offsetX: Int =
+        (paddingStart + paddingEnd) + if (bubbleState.isArrowHorizontallyPositioned()) {
+            arrowWidth
+        } else 0
 
-    var desiredWidth: Int = placeables.maxOf { it.width } + (paddingStart + paddingEnd)
-    if (isHorizontalLeftAligned || isHorizontalRightAligned) {
-        desiredWidth += arrowWidth.toInt()
+    // Offset to limit max height when arrow is vertically placed
+
+    val offsetY: Int =
+        (paddingTop + paddingBottom) + if (bubbleState.isArrowVerticallyPositioned()) {
+            arrowHeight
+        } else 0
+
+    val placeables = measurables.map { measurable: Measurable ->
+        measurable.measure(constraints.offset(-offsetX, -offsetY))
     }
 
-    var desiredHeight: Int = placeables.sumOf { it.height } + (paddingTop + paddingBottom)
-    if (isVerticalBottomAligned) desiredHeight += arrowHeight.toInt()
+    val desiredWidth: Int =
+        (placeables.maxOf { it.width } + offsetX)
+    val desiredHeight: Int =
+        (placeables.sumOf { it.height } + offsetY)
 
     rect.set(0f, 0f, desiredWidth.toFloat(), desiredHeight.toFloat())
+
     println(
-        "🚛 measureBubbleColumnResult() align:${bubbleState.alignment}, desiredWidth: $desiredWidth, " +
-                "maxWidth: ${placeables.maxOf { it.width }}, rect: $rectContent"
+        "🚛 measureBubbleColumnResult() align:${bubbleState.alignment}, " +
+                "placeableWidth: ${placeables.maxOf { it.width }}, " +
+                "desiredWidth: $desiredWidth, limitedWidth: ${
+                    constraints.constrainWidth(
+                        placeables.maxOf { it.width })
+                }\n" +
+                "constraints: $constraints"
     )
 
     setContentRect(
@@ -146,13 +156,13 @@ private fun MeasureScope.measureBubbleColumnResult(
     when {
         // Arrow on left side
         isHorizontalLeftAligned -> {
-            x = arrowWidth.roundToInt() + paddingStart
+            x = arrowWidth + paddingStart
             y = paddingTop
         }
 
         // Arrow on right side
         isHorizontalRightAligned -> {
-            x = paddingEnd
+            x = paddingStart
             y = paddingTop
         }
 
@@ -167,13 +177,13 @@ private fun MeasureScope.measureBubbleColumnResult(
 
         var yPos = 0
         placeables.forEach { placeable: Placeable ->
-            println(
-                "🎃 measureBubbleColumnResult() LAYOUT align: ${bubbleState.alignment}\n" +
-                        "x: $x, y: $y, yPos: $yPos, " +
-                        "placeable width: ${placeable.width}, " +
-                        "height: ${placeable.height}, " +
-                        "rect: $rectContent"
-            )
+//            println(
+//                "🎃 measureBubbleColumnResult() LAYOUT align: ${bubbleState.alignment}\n" +
+//                        "x: $x, y: $y, yPos: $yPos, " +
+//                        "placeable width: ${placeable.width}, " +
+//                        "height: ${placeable.height}, " +
+//                        "rect: $rectContent"
+//            )
 
             placeable.place(x, y + yPos)
             yPos += placeable.height
