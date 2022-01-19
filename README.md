@@ -61,3 +61,62 @@ padding: BubblePadding? = null
 * **arrowRadius**: radius of the arrow curves the tip of the arrow
 * **drawArrow**: whether we should draw arrow or only have rectangle shape bubble
 * **shadow**: of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
+* **padding**: padding between bubble and it's content. Use this instead of **Modifier.padding()**
+
+### Usage
+
+Create a `Column`, `Row` or `Box` and set `Modifier.dawBubble` or `Modifier.dawBubbleWithShape` with a `BubbleState`
+```
+@Composable
+private fun BubbleLayout(
+    modifier: Modifier = Modifier,
+    bubbleState: BubbleState,
+    content: @Composable () -> Unit
+) {
+    Column(
+        modifier.drawBubble(bubbleState)
+    ) {
+        content()
+    }
+}
+
+@Composable
+private fun BubbleLayoutWithShape(
+    modifier: Modifier = Modifier,
+    bubbleState: BubbleState,
+    content: @Composable () -> Unit
+) {
+
+    Column(
+        modifier
+            .drawBubbleWithShape(bubbleState)
+    ) {
+        content()
+    }
+}
+```
+And create a `Composable` as
+```
+val bubbleState = rememberBubbleState(
+    backgroundColor = SentMessageColor,
+    alignment = ArrowAlignment.RIGHT_BOTTOM,
+    cornerRadius = 8.dp,
+    shadow = BubbleShadow(
+        elevation = 1.dp
+    ),
+    padding = Padding(8.dp)
+)
+
+BubbleLayout(
+    modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
+    bubbleState = bubbleState
+) {
+    Text(text = "Arrow RIGHT_BOTTOM")
+}
+```
+
+### Shadow
+`Modifier.dawBubble` uses shadow software layer to draw colorful shadows with radius and transparency.
+Customized and set calculations almost similar with default Android api Modifier.shadow()
+but if you are not happy with shadows you can use `Modifier.dawBubbleWithShape` to
+create a **shape** from bubble **path** and use that shape to create shadow with `Modifier.shadow`

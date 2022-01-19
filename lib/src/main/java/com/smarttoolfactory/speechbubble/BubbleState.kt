@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.dp
  * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
+ * @param padding padding between bubble and it's content. Set padding in bubbleState instead of using `Modifier.padding()`
+ * to set padding.
  */
 @Composable
 fun rememberBubbleState(
@@ -87,6 +89,8 @@ fun rememberBubbleState(
  * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
+ * @param padding padding between bubble and it's content. Set padding in bubbleState instead of using `Modifier.padding()`
+ * to set padding.
  */
 @Composable
 fun rememberBubbleState(
@@ -147,6 +151,8 @@ fun rememberBubbleState(
  * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
+ * @param padding padding between bubble and it's content. Set padding in bubbleState instead of using `Modifier.padding()`
+ * to set padding.
  */
 class BubbleState internal constructor(
     var backgroundColor: Color = DefaultBubbleColor,
