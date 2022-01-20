@@ -11,10 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.*
-import androidx.compose.ui.unit.Constraints
-import androidx.compose.ui.unit.constrainWidth
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.offset
+import androidx.compose.ui.unit.*
 import kotlin.math.roundToInt
 
 
@@ -95,33 +92,35 @@ private fun MeasureScope.measureBubbleColumnResult(
     val paddingEnd = ((bubbleState.padding?.end ?: 0.dp).value * density).roundToInt()
     val paddingBottom = ((bubbleState.padding?.bottom ?: 0.dp).value * density).roundToInt()
 
-    val isHorizontalRightAligned = bubbleState.isHorizontalRightAligned()
+    // Check arrow position
     val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
-    val isVerticalBottomAligned = bubbleState.isVerticalBottomAligned()
+    val isVerticalTopAligned = bubbleState.isVerticalTopAligned()
+    val isHorizontallyPositioned = bubbleState.isArrowHorizontallyPositioned()
+    val isVerticallyPositioned = bubbleState.isArrowVerticallyPositioned()
 
     // Offset to limit max width when arrow is horizontally placed
     // if we don't remove arrowWidth bubble will overflow from it's parent as much as arrow
     // width is. So we measure our placeable as content + arrow width + horizontal padding
-    val offsetX: Int =
-        (paddingStart + paddingEnd) + if (bubbleState.isArrowHorizontallyPositioned()) {
-            arrowWidth
-        } else 0
+    val offsetX: Int = (paddingStart + paddingEnd) + if (isHorizontallyPositioned) {
+        arrowWidth
+    } else 0
 
     // Offset to limit max height when arrow is vertically placed
-
-    val offsetY: Int =
-        (paddingTop + paddingBottom) + if (bubbleState.isArrowVerticallyPositioned()) {
-            arrowHeight
-        } else 0
+    val offsetY: Int = (paddingTop + paddingBottom) + if (isVerticallyPositioned) {
+        arrowHeight
+    } else 0
 
     val placeables = measurables.map { measurable: Measurable ->
+        // 🔥 With contraints.offset we limit placeable width/height to maxWidth/Height - offsetX/Y
+        // Even without arrow it's required to limit width/height for placeable to take space
+        // when padding is applied
         measurable.measure(constraints.offset(-offsetX, -offsetY))
     }
 
     val desiredWidth: Int =
-        (placeables.maxOf { it.width } + offsetX)
+        constraints.constrainWidth(placeables.maxOf { it.width } + offsetX)
     val desiredHeight: Int =
-        (placeables.sumOf { it.height } + offsetY)
+        constraints.constrainHeight(placeables.sumOf { it.height } + offsetY)
 
     rect.set(0f, 0f, desiredWidth.toFloat(), desiredHeight.toFloat())
 
@@ -150,43 +149,23 @@ private fun MeasureScope.measureBubbleColumnResult(
         density = density
     )
 
-    var x = 0
-    var y = 0
-
-    when {
-        // Arrow on left side
-        isHorizontalLeftAligned -> {
-            x = arrowWidth + paddingStart
-            y = paddingTop
-        }
-
-        // Arrow on right side
-        isHorizontalRightAligned -> {
-            x = paddingStart
-            y = paddingTop
-        }
-
-        // Arrow at the bottom
-        isVerticalBottomAligned -> {
-            x = paddingStart
-            y = paddingTop
-        }
-    }
+    val xPos = if (isHorizontalLeftAligned) paddingStart + arrowWidth else paddingStart
+    val yPos = if (isVerticalTopAligned) paddingTop + arrowHeight else paddingTop
 
     return layout(desiredWidth, desiredHeight) {
 
-        var yPos = 0
+        var yPosNext = 0
         placeables.forEach { placeable: Placeable ->
 //            println(
 //                "🎃 measureBubbleColumnResult() LAYOUT align: ${bubbleState.alignment}\n" +
-//                        "x: $x, y: $y, yPos: $yPos, " +
+//                        "xPos: $xPos, yPos: $yPos, yPosNext: yPosNext, " +
 //                        "placeable width: ${placeable.width}, " +
 //                        "height: ${placeable.height}, " +
 //                        "rect: $rectContent"
 //            )
 
-            placeable.place(x, y + yPos)
-            yPos += placeable.height
+            placeable.place(xPos, yPos + yPosNext)
+            yPosNext += placeable.height
         }
     }
 }

@@ -192,37 +192,36 @@ internal fun MeasureScope.measureBubbleResult(
     path: Path
 ): MeasureResult {
 
-
     val arrowWidth = (bubbleState.arrowWidth.value * density).roundToInt()
     val arrowHeight = (bubbleState.arrowHeight.value * density).roundToInt()
 
-    val isHorizontalRightAligned = bubbleState.isHorizontalRightAligned()
+    // Check arrow position
     val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
-    val isVerticalBottomAligned = bubbleState.isVerticalBottomAligned()
+    val isVerticalTopAligned = bubbleState.isVerticalTopAligned()
+    val isHorizontallyPositioned = bubbleState.isArrowHorizontallyPositioned()
+    val isVerticallyPositioned = bubbleState.isArrowVerticallyPositioned()
 
     // Offset to limit max width when arrow is horizontally placed
     // if we don't remove arrowWidth bubble will overflow from it's parent as much as arrow
     // width is. So we measure our placeable as content + arrow width
-    val offsetX: Int = if (bubbleState.isArrowHorizontallyPositioned()) {
+    val offsetX: Int = if (isHorizontallyPositioned) {
         arrowWidth
     } else 0
 
     // Offset to limit max height when arrow is vertically placed
 
-    val offsetY: Int = if (bubbleState.isArrowVerticallyPositioned()) {
+    val offsetY: Int = if (isVerticallyPositioned) {
         arrowHeight
     } else 0
 
     val placeable = measurable.measure(constraints.offset(-offsetX, -offsetY))
 
-    val desiredWidth = placeable.width + offsetX
-    val limitedWidth= constraints.constrainWidth(desiredWidth)
-    val desiredHeight: Int = placeable.height + offsetY
+    val desiredWidth = constraints.constrainWidth(placeable.width + offsetX)
+    val desiredHeight: Int = constraints.constrainHeight(placeable.height + offsetY)
 
     println(
         "🚌 measureBubbleResult() align:${bubbleState.alignment}, arrowWidth: $arrowWidth, " +
-                "placeableWidth: ${placeable.width}, " +
-                "desiredWidth: $desiredWidth, limitedWidth: $limitedWidth\n" +
+                "placeableWidth: ${placeable.width}, desiredWidth: $desiredWidth\n" +
                 "constraints: $constraints"
     )
 
@@ -246,28 +245,9 @@ internal fun MeasureScope.measureBubbleResult(
     // These positions effect placeable area for our content
     // if xPos is greater than 0 it's required to translate background path(bubble) to match total
     // area since left of  xPos is not usable(reserved for arrowWidth) otherwise
-    var xPos = 0
-    var yPos = 0
+    val xPos = if (isHorizontalLeftAligned) arrowWidth else 0
+    val yPos = if (isVerticalTopAligned) arrowHeight else 0
 
-    when {
-        // Arrow on left side
-        isHorizontalLeftAligned -> {
-            xPos = arrowWidth
-            yPos = 0
-        }
-
-        // Arrow on right side
-        isHorizontalRightAligned -> {
-            xPos = 0
-            yPos = 0
-        }
-
-        // Arrow at the bottom
-        isVerticalBottomAligned -> {
-            xPos = 0
-            yPos = 0
-        }
-    }
 
     return layout(desiredWidth, desiredHeight) {
 //        println(

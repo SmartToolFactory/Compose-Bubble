@@ -28,5 +28,8 @@ enum class ArrowAlignment {
     RIGHT_BOTTOM,
     BOTTOM_LEFT,
     BOTTOM_CENTER,
-    BOTTOM_RIGHT
+    BOTTOM_RIGHT,
+    TOP_LEFT,
+    TOP_CENTER,
+    TOP_RIGHT
 }

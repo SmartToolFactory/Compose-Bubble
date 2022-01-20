@@ -231,27 +231,39 @@ class BubbleState internal constructor(
                 || isHorizontalRightAligned()
 
 
+    /**
+     * Arrow is at the bottom of the bubble
+     */
     fun isVerticalBottomAligned(): Boolean =
         alignment == ArrowAlignment.BOTTOM_LEFT ||
                 alignment == ArrowAlignment.BOTTOM_RIGHT ||
                 alignment == ArrowAlignment.BOTTOM_CENTER
 
+    /**
+     * Arrow is at the yop of the bubble
+     */
+    fun isVerticalTopAligned(): Boolean =
+        alignment == ArrowAlignment.TOP_LEFT ||
+                alignment == ArrowAlignment.TOP_RIGHT ||
+                alignment == ArrowAlignment.TOP_CENTER
 
     /**
      * Arrow is on left side of the bubble
      */
-    fun isVerticalLeftAligned(): Boolean = (alignment == ArrowAlignment.BOTTOM_LEFT)
+    fun isVerticalLeftAligned(): Boolean =
+        (alignment == ArrowAlignment.BOTTOM_LEFT) || (alignment == ArrowAlignment.TOP_LEFT)
 
 
     /**
      * Arrow is on right side of the bubble
      */
-    fun isVerticalRightAligned(): Boolean = (alignment == ArrowAlignment.BOTTOM_RIGHT)
+    fun isVerticalRightAligned(): Boolean =
+        (alignment == ArrowAlignment.BOTTOM_RIGHT) || (alignment == ArrowAlignment.TOP_RIGHT)
 
 
     /**
      * Check if arrow is vertically positioned either on top or at the bottom of bubble
      */
-    fun isArrowVerticallyPositioned(): Boolean = isVerticalBottomAligned()
+    fun isArrowVerticallyPositioned(): Boolean = isVerticalBottomAligned() || isVerticalTopAligned()
 }
 
