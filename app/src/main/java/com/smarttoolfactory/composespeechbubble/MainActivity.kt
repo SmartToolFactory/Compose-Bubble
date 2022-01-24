@@ -22,9 +22,9 @@ class MainActivity : ComponentActivity() {
                             ChatAppbar("Chat/Speech Bubbles")
                         }
                     ) {
-//                        DemoSimpleLayout()
+                        DemoSimpleLayout()
 //                        DemoBubble()
-                        DemoDynamicSize()
+//                        DemoDynamicSize()
                     }
                 }
             }

@@ -31,29 +31,13 @@ fun BubbleColumn(
     content: @Composable () -> Unit
 ) {
     val contentRect = remember { BubbleRect() }
-    val rect = remember { BubbleRect() }
     val path = remember { Path() }
 
     val newModifier = modifier
         .materialShadow(bubbleState, path)
         .drawBehind {
 //            println("📝️ BubbleColumn() DRAWING align:${bubbleState.alignment}, size: $size, path: $path, rectContent: $contentRect")
-
             drawPath(path = path, color = bubbleState.backgroundColor)
-//
-            drawRect(
-                color = Color.Red,
-                topLeft = Offset(rect.left, rect.top),
-                size = Size(rect.width, rect.height),
-                style = Stroke(2f)
-            )
-
-            drawRect(
-                color = Color.Blue,
-                topLeft = Offset(contentRect.left, contentRect.top),
-                size = Size(contentRect.width, contentRect.height),
-                style = Stroke(2f)
-            )
         }
         .then(bubbleModifier)
 
@@ -69,7 +53,6 @@ fun BubbleColumn(
             measurables = measurables,
             constraints = constraints,
             rectContent = contentRect,
-            rect = rect,
             path = path
         )
     }
@@ -80,7 +63,6 @@ private fun MeasureScope.measureBubbleColumnResult(
     measurables: List<Measurable>,
     constraints: Constraints,
     rectContent: BubbleRect,
-    rect: BubbleRect,
     path: Path
 ): MeasureResult {
 
@@ -111,7 +93,7 @@ private fun MeasureScope.measureBubbleColumnResult(
     } else 0
 
     val placeables = measurables.map { measurable: Measurable ->
-        // 🔥 With contraints.offset we limit placeable width/height to maxWidth/Height - offsetX/Y
+        // 🔥 With constraints.offset we limit placeable width/height to maxWidth/Height - offsetX/Y
         // Even without arrow it's required to limit width/height for placeable to take space
         // when padding is applied
         measurable.measure(constraints.offset(-offsetX, -offsetY))
@@ -121,8 +103,6 @@ private fun MeasureScope.measureBubbleColumnResult(
         constraints.constrainWidth(placeables.maxOf { it.width } + offsetX)
     val desiredHeight: Int =
         constraints.constrainHeight(placeables.sumOf { it.height } + offsetY)
-
-    rect.set(0f, 0f, desiredWidth.toFloat(), desiredHeight.toFloat())
 
     println(
         "🚛 measureBubbleColumnResult() align:${bubbleState.alignment}, " +

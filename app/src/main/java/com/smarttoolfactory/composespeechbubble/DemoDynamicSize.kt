@@ -21,7 +21,7 @@ fun DemoDynamicSize() {
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .width(300.dp)
             .padding(vertical = 8.dp, horizontal = 20.dp)
             .background(Color(0xffFBE9E7))
     ) {
@@ -87,29 +87,54 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
         horizontalAlignment = Alignment.End
     ) {
 
-        BubbleLayout(
-            bubbleState = rememberBubbleState(
-                backgroundColor = SentMessageColor,
-                arrowWidth = 20.dp,
-                arrowHeight = 20.dp,
-                alignment = ArrowAlignment.RIGHT_TOP,
-                cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
-            )
-        ) { Text(text = message) }
+//        BubbleLayout(
+//            bubbleState = rememberBubbleState(
+//                backgroundColor = SentMessageColor,
+//                arrowWidth = 20.dp,
+//                arrowHeight = 20.dp,
+//                alignment = ArrowAlignment.LEFT_TOP,
+//                cornerRadius = 8.dp,
+//                shadow = BubbleShadow(elevation = 1.dp),
+//                padding = Padding(top =25.dp, start = 2.dp, end = 15.dp, bottom = 30.dp)
+//            )
+//        ) {
+//            Text(text = message, Modifier.background(Color.Magenta))
+//        }
+//
+//        Spacer(modifier = Modifier.height(20.dp))
+//
+//
+//        BubbleLayoutWithShape(
+//            bubbleState = rememberBubbleState(
+//                backgroundColor = SentMessageColor,
+//                arrowWidth = 20.dp,
+//                arrowHeight = 20.dp,
+//                alignment = ArrowAlignment.LEFT_TOP,
+//                cornerRadius = 8.dp,
+//                shadow = BubbleShadow(elevation = 1.dp),
+//                padding = Padding(top =25.dp, start = 2.dp, end = 15.dp, bottom = 30.dp)
+//            )
+//        ) {
+//            Text(text = message, Modifier.background(Color.Magenta))
+//        }
+
+
+        Spacer(modifier = Modifier.height(20.dp))
 
         BubbleColumn(
             bubbleState = rememberBubbleState(
                 backgroundColor = SentMessageColor,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
-                alignment = ArrowAlignment.RIGHT_TOP,
+                alignment = ArrowAlignment.NONE,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                padding = Padding(top =25.dp, start = 12.dp, end = 15.dp, bottom = 30.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(text = message, Modifier.background(Color.Magenta))
+            Text(text = message, Modifier.background(Color.Yellow))
+        }
 
 //        Spacer(modifier = Modifier.height(4.dp))
 //
