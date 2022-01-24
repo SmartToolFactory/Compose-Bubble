@@ -12,7 +12,7 @@ fun createHorizontalArrowPath(
     density: Float,
 ) {
     val alignment = state.alignment
-    if (alignment == ArrowAlignment.NONE) return
+    if (alignment == ArrowAlignment.None) return
 
     val contentHeight: Float = contentRect.height
     val contentLeft: Float = contentRect.left
@@ -43,7 +43,7 @@ fun createHorizontalArrowPath(
 
     when (alignment) {
 
-        ArrowAlignment.LEFT_TOP -> {
+        ArrowAlignment.LeftTop -> {
             // move to top of arrow at the top of left corner
             path.moveTo(contentLeft, arrowTop)
 
@@ -66,7 +66,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        ArrowAlignment.LEFT_BOTTOM -> {
+        ArrowAlignment.LeftBottom -> {
 
             // move to top of arrow at the bottom left corner
             path.moveTo(contentLeft, arrowTop)
@@ -91,7 +91,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        ArrowAlignment.LEFT_CENTER -> {
+        ArrowAlignment.LeftCenter -> {
 
             // move to top of arrow at the top of left corner
             path.moveTo(contentLeft, arrowTop)
@@ -115,7 +115,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        ArrowAlignment.RIGHT_TOP -> {
+        ArrowAlignment.RightTop -> {
 
             // move to top right corner of the content
             path.moveTo(contentRight, arrowTop)
@@ -138,7 +138,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        ArrowAlignment.RIGHT_BOTTOM -> {
+        ArrowAlignment.RightBottom -> {
 
             // move to bottom right corner of the content
             path.moveTo(contentRight, arrowTop)
@@ -161,7 +161,7 @@ fun createHorizontalArrowPath(
             }
         }
 
-        ArrowAlignment.RIGHT_CENTER -> {
+        ArrowAlignment.RightCenter -> {
 
             // move to top right corner of the content
             path.moveTo(contentRight, arrowTop)
@@ -234,7 +234,7 @@ fun createVerticalArrowPath(
 
     val alignment = state.alignment
 
-    if (alignment == ArrowAlignment.NONE) return
+    if (alignment == ArrowAlignment.None) return
 
     val contentHeight = contentRect.height
     val contentWidth = contentRect.width
@@ -275,7 +275,7 @@ fun createVerticalArrowPath(
     val arrowShape = state.arrowShape
 
     when (alignment) {
-        ArrowAlignment.BOTTOM_LEFT -> {
+        ArrowAlignment.BottomLeft -> {
             path.moveTo(arrowLeft, contentBottom)
 
             when (arrowShape) {
@@ -297,7 +297,7 @@ fun createVerticalArrowPath(
 
         }
 
-        ArrowAlignment.BOTTOM_RIGHT -> {
+        ArrowAlignment.BottomRight -> {
             path.moveTo(arrowLeft, contentBottom)
 
             when (arrowShape) {
@@ -318,7 +318,7 @@ fun createVerticalArrowPath(
             }
         }
 
-        ArrowAlignment.BOTTOM_CENTER -> {
+        ArrowAlignment.BottomCenter -> {
             path.moveTo(arrowLeft, contentBottom)
 
             when (arrowShape) {

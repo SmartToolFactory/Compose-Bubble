@@ -76,24 +76,24 @@ private fun getRoundedRectPath(
     if (drawArrow) {
         when (alignment) {
             // Arrow on left side of the bubble
-            ArrowAlignment.LEFT_TOP, ArrowAlignment.LEFT_CENTER, ArrowAlignment.LEFT_BOTTOM -> {
+            ArrowAlignment.LeftTop, ArrowAlignment.LeftCenter, ArrowAlignment.LeftBottom -> {
                 topLeftInPx = min(arrowTop, topLeftInPx)
                 bottomLeftInPx = min(bottomLeftInPx, (contentRect.height - arrowBottom))
             }
 
             // Arrow on right side of the bubble
-            ArrowAlignment.RIGHT_TOP, ArrowAlignment.RIGHT_CENTER, ArrowAlignment.RIGHT_BOTTOM -> {
+            ArrowAlignment.RightTop, ArrowAlignment.RightCenter, ArrowAlignment.RightBottom -> {
                 topRightInPx = min(arrowTop, topRightInPx)
                 bottomRightInPx = min(bottomRightInPx, (contentRect.height - arrowBottom))
             }
 
             // Arrow at the bottom of bubble
-            ArrowAlignment.BOTTOM_LEFT -> {
+            ArrowAlignment.BottomLeft -> {
                 bottomLeftInPx =
                     if (arrowOffsetY < maxRadius) 0f
                     else bottomLeftInPx
             }
-            ArrowAlignment.BOTTOM_RIGHT -> {
+            ArrowAlignment.BottomRight -> {
                 bottomRightInPx =
                     if (arrowOffsetY < maxRadius) 0f
                     else bottomRightInPx

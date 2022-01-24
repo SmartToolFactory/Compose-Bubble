@@ -11,6 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
+import com.smarttoolfactory.composespeechbubble.ui.theme.DateColor
+import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor
 import com.smarttoolfactory.speechbubble.*
 
 @Composable
@@ -18,12 +21,11 @@ fun DemoDynamicSize() {
 
     var message by remember { mutableStateOf("Very Long Message") }
 
-
     Column(
         modifier = Modifier
-            .width(300.dp)
-            .padding(vertical = 8.dp, horizontal = 20.dp)
-            .background(Color(0xffFBE9E7))
+            .background(BackgroundColor)
+            .padding(8.dp)
+
     ) {
 
         LazyColumn(
@@ -34,9 +36,13 @@ fun DemoDynamicSize() {
                     RightArrowBubbleLayoutSamples(message)
                 }
 
-//                item {
-//                    LeftArrowBubbleLayoutWithShapeSamples(message)
-//                }
+                item {
+                    LeftArrowBubbleColumnSamples(message)
+                }
+
+                item {
+                    BottomArrowBubbleLayoutSamples(message)
+                }
             })
 
         OutlinedTextField(
@@ -57,147 +63,15 @@ fun DemoDynamicSize() {
 @Composable
 private fun RightArrowBubbleLayoutSamples(message: String) {
 
-//    Box(
-//        modifier = Modifier
-//            .padding(8.dp)
-//            .fillMaxWidth(),
-//        contentAlignment = Alignment.Center
-//    ) {
-//        BubbleLayout(
-//            bubbleState = rememberBubbleState(
-//                alignment = ArrowAlignment.NONE,
-//                backgroundColor = DateColor,
-//                cornerRadius = 5.dp,
-//                shadow = BubbleShadow(
-//                    elevation = 1.dp
-//                ),
-//                padding = Padding(8.dp)
-//            )
-//
-//        ) {
-//            Text(
-//                "BubbleLayout",
-//                fontSize = 16.sp,
-//            )
-//        }
-//    }
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.End
-    ) {
-
-//        BubbleLayout(
-//            bubbleState = rememberBubbleState(
-//                backgroundColor = SentMessageColor,
-//                arrowWidth = 20.dp,
-//                arrowHeight = 20.dp,
-//                alignment = ArrowAlignment.LEFT_TOP,
-//                cornerRadius = 8.dp,
-//                shadow = BubbleShadow(elevation = 1.dp),
-//                padding = Padding(top =25.dp, start = 2.dp, end = 15.dp, bottom = 30.dp)
-//            )
-//        ) {
-//            Text(text = message, Modifier.background(Color.Magenta))
-//        }
-//
-//        Spacer(modifier = Modifier.height(20.dp))
-//
-//
-//        BubbleLayoutWithShape(
-//            bubbleState = rememberBubbleState(
-//                backgroundColor = SentMessageColor,
-//                arrowWidth = 20.dp,
-//                arrowHeight = 20.dp,
-//                alignment = ArrowAlignment.LEFT_TOP,
-//                cornerRadius = 8.dp,
-//                shadow = BubbleShadow(elevation = 1.dp),
-//                padding = Padding(top =25.dp, start = 2.dp, end = 15.dp, bottom = 30.dp)
-//            )
-//        ) {
-//            Text(text = message, Modifier.background(Color.Magenta))
-//        }
-
-
-        Spacer(modifier = Modifier.height(20.dp))
-
-        BubbleColumn(
-            bubbleState = rememberBubbleState(
-                backgroundColor = SentMessageColor,
-                arrowWidth = 20.dp,
-                arrowHeight = 20.dp,
-                alignment = ArrowAlignment.NONE,
-                cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(top =25.dp, start = 12.dp, end = 15.dp, bottom = 30.dp)
-            )
-        ) {
-            Text(text = message, Modifier.background(Color.Magenta))
-            Text(text = message, Modifier.background(Color.Yellow))
-        }
-
-//        Spacer(modifier = Modifier.height(4.dp))
-//
-//        BubbleLayout(
-//            bubbleState = rememberBubbleState(
-//                backgroundColor = SentMessageColor,
-//                arrowWidth = 20.dp,
-//                arrowHeight = 20.dp,
-//                alignment = ArrowAlignment.RIGHT_TOP,
-//                arrowOffsetY = 6.dp,
-//                cornerRadius = 8.dp,
-//                shadow = BubbleShadow(elevation = 1.dp),
-//                padding = Padding(8.dp)
-//            )
-//        ) { Text(text = message) }
-//
-//        Spacer(modifier = Modifier.height(4.dp))
-//
-//        BubbleLayout(
-//            bubbleState = rememberBubbleState(
-//                backgroundColor = SentMessageColor,
-//                alignment = ArrowAlignment.RIGHT_CENTER,
-//                arrowWidth = 20.dp,
-//                arrowHeight = 20.dp,
-//                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
-//                cornerRadius = 8.dp,
-//                shadow = BubbleShadow(elevation = 1.dp),
-//                padding = Padding(8.dp)
-//            )
-//        ) { Text(text = message) }
-//
-//        Spacer(modifier = Modifier.height(4.dp))
-//
-//        BubbleLayout(
-//            bubbleState = rememberBubbleState(
-//                backgroundColor = SentMessageColor,
-//                arrowWidth = 20.dp,
-//                arrowHeight = 20.dp,
-//                alignment = ArrowAlignment.RIGHT_BOTTOM,
-//                drawArrow = false,
-//                cornerRadius = 12.dp,
-//                shadow = BubbleShadow(elevation = 1.dp),
-//                padding = Padding(8.dp)
-//            )
-//        ) {
-//            Text(text = message)
-//        }
-    }
-}
-
-
-@Composable
-private fun LeftArrowBubbleLayoutWithShapeSamples(message: String) {
-
     Box(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
-        BubbleLayoutWithShape(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
-                alignment = ArrowAlignment.NONE,
+                alignment = ArrowAlignment.None,
                 backgroundColor = DateColor,
                 cornerRadius = 5.dp,
                 shadow = BubbleShadow(
@@ -208,7 +82,101 @@ private fun LeftArrowBubbleLayoutWithShapeSamples(message: String) {
 
         ) {
             Text(
-                "BubbleLayoutWithShape",
+                "BubbleLayout",
+                fontSize = 16.sp,
+            )
+        }
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.End
+    ) {
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                backgroundColor = SentMessageColor,
+                alignment = ArrowAlignment.RightTop,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                backgroundColor = SentMessageColor,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                alignment = ArrowAlignment.RightTop,
+                arrowOffsetY = 6.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                backgroundColor = SentMessageColor,
+                alignment = ArrowAlignment.RightCenter,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                backgroundColor = SentMessageColor,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                alignment = ArrowAlignment.RightBottom,
+                drawArrow = false,
+                cornerRadius = 12.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) {
+            Text(text = message)
+        }
+    }
+}
+
+@Composable
+private fun LeftArrowBubbleColumnSamples(message: String) {
+
+    Box(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth(),
+        contentAlignment = Alignment.Center
+    ) {
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.None,
+                backgroundColor = DateColor,
+                cornerRadius = 5.dp,
+                shadow = BubbleShadow(
+                    elevation = 1.dp
+                ),
+                padding = Padding(8.dp)
+            )
+
+        ) {
+            Text(
+                "BubbleColumn",
                 fontSize = 16.sp,
             )
         }
@@ -221,7 +189,7 @@ private fun LeftArrowBubbleLayoutWithShapeSamples(message: String) {
         BubbleColumn(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.LEFT_TOP,
+                alignment = ArrowAlignment.LeftTop,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
@@ -235,7 +203,7 @@ private fun LeftArrowBubbleLayoutWithShapeSamples(message: String) {
         BubbleColumn(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.LEFT_TOP,
+                alignment = ArrowAlignment.LeftTop,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 arrowOffsetY = 6.dp,
@@ -250,7 +218,7 @@ private fun LeftArrowBubbleLayoutWithShapeSamples(message: String) {
         BubbleColumn(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.LEFT_CENTER,
+                alignment = ArrowAlignment.LeftCenter,
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -265,7 +233,7 @@ private fun LeftArrowBubbleLayoutWithShapeSamples(message: String) {
         BubbleColumn(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
-                alignment = ArrowAlignment.LEFT_BOTTOM,
+                alignment = ArrowAlignment.LeftBottom,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 drawArrow = false,
@@ -278,3 +246,110 @@ private fun LeftArrowBubbleLayoutWithShapeSamples(message: String) {
         }
     }
 }
+
+@Composable
+private fun BottomArrowBubbleLayoutSamples(message: String) {
+
+    Box(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth(),
+        contentAlignment = Alignment.Center
+    ) {
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.None,
+                backgroundColor = Color(0xffffeecc),
+                cornerRadius = 5.dp,
+                shadow = BubbleShadow(
+                    elevation = (.5).dp
+                ),
+                padding = Padding(8.dp)
+            )
+
+        ) {
+            Text(
+                "BubbleColumn with arrow at bottom",
+                fontSize = 16.sp,
+            )
+        }
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.BottomCenter,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.BottomLeft,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                arrowOffsetY = 6.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.BottomCenter,
+                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.BottomLeft,
+                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowOffsetX = 8.dp,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.BottomRight,
+                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowOffsetX = (-8).dp,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+    }
+}
+

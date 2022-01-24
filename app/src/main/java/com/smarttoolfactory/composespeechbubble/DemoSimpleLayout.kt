@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.unit.*
+import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
 import com.smarttoolfactory.speechbubble.BubbleRect
 
 val textBackgroundColor = Color(0xff2196F3)
@@ -36,7 +37,7 @@ fun DemoSimpleLayout() {
         Column(
             modifier = Modifier
                 .padding(vertical = 4.dp, horizontal = 50.dp)
-                .background(Color(0xffFBE9E7))
+                .background(BackgroundColor)
                 .weight(1f)
                 .verticalScroll(rememberScrollState())
         ) {

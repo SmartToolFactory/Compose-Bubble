@@ -19,17 +19,17 @@ enum class ArrowShape {
 
 
 enum class ArrowAlignment {
-    NONE,
-    LEFT_TOP,
-    LEFT_CENTER,
-    LEFT_BOTTOM,
-    RIGHT_TOP,
-    RIGHT_CENTER,
-    RIGHT_BOTTOM,
-    BOTTOM_LEFT,
-    BOTTOM_CENTER,
-    BOTTOM_RIGHT,
-    TOP_LEFT,
-    TOP_CENTER,
-    TOP_RIGHT
+    None,
+    LeftTop,
+    LeftCenter,
+    LeftBottom,
+    RightTop,
+    RightCenter,
+    RightBottom,
+    BottomLeft,
+    BottomCenter,
+    BottomRight,
+    TopLeft,
+    TopCenter,
+    TopRight
 }

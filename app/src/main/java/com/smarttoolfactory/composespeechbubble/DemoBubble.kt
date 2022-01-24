@@ -1,19 +1,20 @@
 package com.smarttoolfactory.composespeechbubble
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
+import com.smarttoolfactory.composespeechbubble.ui.theme.DateColor
+import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor
 import com.smarttoolfactory.speechbubble.*
-
-
-val SentMessageColor = Color(0xffE7FFDB)
-val ReceivedMessageColor = Color.White
-val DateColor = Color(0xffd4eaf4)
 
 @Composable
 fun DemoBubble() {
@@ -22,13 +23,13 @@ fun DemoBubble() {
     CustomColumnWithScope(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xffFBE9E7))
+            .background(BackgroundColor)
             .padding(8.dp)
     ) {
 
 
         val bubbleStateDate = rememberBubbleState(
-            alignment = ArrowAlignment.NONE,
+            alignment = ArrowAlignment.None,
             backgroundColor = DateColor,
             cornerRadius = 5.dp,
             shadow = BubbleShadow(
@@ -55,7 +56,7 @@ fun DemoBubble() {
 
         val bubbleStateSent1 = rememberBubbleState(
             backgroundColor = SentMessageColor,
-            alignment = ArrowAlignment.RIGHT_TOP,
+            alignment = ArrowAlignment.RightTop,
             arrowOffsetY = 5.dp,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -75,7 +76,7 @@ fun DemoBubble() {
 
         val bubbleStateSent2 = rememberBubbleState(
             backgroundColor = SentMessageColor,
-            alignment = ArrowAlignment.RIGHT_BOTTOM,
+            alignment = ArrowAlignment.RightBottom,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
@@ -94,7 +95,7 @@ fun DemoBubble() {
 
         val bubbleStateSent3 = rememberBubbleState(
             backgroundColor = SentMessageColor,
-            alignment = ArrowAlignment.RIGHT_BOTTOM,
+            alignment = ArrowAlignment.RightBottom,
             drawArrow = false,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -115,7 +116,7 @@ fun DemoBubble() {
 
         val bubbleStateReceived1 = rememberBubbleState(
             backgroundColor = DefaultBubbleColor,
-            alignment = ArrowAlignment.LEFT_BOTTOM,
+            alignment = ArrowAlignment.LeftBottom,
             arrowOffsetY = (-8).dp,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -135,7 +136,7 @@ fun DemoBubble() {
 
         val bubbleStateReceived2 = rememberBubbleState(
             backgroundColor = DefaultBubbleColor,
-            alignment = ArrowAlignment.LEFT_TOP,
+            alignment = ArrowAlignment.LeftTop,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
@@ -153,7 +154,7 @@ fun DemoBubble() {
 
         val bubbleStateReceived3 = rememberBubbleState(
             backgroundColor = DefaultBubbleColor,
-            alignment = ArrowAlignment.LEFT_TOP,
+            alignment = ArrowAlignment.LeftTop,
             drawArrow = false,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -172,7 +173,7 @@ fun DemoBubble() {
 
         val bubbleStateReceived4 = rememberBubbleState(
             backgroundColor = DefaultBubbleColor,
-            alignment = ArrowAlignment.LEFT_CENTER,
+            alignment = ArrowAlignment.LeftCenter,
             arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -193,7 +194,7 @@ fun DemoBubble() {
 
         val bubbleStateBottom1 = rememberBubbleState(
             backgroundColor = Color(0xfffbc02d),
-            alignment = ArrowAlignment.BOTTOM_CENTER,
+            alignment = ArrowAlignment.BottomCenter,
             arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -212,7 +213,7 @@ fun DemoBubble() {
 
         val bubbleStateBottom2 = rememberBubbleState(
             backgroundColor = Color(0xff29B6F6),
-            alignment = ArrowAlignment.BOTTOM_LEFT,
+            alignment = ArrowAlignment.BottomLeft,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 3.dp
@@ -231,7 +232,7 @@ fun DemoBubble() {
 
         val bubbleStateBottom3 = rememberBubbleState(
             backgroundColor = Color(0xffEC407A),
-            alignment = ArrowAlignment.BOTTOM_RIGHT,
+            alignment = ArrowAlignment.BottomRight,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 4.dp,
@@ -252,7 +253,7 @@ fun DemoBubble() {
         // CUSTOM RADIUS ARROWS
         val bubbleStateCustomRadius1 = rememberBubbleState(
             backgroundColor = Color(0xff5c6bc0),
-            alignment = ArrowAlignment.LEFT_TOP,
+            alignment = ArrowAlignment.LeftTop,
             drawArrow = false,
             cornerRadius = BubbleCornerRadius(
                 topLeft = 24.dp,
@@ -276,7 +277,7 @@ fun DemoBubble() {
 
         val bubbleStateCustomRadius2 = rememberBubbleState(
             backgroundColor = Color(0xff5c6bc0),
-            alignment = ArrowAlignment.LEFT_TOP,
+            alignment = ArrowAlignment.LeftTop,
             drawArrow = false,
             cornerRadius = BubbleCornerRadius(
                 topLeft = 2.dp,
@@ -300,7 +301,7 @@ fun DemoBubble() {
 
         val bubbleStateCustomRadius3 = rememberBubbleState(
             backgroundColor = Color(0xff5c6bc0),
-            alignment = ArrowAlignment.LEFT_TOP,
+            alignment = ArrowAlignment.LeftTop,
             drawArrow = false,
             cornerRadius = BubbleCornerRadius(
                 topLeft = 2.dp,

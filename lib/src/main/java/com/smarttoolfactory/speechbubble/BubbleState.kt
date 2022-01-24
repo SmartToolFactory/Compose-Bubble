@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
  * @param backgroundColor color of Bubble
  * @param cornerRadius Constructs a Radius for each side of bubble rectangle
  * @param alignment Arrow alignment determines in which side of the bubble this arrow should be drawn.
- * When [ArrowAlignment.NONE] is selected no arrow is drawn.
+ * When [ArrowAlignment.None] is selected no arrow is drawn.
  * @param arrowShape Shape of the arrow, It can be right or isosceles triangle or curved shape
  * @param arrowOffsetX Vertical offset for arrow that is positioned on top or at the bottom of the bubble.
  * Positive values move arrow right while negative values move left. Arrow position
@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 fun rememberBubbleState(
     backgroundColor: Color = DefaultBubbleColor,
     cornerRadius: Dp = 8.dp,
-    alignment: ArrowAlignment = ArrowAlignment.NONE,
+    alignment: ArrowAlignment = ArrowAlignment.None,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
     arrowOffsetX: Dp = 0.dp,
     arrowOffsetY: Dp = 0.dp,
@@ -76,7 +76,7 @@ fun rememberBubbleState(
  * @param backgroundColor color of Bubble
  * @param cornerRadius Constructs a Radius for each side of bubble rectangle
  * @param alignment Arrow alignment determines in which side of the bubble this arrow should be drawn.
- * When [ArrowAlignment.NONE] is selected no arrow is drawn.
+ * When [ArrowAlignment.None] is selected no arrow is drawn.
  * @param arrowShape Shape of the arrow, It can be right or isosceles triangle or curved shape
  * @param arrowOffsetX Vertical offset for arrow that is positioned on top or at the bottom of the bubble.
  * Positive values move arrow right while negative values move left. Arrow position
@@ -101,7 +101,7 @@ fun rememberBubbleState(
         bottomLeft = 8.dp,
         bottomRight = 8.dp
     ),
-    alignment: ArrowAlignment = ArrowAlignment.NONE,
+    alignment: ArrowAlignment = ArrowAlignment.None,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
     arrowOffsetX: Dp = 0.dp,
     arrowOffsetY: Dp = 0.dp,
@@ -138,7 +138,7 @@ fun rememberBubbleState(
  * @param backgroundColor color of Bubble
  * @param cornerRadius Constructs a Radius for each side of bubble rectangle
  * @param alignment Arrow alignment determines in which side of the bubble this arrow should be drawn.
- * When [ArrowAlignment.NONE] is selected no arrow is drawn.
+ * When [ArrowAlignment.None] is selected no arrow is drawn.
  * @param arrowShape Shape of the arrow, It can be right or isosceles triangle or curved shape
  * @param arrowOffsetX Vertical offset for arrow that is positioned on top or at the bottom of the bubble.
  * Positive values move arrow right while negative values move left. Arrow position
@@ -162,7 +162,7 @@ class BubbleState internal constructor(
         bottomLeft = 8.dp,
         bottomRight = 8.dp,
     ),
-    var alignment: ArrowAlignment = ArrowAlignment.NONE,
+    var alignment: ArrowAlignment = ArrowAlignment.None,
     var arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
     var arrowOffsetX: Dp = 0.dp,
     var arrowOffsetY: Dp = 0.dp,
@@ -196,32 +196,32 @@ class BubbleState internal constructor(
      * Arrow is on left side of the bubble
      */
     fun isHorizontalLeftAligned(): Boolean =
-        (alignment == ArrowAlignment.LEFT_TOP
-                || alignment == ArrowAlignment.LEFT_BOTTOM
-                || alignment == ArrowAlignment.LEFT_CENTER)
+        (alignment == ArrowAlignment.LeftTop
+                || alignment == ArrowAlignment.LeftBottom
+                || alignment == ArrowAlignment.LeftCenter)
 
 
     /**
      * Arrow is on right side of the bubble
      */
     fun isHorizontalRightAligned(): Boolean =
-        (alignment == ArrowAlignment.RIGHT_TOP
-                || alignment == ArrowAlignment.RIGHT_BOTTOM
-                || alignment == ArrowAlignment.RIGHT_CENTER)
+        (alignment == ArrowAlignment.RightTop
+                || alignment == ArrowAlignment.RightBottom
+                || alignment == ArrowAlignment.RightCenter)
 
 
     /**
      * Arrow is on top left or right side of the bubble
      */
     fun isHorizontalTopAligned(): Boolean =
-        (alignment == ArrowAlignment.LEFT_TOP || alignment == ArrowAlignment.RIGHT_TOP)
+        (alignment == ArrowAlignment.LeftTop || alignment == ArrowAlignment.RightTop)
 
 
     /**
      * Arrow is on top left or right side of the bubble
      */
     fun isHorizontalBottomAligned(): Boolean =
-        (alignment == ArrowAlignment.LEFT_BOTTOM || alignment == ArrowAlignment.RIGHT_BOTTOM)
+        (alignment == ArrowAlignment.LeftBottom || alignment == ArrowAlignment.RightBottom)
 
     /**
      * Check if arrow is horizontally positioned either on left or right side
@@ -235,30 +235,30 @@ class BubbleState internal constructor(
      * Arrow is at the bottom of the bubble
      */
     fun isVerticalBottomAligned(): Boolean =
-        alignment == ArrowAlignment.BOTTOM_LEFT ||
-                alignment == ArrowAlignment.BOTTOM_RIGHT ||
-                alignment == ArrowAlignment.BOTTOM_CENTER
+        alignment == ArrowAlignment.BottomLeft ||
+                alignment == ArrowAlignment.BottomRight ||
+                alignment == ArrowAlignment.BottomCenter
 
     /**
      * Arrow is at the yop of the bubble
      */
     fun isVerticalTopAligned(): Boolean =
-        alignment == ArrowAlignment.TOP_LEFT ||
-                alignment == ArrowAlignment.TOP_RIGHT ||
-                alignment == ArrowAlignment.TOP_CENTER
+        alignment == ArrowAlignment.TopLeft ||
+                alignment == ArrowAlignment.TopRight ||
+                alignment == ArrowAlignment.TopCenter
 
     /**
      * Arrow is on left side of the bubble
      */
     fun isVerticalLeftAligned(): Boolean =
-        (alignment == ArrowAlignment.BOTTOM_LEFT) || (alignment == ArrowAlignment.TOP_LEFT)
+        (alignment == ArrowAlignment.BottomLeft) || (alignment == ArrowAlignment.TopLeft)
 
 
     /**
      * Arrow is on right side of the bubble
      */
     fun isVerticalRightAligned(): Boolean =
-        (alignment == ArrowAlignment.BOTTOM_RIGHT) || (alignment == ArrowAlignment.TOP_RIGHT)
+        (alignment == ArrowAlignment.BottomRight) || (alignment == ArrowAlignment.TopRight)
 
 
     /**
