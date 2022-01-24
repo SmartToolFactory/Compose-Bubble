@@ -94,7 +94,12 @@ private fun getRoundedRectPath(
                 bottomLeftCornerRadius = min(arrowLeft, bottomLeftCornerRadius)
                 bottomRightCornerRadius = min(bottomRightCornerRadius, (contentRect.width - arrowRight))
             }
-            else -> Unit
+
+            // Arrow at the top of bubble
+            else -> {
+                topLeftCornerRadius = min(arrowLeft, topLeftCornerRadius)
+                topRightCornerRadius = min(topRightCornerRadius, (contentRect.width - arrowRight))
+            }
         }
     }
 

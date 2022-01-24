@@ -1,4 +1,4 @@
-package com.smarttoolfactory.composespeechbubble
+package com.smarttoolfactory.composespeechbubble.demo
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -18,6 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.unit.*
+import com.smarttoolfactory.composespeechbubble.customPadding
+import com.smarttoolfactory.composespeechbubble.customPaddingWithConstrainOnly
+import com.smarttoolfactory.composespeechbubble.customPaddingWithOffsetAndConstrain
 import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
 import com.smarttoolfactory.speechbubble.BubbleRect
 

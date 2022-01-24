@@ -1,4 +1,4 @@
-package com.smarttoolfactory.composespeechbubble
+package com.smarttoolfactory.composespeechbubble.demo
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.smarttoolfactory.composespeechbubble.BubbleLayout
+import com.smarttoolfactory.composespeechbubble.CustomColumnWithScope
+import com.smarttoolfactory.composespeechbubble.HorizontalAlignment
 import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
 import com.smarttoolfactory.composespeechbubble.ui.theme.DateColor
 import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor

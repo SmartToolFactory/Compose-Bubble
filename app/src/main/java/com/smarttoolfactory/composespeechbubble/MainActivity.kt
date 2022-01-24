@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
+import com.smarttoolfactory.composespeechbubble.demo.DemoDynamicSize
+import com.smarttoolfactory.composespeechbubble.demo.DemoFullChat
 import com.smarttoolfactory.composespeechbubble.ui.ChatAppbar
 import com.smarttoolfactory.composespeechbubble.ui.theme.ComposeSpeechBubbleTheme
 
@@ -24,7 +26,8 @@ class MainActivity : ComponentActivity() {
                     ) {
 //                        DemoSimpleLayout()
 //                        DemoBubble()
-                        DemoDynamicSize()
+//                        DemoDynamicSize()
+                        DemoFullChat()
                     }
                 }
             }
