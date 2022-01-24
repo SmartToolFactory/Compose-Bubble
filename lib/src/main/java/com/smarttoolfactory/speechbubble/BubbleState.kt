@@ -191,6 +191,22 @@ class BubbleState internal constructor(
     var arrowBottom: Float = 0f
         internal set
 
+    /**
+     * Right position of arrow.  This is read-only for implementation. It's calculated when arrow
+     * positions are calculated or adjusted based on width/height of bubble,
+     * offsetX/y, arrow width/height.
+     */
+    var arrowLeft: Float = 0f
+        internal set
+
+    /**
+     * Right position of arrow.  This is read-only for implementation. It's calculated when arrow
+     * positions are calculated or adjusted based on width/height of bubble,
+     * offsetX/y, arrow width/height.
+     */
+    var arrowRight: Float = 0f
+        internal set
+
 
     /**
      * Arrow is on left side of the bubble

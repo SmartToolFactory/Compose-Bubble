@@ -22,9 +22,6 @@ fun createHorizontalArrowPath(
     val arrowWidth: Float = state.arrowWidth.value * density
     val arrowHeight: Float = (state.arrowHeight.value * density).coerceAtMost(contentHeight)
 
-    // TODO Check if this required?
-//    state.arrowHeight = (arrowHeight / density).dp
-
     // This is offset from top/bottom or center for arrows on left or right.
     // Maximum offset + arrow height cannot be bigger
     // than bottom of bubble or smaller than top of bubble.
@@ -36,9 +33,9 @@ fun createHorizontalArrowPath(
         density
     )
     state.arrowTop = arrowTop
-
     val arrowBottom = arrowTop + arrowHeight
     state.arrowBottom = arrowBottom
+
     val arrowShape = state.arrowShape
 
     when (alignment) {
@@ -247,18 +244,19 @@ fun createVerticalArrowPath(
     val cornerRadius = state.cornerRadius
 
     // TODO This is for bottom arrow, we take only bottom corners to have space to draw arrow
-    val radiusSumOnArrowSide: Float =
-        (cornerRadius.bottomLeft + cornerRadius.bottomRight).value * density
+//    val radiusSumOnArrowSide: Float =
+//        (cornerRadius.bottomLeft + cornerRadius.bottomRight).value * density
+//
+//    // Width of the arrow is limited to height of the bubble minus sum of corner radius
+//    // of top and bottom in respective side
+//
+//    val arrowWidthInPx = state.arrowWidth.value * density
+//
+//    val arrowWidth =
+//        if (arrowWidthInPx + radiusSumOnArrowSide > contentWidth)
+//            contentWidth - radiusSumOnArrowSide else arrowWidthInPx
 
-    // Width of the arrow is limited to height of the bubble minus sum of corner radius
-    // of top and bottom in respective side
-
-    val arrowWidthInPx = state.arrowWidth.value * density
-
-    val arrowWidth =
-        if (arrowWidthInPx + radiusSumOnArrowSide > contentWidth)
-            contentWidth - radiusSumOnArrowSide else arrowWidthInPx
-
+    val arrowWidth = (state.arrowWidth.value * density).coerceAtMost(contentRect.width)
     val arrowHeight = state.arrowHeight.value * density
 
     val arrowLeft = calculateArrowLeftPosition(
@@ -271,6 +269,9 @@ fun createVerticalArrowPath(
 
     val arrowRight = arrowLeft + arrowWidth
     val arrowBottom = contentBottom + arrowHeight
+
+    state.arrowLeft = arrowLeft
+    state.arrowRight = arrowRight
 
     val arrowShape = state.arrowShape
 

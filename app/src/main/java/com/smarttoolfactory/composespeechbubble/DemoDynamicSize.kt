@@ -350,6 +350,48 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 padding = Padding(8.dp)
             )
         ) { Text(text = message) }
+
+
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.BottomLeft,
+                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowOffsetX = 20.dp,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.BottomRight,
+                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowOffsetX = (-20).dp,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
+
+        BubbleColumn(
+            bubbleState = rememberBubbleState(
+                backgroundColor = DefaultBubbleColor,
+                alignment = ArrowAlignment.BottomRight,
+                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowWidth = 150.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+                shadow = BubbleShadow(elevation = 1.dp),
+                padding = Padding(8.dp)
+            )
+        ) { Text(text = message) }
     }
 }
 

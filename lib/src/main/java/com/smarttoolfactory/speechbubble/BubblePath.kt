@@ -60,43 +60,39 @@ private fun getRoundedRectPath(
 
     val drawArrow = state.drawArrow
 
-    var topLeftInPx = cornerRadius.topLeft.value * density
+    var topLeftCornerRadius = cornerRadius.topLeft.value * density
         .coerceAtMost(maxRadius)
-    var topRightInPx = cornerRadius.topRight.value * density
+    var topRightCornerRadius = cornerRadius.topRight.value * density
         .coerceAtMost(maxRadius)
-    var bottomLeftInPx = cornerRadius.bottomLeft.value * density
+    var bottomLeftCornerRadius = cornerRadius.bottomLeft.value * density
         .coerceAtMost(maxRadius)
-    var bottomRightInPx = cornerRadius.bottomRight.value * density
+    var bottomRightCornerRadius = cornerRadius.bottomRight.value * density
         .coerceAtMost(maxRadius)
 
-    val arrowOffsetY = state.arrowOffsetY.value * density
     val arrowTop = state.arrowTop
     val arrowBottom = state.arrowBottom
+    val arrowLeft = state.arrowLeft
+    val arrowRight = state.arrowRight
 
     if (drawArrow) {
         when (alignment) {
             // Arrow on left side of the bubble
             ArrowAlignment.LeftTop, ArrowAlignment.LeftCenter, ArrowAlignment.LeftBottom -> {
-                topLeftInPx = min(arrowTop, topLeftInPx)
-                bottomLeftInPx = min(bottomLeftInPx, (contentRect.height - arrowBottom))
+                topLeftCornerRadius = min(arrowTop, topLeftCornerRadius)
+                bottomLeftCornerRadius = min(bottomLeftCornerRadius, (contentRect.height - arrowBottom))
             }
 
             // Arrow on right side of the bubble
             ArrowAlignment.RightTop, ArrowAlignment.RightCenter, ArrowAlignment.RightBottom -> {
-                topRightInPx = min(arrowTop, topRightInPx)
-                bottomRightInPx = min(bottomRightInPx, (contentRect.height - arrowBottom))
+                topRightCornerRadius = min(arrowTop, topRightCornerRadius)
+                bottomRightCornerRadius = min(bottomRightCornerRadius, (contentRect.height - arrowBottom))
             }
 
             // Arrow at the bottom of bubble
-            ArrowAlignment.BottomLeft -> {
-                bottomLeftInPx =
-                    if (arrowOffsetY < maxRadius) 0f
-                    else bottomLeftInPx
-            }
-            ArrowAlignment.BottomRight -> {
-                bottomRightInPx =
-                    if (arrowOffsetY < maxRadius) 0f
-                    else bottomRightInPx
+            ArrowAlignment.BottomLeft, ArrowAlignment.BottomCenter, ArrowAlignment.BottomRight -> {
+
+                bottomLeftCornerRadius = min(arrowLeft, bottomLeftCornerRadius)
+                bottomRightCornerRadius = min(bottomRightCornerRadius, (contentRect.width - arrowRight))
             }
             else -> Unit
         }
@@ -106,20 +102,20 @@ private fun getRoundedRectPath(
         RoundRect(
             rect = Rect(contentRect.left, contentRect.top, contentRect.right, contentRect.bottom),
             topLeft = CornerRadius(
-                topLeftInPx,
-                topLeftInPx
+                topLeftCornerRadius,
+                topLeftCornerRadius
             ),
             topRight = CornerRadius(
-                topRightInPx,
-                topRightInPx
+                topRightCornerRadius,
+                topRightCornerRadius
             ),
             bottomRight = CornerRadius(
-                bottomRightInPx,
-                bottomRightInPx
+                bottomRightCornerRadius,
+                bottomRightCornerRadius
             ),
             bottomLeft = CornerRadius(
-                bottomLeftInPx,
-                bottomLeftInPx
+                bottomLeftCornerRadius,
+                bottomLeftCornerRadius
             )
         )
     )
