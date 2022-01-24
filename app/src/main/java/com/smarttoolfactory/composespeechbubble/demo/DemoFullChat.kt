@@ -185,7 +185,7 @@ private fun ReceivedMessageRow(
             .wrapContentHeight(),
         horizontalAlignment = Alignment.Start
     ) {
-        BubbleLayoutWithShape(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftTop,
