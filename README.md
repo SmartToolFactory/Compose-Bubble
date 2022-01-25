@@ -124,8 +124,32 @@ BubbleLayout(
 }
 ```
 
+Or use a `BubbleColumn` as
+
+```
+BubbleColumn(
+    bubbleState = rememberBubbleState(
+        alignment = ArrowAlignment.None,
+        backgroundColor = DateColor,
+        cornerRadius = 5.dp,
+        shadow = BubbleShadow(
+            elevation = 1.dp
+        ),
+        padding = Padding(8.dp)
+    )
+
+) {
+    Text(
+        "BubbleColumn",
+        fontSize = 16.sp,
+    )
+}
+```
+
 ### Shadow
 `Modifier.dawBubble` uses shadow software layer to draw colorful shadows with radius and transparency.
 Customized and set calculations almost similar with default Android api Modifier.shadow()
 but if you are not happy with shadows you can use `Modifier.dawBubbleWithShape` to
 create a **shape** from bubble **path** and use that shape to create shadow with `Modifier.shadow`
+
+!Note: `Modifier.drawBubbleWithShape` has a bug displaying shadow at correct place when it's size dynamically changes
