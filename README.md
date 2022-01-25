@@ -5,9 +5,12 @@ like whatsapp, telegram or other messaging apps have or arrows with arrow at bot
 info bubble.
 
 `Modifier.drawBubble` or Modifier.drawBubbleWithShape` modifiers draws bubble behind
-composable content using `BubbleState` with remember to store state from previous composition
+composable content using `BubbleState` with remember to store state from previous composition or use `BubbleColumn` if
+you don't want to wrap with a Column using neither of these modifiers.
 
-<img src="./screenshots/bubble_demo.png"/>
+| Full Chat      | Dynamic Size   | Bubble Samples|
+| ----------|-----------| -----------|
+| <img src="./screenshots/demo_chat.gif"/> | <img src="./screenshots/demo_dynamic.gif"/> | <img src="./screenshots/demo_bubbles.png"
 
 ## BubbleState
 ```
