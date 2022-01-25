@@ -16,7 +16,8 @@ There are 4 demos to test **bubbles**.
 
 | Full Chat      | Dynamic Size   | Bubble Samples|
 | ----------|-----------| -----------|
-| <img src="./screenshots/demo_chat.gif"/> | <img src="./screenshots/demo_dynamic.gif"/> | <img src="./screenshots/demo_bubbles.png" |
+| <img src="./screenshots/demo_chat.gif"/> | <img src="./screenshots/demo_dynamic.gif"/> | <img src="./screenshots/demo_bubbles.png"/> |
+
 
 ## BubbleState
 ```
