@@ -90,16 +90,20 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
 
                 }
             }
-            .pointerInput(Unit) {
-                forEachGesture {
-                    awaitPointerEventScope {
-                        val down: PointerInputChange = awaitFirstDown()
-                        pressed = down.pressed
-                        waitForUpOrCancellation()
-                        pressed = false
+            .then(
+                if (bubbleState.clickable) {
+                    this.pointerInput(Unit) {
+                        forEachGesture {
+                            awaitPointerEventScope {
+                                val down: PointerInputChange = awaitFirstDown()
+                                pressed = down.pressed
+                                waitForUpOrCancellation()
+                                pressed = false
+                            }
+                        }
                     }
-                }
-            }
+                } else this
+            )
             .then(
                 bubbleState.padding?.let { padding ->
                     this.padding(
@@ -193,16 +197,20 @@ fun Modifier.drawBubbleWithShape(bubbleState: BubbleState) = composed(
                 else bubbleState.backgroundColor,
                 shape
             )
-            .pointerInput(Unit) {
-                forEachGesture {
-                    awaitPointerEventScope {
-                        val down: PointerInputChange = awaitFirstDown()
-                        pressed = down.pressed
-                        waitForUpOrCancellation()
-                        pressed = false
+            .then(
+                if (bubbleState.clickable) {
+                    this.pointerInput(Unit) {
+                        forEachGesture {
+                            awaitPointerEventScope {
+                                val down: PointerInputChange = awaitFirstDown()
+                                pressed = down.pressed
+                                waitForUpOrCancellation()
+                                pressed = false
+                            }
+                        }
                     }
-                }
-            }
+                } else this
+            )
 
             // Add padding
             .then(

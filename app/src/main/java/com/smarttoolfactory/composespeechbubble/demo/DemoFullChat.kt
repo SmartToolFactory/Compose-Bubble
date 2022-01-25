@@ -153,6 +153,7 @@ private fun SentMessageRow(
                 cornerRadius = 8.dp,
                 drawArrow = drawArrow,
                 shadow = BubbleShadow(elevation = 1.dp),
+                clickable = true
             )
         ) {
             ChatFlexBoxLayout(
@@ -192,6 +193,7 @@ private fun ReceivedMessageRow(
                 drawArrow = drawArrow,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp),
+                clickable = true
             )
         ) {
             ChatFlexBoxLayout(
