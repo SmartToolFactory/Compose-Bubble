@@ -1,8 +1,10 @@
 package com.smarttoolfactory.speechbubble
 
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.forEachGesture
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Column
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
@@ -10,6 +12,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.pointer.PointerInputChange
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.unit.*
 import kotlin.math.roundToInt
@@ -32,12 +36,27 @@ fun BubbleColumn(
 ) {
     val contentRect = remember { BubbleRect() }
     val path = remember { Path() }
+    var pressed by remember { mutableStateOf(false) }
 
     val newModifier = modifier
         .materialShadow(bubbleState, path)
         .drawBehind {
 //            println("📝️ BubbleColumn() DRAWING align:${bubbleState.alignment}, size: $size, path: $path, rectContent: $contentRect")
-            drawPath(path = path, color = bubbleState.backgroundColor)
+            drawPath(
+                path = path,
+                color = if (pressed) bubbleState.backgroundColor.darkenColor(.7f)
+                else bubbleState.backgroundColor,
+            )
+        }
+        .pointerInput(Unit) {
+            forEachGesture {
+                awaitPointerEventScope {
+                    val down: PointerInputChange = awaitFirstDown()
+                    pressed = down.pressed
+                    waitForUpOrCancellation()
+                    pressed = false
+                }
+            }
         }
         .then(bubbleModifier)
 

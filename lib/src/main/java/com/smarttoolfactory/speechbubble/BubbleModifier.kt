@@ -1,6 +1,9 @@
 package com.smarttoolfactory.speechbubble
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.forEachGesture
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.GenericShape
@@ -16,6 +19,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.input.pointer.PointerInputChange
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
@@ -59,6 +64,7 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
 
         val rectContent = remember { BubbleRect() }
         val path = remember { Path() }
+        var pressed by remember { mutableStateOf(false) }
 
         Modifier
             .layout { measurable, constraints ->
@@ -76,7 +82,22 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
                     -bubbleState.arrowWidth.toPx() else 0f
 
                 translate(left = left) {
-                    drawPath(path = path, color = bubbleState.backgroundColor)
+                    drawPath(
+                        path = path,
+                        color = if (pressed) bubbleState.backgroundColor.darkenColor(.7f)
+                        else bubbleState.backgroundColor,
+                    )
+
+                }
+            }
+            .pointerInput(Unit) {
+                forEachGesture {
+                    awaitPointerEventScope {
+                        val down: PointerInputChange = awaitFirstDown()
+                        pressed = down.pressed
+                        waitForUpOrCancellation()
+                        pressed = false
+                    }
                 }
             }
             .then(
@@ -130,6 +151,8 @@ fun Modifier.drawBubbleWithShape(bubbleState: BubbleState) = composed(
         val path = remember { Path() }
         var shapeUpdated by remember { mutableStateOf(false) }
 
+        var pressed by remember { mutableStateOf(false) }
+
         var shape by remember {
             mutableStateOf(
                 GenericShape { size: Size, layoutDirection: LayoutDirection ->
@@ -165,7 +188,22 @@ fun Modifier.drawBubbleWithShape(bubbleState: BubbleState) = composed(
                     this.shadow(bubbleState.shadow?.offsetX ?: 1.dp, shape)
                 } else this
             )
-            .background(bubbleState.backgroundColor, shape)
+            .background(
+                if (pressed) bubbleState.backgroundColor.darkenColor(.7f)
+                else bubbleState.backgroundColor,
+                shape
+            )
+            .pointerInput(Unit) {
+                forEachGesture {
+                    awaitPointerEventScope {
+                        val down: PointerInputChange = awaitFirstDown()
+                        pressed = down.pressed
+                        waitForUpOrCancellation()
+                        pressed = false
+                    }
+                }
+            }
+
             // Add padding
             .then(
                 bubbleState.padding?.let { padding ->

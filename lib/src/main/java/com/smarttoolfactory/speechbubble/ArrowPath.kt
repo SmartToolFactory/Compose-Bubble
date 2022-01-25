@@ -183,7 +183,7 @@ fun createHorizontalArrowPath(
 
         else -> Unit
     }
-    path.close()
+//    path.close()
 }
 
 
@@ -343,7 +343,7 @@ fun createVerticalArrowPath(
 
         else -> Unit
     }
-    path.close()
+//    path.close()
 }
 
 private fun calculateArrowLeftPosition(

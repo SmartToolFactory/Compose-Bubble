@@ -96,10 +96,10 @@ private fun getRoundedRectPath(
             }
 
             // Arrow at the top of bubble
-            else -> {
+            ArrowAlignment.TopLeft, ArrowAlignment.TopCenter, ArrowAlignment.TopRight -> {
                 topLeftCornerRadius = min(arrowLeft, topLeftCornerRadius)
                 topRightCornerRadius = min(topRightCornerRadius, (contentRect.width - arrowRight))
-            }
+            }else -> Unit
         }
     }
 

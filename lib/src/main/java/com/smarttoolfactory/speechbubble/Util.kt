@@ -1,5 +1,7 @@
 package com.smarttoolfactory.speechbubble
 
+import androidx.compose.ui.graphics.Color
+
 /**
  * Retrieve rectangle for measuring for space to be used content other than arrow itself.
  *
@@ -63,4 +65,15 @@ internal fun setContentRect(
             )
         }
     }
+}
+
+fun Color.darkenColor(factor: Float): Color {
+
+    val colorFactor = factor.coerceAtMost(1f)
+    return copy(
+        alpha,
+        red * colorFactor,
+        green * colorFactor,
+        blue * colorFactor
+    )
 }
