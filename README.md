@@ -8,9 +8,15 @@ info bubble.
 composable content using `BubbleState` with remember to store state from previous composition or use `BubbleColumn` if
 you don't want to wrap with a Column using neither of these modifiers.
 
+There are 4 demos to test **bubbles**.
+* `DemoFullChat` is small chatting sample which displays arrow on first message from sender or user
+* `DemoDynamicSize` is for changing bubbles dynamically to observe changes in real time. You can add your custom bubbles to test dynamic changes.
+* `DemoBubbles` displays some sample bubbles
+* `DemoSimpleLayout` is for demonstrating `Constraints.offset(x,y)` and `Contrainsts.constrainWidth` on `Layout` and `Placeable`
+
 | Full Chat      | Dynamic Size   | Bubble Samples|
 | ----------|-----------| -----------|
-| <img src="./screenshots/demo_chat.gif"/> | <img src="./screenshots/demo_dynamic.gif"/> | <img src="./screenshots/demo_bubbles.png"
+| <img src="./screenshots/demo_chat.gif"/> | <img src="./screenshots/demo_dynamic.gif"/> | <img src="./screenshots/demo_bubbles.png" |
 
 ## BubbleState
 ```
