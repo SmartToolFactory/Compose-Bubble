@@ -15,10 +15,9 @@ import androidx.compose.ui.unit.*
  */
 
 /**
- * This modifier is similar to **padding** modifier
- */
-/**
- * This modifier is similar to **padding** modifier
+ * This modifier is similar to **padding** modifier. Uses Constraints.offset() to measure placeable
+ * without the area reserved for padding. When size of the Composable is bigger than parent
+ * Composable offset limits area to placeable width + horizontal padding when setting width
  */
 @Stable
 fun Modifier.customPaddingWithOffsetAndConstrain(all: Dp) =
