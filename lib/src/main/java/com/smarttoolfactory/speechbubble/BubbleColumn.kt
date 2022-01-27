@@ -40,7 +40,7 @@ fun BubbleColumn(
 //            println("📝️ BubbleColumn() DRAWING align:${bubbleState.alignment}, size: $size, path: $path, rectContent: $contentRect")
             drawPath(
                 path = path,
-                color = if (pressed) bubbleState.backgroundColor.darkenColor(.7f)
+                color = if (pressed) bubbleState.backgroundColor.darkenColor(.9f)
                 else bubbleState.backgroundColor,
             )
         }

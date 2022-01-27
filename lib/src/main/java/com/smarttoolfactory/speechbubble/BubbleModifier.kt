@@ -84,7 +84,7 @@ fun Modifier.drawBubble(bubbleState: BubbleState) = composed(
                 translate(left = left) {
                     drawPath(
                         path = path,
-                        color = if (pressed) bubbleState.backgroundColor.darkenColor(.7f)
+                        color = if (pressed) bubbleState.backgroundColor.darkenColor(.9f)
                         else bubbleState.backgroundColor,
                     )
 
@@ -193,7 +193,7 @@ fun Modifier.drawBubbleWithShape(bubbleState: BubbleState) = composed(
                 } else this
             )
             .background(
-                if (pressed) bubbleState.backgroundColor.darkenColor(.7f)
+                if (pressed) bubbleState.backgroundColor.darkenColor(.9f)
                 else bubbleState.backgroundColor,
                 shape
             )
