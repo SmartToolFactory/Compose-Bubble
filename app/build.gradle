@@ -60,12 +60,12 @@ dependencies {
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.compose.runtime:runtime:$compose_version"
 
-    implementation 'com.google.accompanist:accompanist-systemuicontroller:0.24.0-alpha'
-    implementation "com.google.accompanist:accompanist-pager:0.24.0-alpha"
-    implementation "com.google.accompanist:accompanist-pager-indicators:0.24.0-alpha"
+    implementation 'com.google.accompanist:accompanist-systemuicontroller:0.24.3-alpha'
+    implementation "com.google.accompanist:accompanist-pager:0.24.3-alpha"
+    implementation "com.google.accompanist:accompanist-pager-indicators:0.24.3-alpha"
 
 
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation project(path: ':lib')
     implementation project(path: ':lib')
