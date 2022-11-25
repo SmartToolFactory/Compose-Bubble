@@ -14,8 +14,8 @@ There are 4 demos to test **bubbles**.
 * `DemoBubbles` displays some sample bubbles
 * `DemoSimpleLayout` is for demonstrating `Constraints.offset(x,y)` and `Contrainsts.constrainWidth` on `Layout` and `Placeable`
 
-| Full Chat      | Dynamic Size   | Bubble Samples|
-| ----------|-----------| -----------|
+| Full Chat                           z    | Dynamic Size                                | Bubble Samples                              |
+|------------------------------------------|---------------------------------------------|---------------------------------------------|
 | <img src="./screenshots/demo_chat.gif"/> | <img src="./screenshots/demo_dynamic.gif"/> | <img src="./screenshots/demo_bubbles.png"/> |
 
 

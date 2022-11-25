@@ -3,7 +3,6 @@ package com.smarttoolfactory.composespeechbubble
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
@@ -17,18 +16,17 @@ import com.smarttoolfactory.composespeechbubble.demo.DemoBubble
 import com.smarttoolfactory.composespeechbubble.demo.DemoDynamicSize
 import com.smarttoolfactory.composespeechbubble.demo.DemoFullChat
 import com.smarttoolfactory.composespeechbubble.demo.DemoSimpleLayout
-import com.smarttoolfactory.composespeechbubble.ui.ChatAppbar
 import com.smarttoolfactory.composespeechbubble.ui.theme.ComposeSpeechBubbleTheme
 import kotlinx.coroutines.launch
 
-@ExperimentalPagerApi
+@OptIn(ExperimentalPagerApi::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeSpeechBubbleTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
+                Surface{
 
                     Column(
                         modifier = Modifier.fillMaxSize()
@@ -43,7 +41,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @ExperimentalPagerApi
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun HomeContent() {
 
