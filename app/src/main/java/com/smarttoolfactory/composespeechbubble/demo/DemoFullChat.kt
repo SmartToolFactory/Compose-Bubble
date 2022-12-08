@@ -7,7 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.composespeechbubble.BubbleLayout
-import com.smarttoolfactory.composespeechbubble.BubbleLayoutWithShape
 import com.smarttoolfactory.composespeechbubble.chat.ChatFlexBoxLayout
 import com.smarttoolfactory.composespeechbubble.chat.MessageTimeText
 import com.smarttoolfactory.composespeechbubble.ui.ChatInput
@@ -32,6 +31,9 @@ import kotlin.random.Random
 @Composable
 fun DemoFullChat() {
 
+    SideEffect {
+        println("😜DemoFullChat")
+    }
     val messages = remember { mutableStateListOf<ChatMessage>() }
     val sdf = remember { SimpleDateFormat("hh:mm", Locale.ROOT) }
 
