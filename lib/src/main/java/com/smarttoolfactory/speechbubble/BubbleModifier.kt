@@ -304,6 +304,6 @@ internal fun MeasureScope.measureBubbleResult(
 //                    "rect: $rectContent"
 //        )
 
-        placeable.place(xPos, yPos)
+        placeable.placeRelative(xPos, yPos)
     }
 }

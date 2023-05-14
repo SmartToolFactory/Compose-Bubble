@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.composespeechbubble.BubbleLayout
@@ -20,12 +21,10 @@ import com.smarttoolfactory.composespeechbubble.ui.theme.DateColor
 import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor
 import com.smarttoolfactory.speechbubble.*
 
+@Preview
 @Composable
 fun DemoDynamicSize() {
 
-    SideEffect {
-        println("🍏DemoDynamicSize")
-    }
     var message by remember { mutableStateOf("Very Long Message") }
 
     Column(
@@ -44,7 +43,7 @@ fun DemoDynamicSize() {
                 }
 
                 item {
-                    LeftArrowBubbleColumnSamples(message)
+                    LeftArrowBubbleLayoutSamples(message)
                 }
 
                 item {
@@ -162,7 +161,7 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
 }
 
 @Composable
-private fun LeftArrowBubbleColumnSamples(message: String) {
+private fun LeftArrowBubbleLayoutSamples(message: String) {
 
     Box(
         modifier = Modifier
@@ -170,7 +169,7 @@ private fun LeftArrowBubbleColumnSamples(message: String) {
             .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.None,
                 backgroundColor = DateColor,
@@ -183,7 +182,7 @@ private fun LeftArrowBubbleColumnSamples(message: String) {
 
         ) {
             Text(
-                "BubbleColumn",
+                "BubbleLayout",
                 fontSize = 16.sp,
             )
         }
@@ -193,7 +192,7 @@ private fun LeftArrowBubbleColumnSamples(message: String) {
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.Start
     ) {
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftTop,
@@ -207,7 +206,7 @@ private fun LeftArrowBubbleColumnSamples(message: String) {
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftTop,
@@ -222,7 +221,7 @@ private fun LeftArrowBubbleColumnSamples(message: String) {
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftCenter,
@@ -237,7 +236,7 @@ private fun LeftArrowBubbleColumnSamples(message: String) {
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftBottom,
@@ -263,7 +262,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.None,
                 backgroundColor = Color(0xffffeecc),
@@ -276,7 +275,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         ) {
             Text(
-                "BubbleColumn with arrow at bottom",
+                "BubbleLayout with arrow at bottom",
                 fontSize = 16.sp,
             )
         }
@@ -286,7 +285,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomCenter,
@@ -300,7 +299,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomLeft,
@@ -315,7 +314,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomCenter,
@@ -330,7 +329,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomLeft,
@@ -344,7 +343,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) { Text(text = message) }
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomRight,
@@ -359,7 +358,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) { Text(text = message) }
 
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomLeft,
@@ -373,7 +372,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) { Text(text = message) }
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomRight,
@@ -387,7 +386,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) { Text(text = message) }
 
-        BubbleColumn(
+        BubbleLayout(
             bubbleState = rememberBubbleState(
                 backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomRight,
