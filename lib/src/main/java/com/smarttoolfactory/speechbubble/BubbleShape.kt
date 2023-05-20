@@ -1,8 +1,48 @@
 package com.smarttoolfactory.speechbubble
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
+
+
+fun Modifier.bubble(bubbleState: BubbleState) = composed(
+    // pass inspector information for debug
+    inspectorInfo = debugInspectorInfo {
+        // name should match the name of the modifier
+        name = "drawBubble"
+        // add name and value of each argument
+        properties["bubbleState"] = bubbleState
+    },
+
+    factory = {
+
+        val density = LocalDensity.current
+        val shape = remember {
+            createHorizontalBubbleShape(bubbleState, density.density)
+        }
+
+        Modifier
+            .background(
+                color = bubbleState.backgroundColor,
+                shape = shape
+            )
+            .layout { measurable, constraints ->
+                measureBubbleResult(
+                    bubbleState, measurable, constraints
+                )
+            }
+    }
+)
 
 fun createHorizontalBubbleShape(
     state: BubbleState,
@@ -15,9 +55,8 @@ fun createHorizontalBubbleShape(
 
         val alignment: ArrowAlignment = state.alignment
 
+        val contentWidth: Float = size.width
         val contentHeight: Float = size.height
-        val contentLeft: Float = 0f
-        val contentRight: Float = size.width
         val contentTop: Float = 0f
 
         val arrowWidth: Float = state.arrowWidth.value * density
@@ -41,16 +80,17 @@ fun createHorizontalBubbleShape(
 
         val arrowShape: ArrowShape = state.arrowShape
 
+
         if (state.drawArrow) {
             addHorizontalArrowToPath(
-                alignment,
-                contentLeft,
-                arrowTop,
-                arrowShape,
-                arrowBottom,
-                arrowHeight,
-                contentRight,
-                arrowWidth
+                alignment =    alignment,
+                arrowShape =    arrowShape,
+                contentWidth = contentWidth,
+                arrowTop=     arrowTop,
+                arrowBottom=   arrowBottom,
+                arrowWidth =arrowWidth,
+                arrowHeight=   arrowHeight
+
             )
         }
 
@@ -62,10 +102,6 @@ fun createHorizontalBubbleShape(
             density = density
         )
 
-        addBubbleClipPath(
-            state = state,
-            contentRect = rect,
-            density = density
-        )
+        addRoundedBubbleRect(state, rect, density)
     }
 }

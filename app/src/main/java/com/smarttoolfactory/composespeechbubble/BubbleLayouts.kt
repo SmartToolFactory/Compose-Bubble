@@ -1,9 +1,11 @@
 package com.smarttoolfactory.composespeechbubble
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.smarttoolfactory.speechbubble.BubbleState
+import com.smarttoolfactory.speechbubble.bubble
 import com.smarttoolfactory.speechbubble.drawBubble
 
 @Composable
@@ -14,7 +16,19 @@ fun BubbleLayout(
 ) {
     Column(
         modifier
-            .drawBubble(bubbleState)
+//            .drawBubble(bubbleState)
+            .bubble(bubbleState)
+            .then(
+                bubbleState.padding?.let { padding ->
+                    Modifier.padding(
+                        padding.start,
+                        padding.top,
+                        padding.end,
+                        padding.bottom
+                    )
+                } ?: Modifier
+            )
+
     ) {
         content()
     }

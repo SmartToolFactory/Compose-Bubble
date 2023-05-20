@@ -13,9 +13,8 @@ fun Path.createHorizontalArrowPath(
     val alignment = state.alignment
     if (alignment == ArrowAlignment.None) return
 
+    val contentWidth: Float = contentRect.width
     val contentHeight: Float = contentRect.height
-    val contentLeft: Float = contentRect.left
-    val contentRight: Float = contentRect.right
     val contentTop: Float = contentRect.top
 
     val arrowWidth: Float = state.arrowWidth.value * density
@@ -39,14 +38,13 @@ fun Path.createHorizontalArrowPath(
 
     if (state.drawArrow) {
         addHorizontalArrowToPath(
-            alignment,
-            contentLeft,
-            arrowTop,
-            arrowShape,
-            arrowBottom,
-            arrowHeight,
-            contentRight,
-            arrowWidth
+            alignment = alignment,
+            arrowShape = arrowShape,
+            contentWidth = contentWidth,
+            arrowTop = arrowTop,
+            arrowBottom = arrowBottom,
+            arrowHeight = arrowHeight,
+            arrowWidth = arrowWidth
         )
     }
 }
@@ -54,14 +52,17 @@ fun Path.createHorizontalArrowPath(
 
 internal fun Path.addHorizontalArrowToPath(
     alignment: ArrowAlignment,
-    contentLeft: Float,
-    arrowTop: Float,
     arrowShape: ArrowShape,
+    contentWidth: Float,
+    arrowTop: Float,
     arrowBottom: Float,
+    arrowWidth: Float,
     arrowHeight: Float,
-    contentRight: Float,
-    arrowWidth: Float
 ) {
+
+    val contentLeft = arrowWidth
+    val contentRight = contentWidth - arrowWidth
+
     when (alignment) {
 
         ArrowAlignment.LeftTop -> {

@@ -42,7 +42,7 @@ fun Path.addBubbleClipPath(
     addRoundedBubbleRect(state, contentRect, density)
 }
 
-private fun Path.addRoundedBubbleRect(
+internal fun Path.addRoundedBubbleRect(
     state: BubbleState,
     contentRect: BubbleRect,
     density: Float
