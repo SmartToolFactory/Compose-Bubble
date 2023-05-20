@@ -15,26 +15,23 @@ import kotlin.math.min
  * @param contentRect rectangle of content area
  *
  */
-fun getBubbleClipPath(
-    path: Path,
+fun Path.addBubbleClipPath(
     state: BubbleState,
     contentRect: BubbleRect,
     density: Float,
 ) {
 
-    path.reset()
+    reset()
 
     if (state.drawArrow) {
         if (state.isArrowHorizontallyPositioned()) {
             createHorizontalArrowPath(
-                path = path,
                 contentRect = contentRect,
                 state = state,
                 density = density
             )
         } else if (state.isArrowVerticallyPositioned()) {
             createVerticalArrowPath(
-                path = path,
                 contentRect = contentRect,
                 state = state,
                 density = density
@@ -42,12 +39,11 @@ fun getBubbleClipPath(
         }
     }
 
-    getRoundedRectPath(state, path, contentRect, density)
+    addRoundedBubbleRect(state, contentRect, density)
 }
 
-private fun getRoundedRectPath(
+private fun Path.addRoundedBubbleRect(
     state: BubbleState,
-    path: Path,
     contentRect: BubbleRect,
     density: Float
 ) {
@@ -57,6 +53,12 @@ private fun getRoundedRectPath(
     val cornerRadius: BubbleCornerRadius = state.cornerRadius
 
     val maxRadius = contentRect.height / 2f
+    val width = contentRect.width
+    val height = contentRect.height
+    val left  = contentRect.left
+    val right = contentRect.right
+    val top = contentRect.top
+    val bottom = contentRect.bottom
 
     val drawArrow = state.drawArrow
 
@@ -79,33 +81,38 @@ private fun getRoundedRectPath(
             // Arrow on left side of the bubble
             ArrowAlignment.LeftTop, ArrowAlignment.LeftCenter, ArrowAlignment.LeftBottom -> {
                 topLeftCornerRadius = min(arrowTop, topLeftCornerRadius)
-                bottomLeftCornerRadius = min(bottomLeftCornerRadius, (contentRect.height - arrowBottom))
+                bottomLeftCornerRadius =
+                    min(bottomLeftCornerRadius, (height - arrowBottom))
             }
 
             // Arrow on right side of the bubble
             ArrowAlignment.RightTop, ArrowAlignment.RightCenter, ArrowAlignment.RightBottom -> {
                 topRightCornerRadius = min(arrowTop, topRightCornerRadius)
-                bottomRightCornerRadius = min(bottomRightCornerRadius, (contentRect.height - arrowBottom))
+                bottomRightCornerRadius =
+                    min(bottomRightCornerRadius, (height - arrowBottom))
             }
 
             // Arrow at the bottom of bubble
             ArrowAlignment.BottomLeft, ArrowAlignment.BottomCenter, ArrowAlignment.BottomRight -> {
 
                 bottomLeftCornerRadius = min(arrowLeft, bottomLeftCornerRadius)
-                bottomRightCornerRadius = min(bottomRightCornerRadius, (contentRect.width - arrowRight))
+                bottomRightCornerRadius =
+                    min(bottomRightCornerRadius, (width - arrowRight))
             }
 
             // Arrow at the top of bubble
             ArrowAlignment.TopLeft, ArrowAlignment.TopCenter, ArrowAlignment.TopRight -> {
                 topLeftCornerRadius = min(arrowLeft, topLeftCornerRadius)
-                topRightCornerRadius = min(topRightCornerRadius, (contentRect.width - arrowRight))
-            }else -> Unit
+                topRightCornerRadius = min(topRightCornerRadius, (width - arrowRight))
+            }
+
+            else -> Unit
         }
     }
 
-    path.addRoundRect(
+    addRoundRect(
         RoundRect(
-            rect = Rect(contentRect.left, contentRect.top, contentRect.right, contentRect.bottom),
+            rect = Rect(left, top, right, bottom),
             topLeft = CornerRadius(
                 topLeftCornerRadius,
                 topLeftCornerRadius

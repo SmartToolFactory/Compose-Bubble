@@ -1,6 +1,10 @@
 package com.smarttoolfactory.speechbubble
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 
 /**
  * Retrieve rectangle for measuring for space to be used content other than arrow itself.
@@ -65,6 +69,84 @@ internal fun setContentRect(
             )
         }
     }
+}
+
+internal fun Path.addRoundedRect(
+    radiusTopLeft: Float,
+    radiusTopRight: Float,
+    radiusBottomRight: Float,
+    radiusBottomLeft: Float,
+    topLeft: Offset,
+    size: Size
+) {
+    val topLeftRadius = radiusTopLeft * 2
+    val topRightRadius = radiusTopRight * 2
+    val bottomRightRadius = radiusBottomRight * 2
+    val bottomLeftRadius = radiusBottomLeft * 2
+
+    val width = size.width
+    val height = size.height
+
+    // Top left arc
+    arcTo(
+        rect = Rect(
+            left = topLeft.x,
+            top = topLeft.y,
+            right = topLeft.x + topLeftRadius,
+            bottom = topLeft.y + topLeftRadius
+        ),
+        startAngleDegrees = 180.0f,
+        sweepAngleDegrees = 90.0f,
+        forceMoveTo = false
+    )
+
+    lineTo(x = topLeft.x + width - topRightRadius, y = topLeft.y)
+
+    // Top right arc
+    arcTo(
+        rect = Rect(
+            left = topLeft.x + width - topRightRadius,
+            top = topLeft.y,
+            right = topLeft.x + width,
+            bottom = topLeft.y + topRightRadius
+        ),
+        startAngleDegrees = -90.0f,
+        sweepAngleDegrees = 90.0f,
+        forceMoveTo = false
+    )
+
+    lineTo(x = topLeft.x + width, y = topLeft.y + height - bottomRightRadius)
+
+    // Bottom right arc
+    arcTo(
+        rect = Rect(
+            left = topLeft.x + width - bottomRightRadius,
+            top = topLeft.y + height - bottomRightRadius,
+            right = topLeft.x + width,
+            bottom = topLeft.y + height
+        ),
+        startAngleDegrees = 0f,
+        sweepAngleDegrees = 90.0f,
+        forceMoveTo = false
+    )
+
+    lineTo(x = topLeft.x + bottomLeftRadius, y = topLeft.y + height)
+
+    // Bottom left arc
+    arcTo(
+        rect = Rect(
+            left = topLeft.x,
+            top = topLeft.y + height - bottomLeftRadius,
+            right = topLeft.x + bottomLeftRadius,
+            bottom = topLeft.y + height
+        ),
+        startAngleDegrees = 90.0f,
+        sweepAngleDegrees = 90.0f,
+        forceMoveTo = false
+    )
+
+    lineTo(x = topLeft.x, y = topLeft.y + topLeftRadius)
+    close()
 }
 
 fun Color.darkenColor(factor: Float): Color {
