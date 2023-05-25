@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.dp
  *
  * [BubbleState] class  contains information about chat or speech **Bubble**.
  *
- * @param backgroundColor color of Bubble
  * @param cornerRadius Constructs a Radius for each side of bubble rectangle
  * @param alignment Arrow alignment determines in which side of the bubble this arrow should be drawn.
  * When [ArrowAlignment.None] is selected no arrow is drawn.
@@ -26,12 +25,9 @@ import androidx.compose.ui.unit.dp
  * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
- * @param padding padding between bubble and it's content. Set padding in bubbleState instead of using `Modifier.padding()`
- * to set padding.
  */
 @Composable
 fun rememberBubbleState(
-    backgroundColor: Color = DefaultBubbleColor,
     cornerRadius: Dp = 8.dp,
     alignment: ArrowAlignment = ArrowAlignment.None,
     arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
@@ -41,13 +37,11 @@ fun rememberBubbleState(
     arrowHeight: Dp = 14.dp,
     arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
-    shadow: BubbleShadow? = null,
-    clickable: Boolean = false,
+    shadow: BubbleShadow? = null
 ): BubbleState {
 
     return remember {
         BubbleState(
-            backgroundColor = backgroundColor,
             cornerRadius = BubbleCornerRadius(
                 topLeft = cornerRadius,
                 topRight = cornerRadius,
@@ -62,8 +56,7 @@ fun rememberBubbleState(
             arrowHeight = arrowHeight,
             arrowRadius = arrowRadius,
             drawArrow = drawArrow,
-            shadow = shadow,
-            clickable = clickable
+            shadow = shadow
         )
     }
 }
@@ -72,7 +65,6 @@ fun rememberBubbleState(
  *
  * [BubbleState] class  contains information about chat or speech **Bubble**.
  *
- * @param backgroundColor color of Bubble
  * @param cornerRadius Constructs a Radius for each side of bubble rectangle
  * @param alignment Arrow alignment determines in which side of the bubble this arrow should be drawn.
  * When [ArrowAlignment.None] is selected no arrow is drawn.
@@ -88,12 +80,9 @@ fun rememberBubbleState(
  * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
- * @param padding padding between bubble and it's content. Set padding in bubbleState instead of using `Modifier.padding()`
- * to set padding.
  */
 @Composable
 fun rememberBubbleState(
-    backgroundColor: Color = DefaultBubbleColor,
     cornerRadius: BubbleCornerRadius = BubbleCornerRadius(
         topLeft = 8.dp,
         topRight = 8.dp,
@@ -108,13 +97,11 @@ fun rememberBubbleState(
     arrowHeight: Dp = 14.dp,
     arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
-    shadow: BubbleShadow? = null,
-    clickable:Boolean = false
+    shadow: BubbleShadow? = null
 ): BubbleState {
 
     return remember {
         BubbleState(
-            backgroundColor = backgroundColor,
             cornerRadius = cornerRadius,
             alignment = alignment,
             arrowShape = arrowShape,
@@ -124,8 +111,7 @@ fun rememberBubbleState(
             arrowHeight = arrowHeight,
             arrowRadius = arrowRadius,
             drawArrow = drawArrow,
-            shadow = shadow,
-            clickable = clickable
+            shadow = shadow
         )
     }
 }
@@ -134,7 +120,6 @@ fun rememberBubbleState(
  *
  * [BubbleState] class  contains information about chat or speech **Bubble**.
  *
- * @param backgroundColor color of Bubble
  * @param cornerRadius Constructs a Radius for each side of bubble rectangle
  * @param alignment Arrow alignment determines in which side of the bubble this arrow should be drawn.
  * When [ArrowAlignment.None] is selected no arrow is drawn.
@@ -150,11 +135,8 @@ fun rememberBubbleState(
  * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
- * @param padding padding between bubble and it's content. Set padding in bubbleState instead of using `Modifier.padding()`
- * to set padding.
  */
 class BubbleState internal constructor(
-    var backgroundColor: Color = DefaultBubbleColor,
     var cornerRadius: BubbleCornerRadius = BubbleCornerRadius(
         topLeft = 8.dp,
         topRight = 8.dp,
@@ -169,8 +151,7 @@ class BubbleState internal constructor(
     var arrowHeight: Dp = 14.dp,
     var arrowRadius: Dp = 0.dp,
     var drawArrow: Boolean = true,
-    var shadow: BubbleShadow? = null,
-    var clickable: Boolean = false
+    var shadow: BubbleShadow? = null
 ) {
 
     /**

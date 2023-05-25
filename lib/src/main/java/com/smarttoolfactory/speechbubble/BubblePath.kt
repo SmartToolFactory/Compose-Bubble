@@ -17,13 +17,14 @@ internal fun Path.addRoundedBubbleRect(
 
     val cornerRadius: BubbleCornerRadius = state.cornerRadius
 
-    val maxRadius = contentRect.height / 2f
     val width = contentRect.width
     val height = contentRect.height
-    val left  = contentRect.left
+    val left = contentRect.left
     val right = contentRect.right
     val top = contentRect.top
     val bottom = contentRect.bottom
+
+    val maxRadius = width.coerceAtMost(height) / 2f
 
     val drawArrow = state.drawArrow
 

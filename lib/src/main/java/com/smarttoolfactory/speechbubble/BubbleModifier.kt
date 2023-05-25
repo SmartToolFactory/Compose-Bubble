@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
@@ -26,16 +27,18 @@ fun Modifier.bubble(bubbleState: BubbleState) = composed(
 
     factory = {
 
+        val horizontalArrow = bubbleState.isArrowHorizontallyPositioned()
         val density = LocalDensity.current
         val shape = remember {
-            createHorizontalBubbleShape(bubbleState, density.density)
+            if (horizontalArrow) {
+                createHorizontalBubbleShape(bubbleState, density.density)
+            } else {
+                createVerticalBubbleShape(bubbleState, density.density)
+            }
         }
 
         Modifier
-            .background(
-                color = bubbleState.backgroundColor,
-                shape = shape
-            )
+            .clip(shape = shape)
             .layout { measurable, constraints ->
                 measureBubbleResult(
                     bubbleState, measurable, constraints

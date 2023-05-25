@@ -35,11 +35,10 @@ private fun BubbleTopArrowTest() {
         Spacer(modifier = Modifier.height(20.dp))
         val bubbleStateDate = rememberBubbleState(
             alignment = ArrowAlignment.TopCenter,
-            backgroundColor = SentMessageColor,
             cornerRadius = 5.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
-            ),
+            )
         )
 
         BubbleLayout(
@@ -49,7 +48,9 @@ private fun BubbleTopArrowTest() {
             Text(
                 text = "Arrow Top",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier
+                    .background(SentMessageColor)
+                    .padding(8.dp)
             )
         }
     }
@@ -73,7 +74,6 @@ fun DemoBubble() {
 
         val bubbleStateDate = rememberBubbleState(
             alignment = ArrowAlignment.None,
-            backgroundColor = DateColor,
             cornerRadius = 5.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
@@ -87,7 +87,9 @@ fun DemoBubble() {
             Text(
                 text = "ArrowNone",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier
+                    .background(DateColor)
+                    .padding(8.dp)
             )
         }
 
@@ -97,7 +99,6 @@ fun DemoBubble() {
         // WHATSAPP SENT MESSAGE
 
         val bubbleStateSent1 = rememberBubbleState(
-            backgroundColor = SentMessageColor,
             alignment = ArrowAlignment.RightTop,
             arrowOffsetY = 5.dp,
             cornerRadius = 8.dp,
@@ -111,7 +112,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateSent1
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(SentMessageColor)
+                    .padding(8.dp),
                 text = "Arrow RIGHT_TOP with offset 5dp"
             )
         }
@@ -119,7 +122,6 @@ fun DemoBubble() {
         Spacer(modifier = Modifier.height(4.dp))
 
         val bubbleStateSent2 = rememberBubbleState(
-            backgroundColor = SentMessageColor,
             alignment = ArrowAlignment.RightBottom,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -132,7 +134,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateSent2
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(SentMessageColor)
+                    .padding(8.dp),
                 text = "Arrow RIGHT_BOTTOM"
             )
         }
@@ -140,7 +144,6 @@ fun DemoBubble() {
 
 
         val bubbleStateSent3 = rememberBubbleState(
-            backgroundColor = SentMessageColor,
             alignment = ArrowAlignment.RightBottom,
             drawArrow = false,
             cornerRadius = 8.dp,
@@ -150,7 +153,9 @@ fun DemoBubble() {
         )
 
         BubbleLayout(
-            modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
+            modifier = Modifier
+                .background(SentMessageColor)
+                .horizontalAlign(HorizontalAlignment.End),
             bubbleState = bubbleStateSent3
         ) {
             Text(
@@ -163,7 +168,6 @@ fun DemoBubble() {
         // WHATSAPP RECEIVED MESSAGE
 
         val bubbleStateReceived1 = rememberBubbleState(
-            backgroundColor = DefaultBubbleColor,
             alignment = ArrowAlignment.LeftBottom,
             arrowOffsetY = (-8).dp,
             cornerRadius = 8.dp,
@@ -177,7 +181,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateReceived1
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = "Arrow LEFT_BOTTOM offset=-8dp"
             )
         }
@@ -185,7 +191,6 @@ fun DemoBubble() {
 
 
         val bubbleStateReceived2 = rememberBubbleState(
-            backgroundColor = DefaultBubbleColor,
             alignment = ArrowAlignment.LeftTop,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -198,14 +203,15 @@ fun DemoBubble() {
             bubbleState = bubbleStateReceived2
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = "Arrow LEFT_TOP"
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
 
         val bubbleStateReceived3 = rememberBubbleState(
-            backgroundColor = DefaultBubbleColor,
             alignment = ArrowAlignment.LeftTop,
             drawArrow = false,
             cornerRadius = 8.dp,
@@ -219,14 +225,15 @@ fun DemoBubble() {
             bubbleState = bubbleStateReceived3
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = "Arrow LEFT_TOP drawArrow=false"
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
 
         val bubbleStateReceived4 = rememberBubbleState(
-            backgroundColor = DefaultBubbleColor,
             alignment = ArrowAlignment.LeftCenter,
             arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
             cornerRadius = 8.dp,
@@ -240,7 +247,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateReceived4
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = "Arrow LEFT_CENTER shape=ISOSCELES"
             )
         }
@@ -249,7 +258,6 @@ fun DemoBubble() {
         // BOTTOM ARROW BUBBLES
 
         val bubbleStateBottom1 = rememberBubbleState(
-            backgroundColor = Color(0xfffbc02d),
             alignment = ArrowAlignment.BottomCenter,
             arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
             cornerRadius = 8.dp,
@@ -263,7 +271,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateBottom1
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(Color(0xfffbc02d))
+                    .padding(8.dp),
                 text = "Arrow BOTTOM_CENTER shape=ISOSCELES",
                 color = Color.White
             )
@@ -271,7 +281,6 @@ fun DemoBubble() {
         Spacer(modifier = Modifier.height(4.dp))
 
         val bubbleStateBottom2 = rememberBubbleState(
-            backgroundColor = Color(0xff29B6F6),
             alignment = ArrowAlignment.BottomLeft,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -285,14 +294,15 @@ fun DemoBubble() {
             bubbleState = bubbleStateBottom2
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(Color(0xff29B6F6))
+                    .padding(8.dp),
                 text = "Arrow BOTTOM_LEFT", color = Color.White
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
 
         val bubbleStateBottom3 = rememberBubbleState(
-            backgroundColor = Color(0xffEC407A),
             alignment = ArrowAlignment.BottomRight,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
@@ -307,7 +317,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateBottom3
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(Color(0xffEC407A))
+                    .padding(8.dp),
                 text = "Arrow BOTTOM_RIGHT",
                 color = Color.White
             )
@@ -316,7 +328,6 @@ fun DemoBubble() {
 
         // CUSTOM RADIUS ARROWS
         val bubbleStateCustomRadius1 = rememberBubbleState(
-            backgroundColor = Color(0xff5c6bc0),
             alignment = ArrowAlignment.LeftTop,
             drawArrow = false,
             cornerRadius = BubbleCornerRadius(
@@ -335,7 +346,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateCustomRadius1
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background( Color(0xff5c6bc0))
+                    .padding(8.dp),
                 text = "Arrow Custom radius1",
                 color = Color.White
             )
@@ -343,7 +356,6 @@ fun DemoBubble() {
         Spacer(modifier = Modifier.height(4.dp))
 
         val bubbleStateCustomRadius2 = rememberBubbleState(
-            backgroundColor = Color(0xff5c6bc0),
             alignment = ArrowAlignment.LeftTop,
             drawArrow = false,
             cornerRadius = BubbleCornerRadius(
@@ -362,7 +374,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateCustomRadius2
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(Color(0xff5c6bc0))
+                    .padding(8.dp),
                 text = "Arrow Custom radius2",
                 color = Color.White
             )
@@ -370,7 +384,6 @@ fun DemoBubble() {
         Spacer(modifier = Modifier.height(4.dp))
 
         val bubbleStateCustomRadius3 = rememberBubbleState(
-            backgroundColor = Color(0xff5c6bc0),
             alignment = ArrowAlignment.LeftTop,
             drawArrow = false,
             cornerRadius = BubbleCornerRadius(
@@ -391,7 +404,9 @@ fun DemoBubble() {
             bubbleState = bubbleStateCustomRadius3
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(Color(0xff5c6bc0))
+                    .padding(8.dp),
                 text = "Arrow Custom radius3",
                 color = Color.White
             )

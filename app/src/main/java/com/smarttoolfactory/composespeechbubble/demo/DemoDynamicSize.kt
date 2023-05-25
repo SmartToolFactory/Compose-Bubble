@@ -78,7 +78,6 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.None,
-                backgroundColor = DateColor,
                 cornerRadius = 5.dp,
                 shadow = BubbleShadow(
                     elevation = 1.dp
@@ -87,7 +86,9 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
 
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DateColor)
+                    .padding(8.dp),
                 text = "BubbleLayout",
                 fontSize = 16.sp,
             )
@@ -101,7 +102,6 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = SentMessageColor,
                 alignment = ArrowAlignment.RightTop,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -110,7 +110,9 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(SentMessageColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -119,7 +121,6 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = SentMessageColor,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 alignment = ArrowAlignment.RightTop,
@@ -129,7 +130,9 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(SentMessageColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -138,7 +141,6 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = SentMessageColor,
                 alignment = ArrowAlignment.RightCenter,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -148,7 +150,9 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(SentMessageColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -157,7 +161,6 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = SentMessageColor,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 alignment = ArrowAlignment.RightBottom,
@@ -167,7 +170,9 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(SentMessageColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -186,7 +191,6 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.None,
-                backgroundColor = DateColor,
                 cornerRadius = 5.dp,
                 shadow = BubbleShadow(
                     elevation = 1.dp
@@ -196,7 +200,9 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
         ) {
 
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DateColor)
+                    .padding(8.dp),
                 text = "BubbleLayout",
                 fontSize = 16.sp,
             )
@@ -209,7 +215,6 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
     ) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftTop,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -218,7 +223,9 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -227,7 +234,6 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftTop,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -237,7 +243,9 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -246,7 +254,6 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftCenter,
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 arrowWidth = 20.dp,
@@ -256,7 +263,9 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -265,7 +274,6 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftBottom,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -275,7 +283,9 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -294,7 +304,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.None,
-                backgroundColor = Color(0xffffeecc),
                 cornerRadius = 5.dp,
                 shadow = BubbleShadow(
                     elevation = (.5).dp
@@ -303,7 +312,9 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(Color(0xffffeecc))
+                    .padding(8.dp),
                 text = "BubbleLayout with arrow at bottom",
                 fontSize = 16.sp,
             )
@@ -316,7 +327,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
     ) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomCenter,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -325,7 +335,9 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -334,7 +346,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomLeft,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -344,7 +355,9 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -353,7 +366,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomCenter,
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 arrowWidth = 20.dp,
@@ -363,7 +375,9 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -372,7 +386,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomLeft,
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 arrowOffsetX = 8.dp,
@@ -383,14 +396,15 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomRight,
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 arrowOffsetX = (-8).dp,
@@ -401,7 +415,9 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
@@ -409,7 +425,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomLeft,
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 arrowOffsetX = 20.dp,
@@ -420,14 +435,15 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomRight,
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 arrowOffsetX = (-20).dp,
@@ -438,14 +454,15 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.BottomRight,
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 arrowWidth = 150.dp,
@@ -455,7 +472,9 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .background(DefaultBubbleColor)
+                    .padding(8.dp),
                 text = message
             )
         }

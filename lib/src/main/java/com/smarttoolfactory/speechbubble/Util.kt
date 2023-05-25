@@ -3,25 +3,22 @@ package com.smarttoolfactory.speechbubble
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 
 /**
  * Retrieve rectangle for measuring for space to be used content other than arrow itself.
  *
  * @param bubbleState state that contains bubble properties
- * @param rectContent we store position and dimensions for space required for
- * drawing rounded rectangle without arrow
+
  * @param width is the total width reserved for content and arrow if available in horizontal position
  * @param height is the total height reserved for content and arrow if available in vertical position
  */
-internal fun setContentRect(
+internal fun getContentRect(
     bubbleState: BubbleState,
-    rectContent: BubbleRect,
     width: Int,
     height: Int,
     density: Float
-) {
+):BubbleRect {
 
     val isHorizontalRightAligned = bubbleState.isHorizontalRightAligned()
     val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
@@ -30,9 +27,9 @@ internal fun setContentRect(
     val arrowWidth = bubbleState.arrowWidth.value * density
     val arrowHeight = bubbleState.arrowHeight.value * density
 
-    when {
+   return when {
         isHorizontalLeftAligned -> {
-            rectContent.set(
+            BubbleRect(
                 left = arrowWidth,
                 top = 0f,
                 right = width.toFloat(),
@@ -42,7 +39,7 @@ internal fun setContentRect(
         }
 
         isHorizontalRightAligned -> {
-            rectContent.set(
+            BubbleRect(
                 0f,
                 0f,
                 width.toFloat() - arrowWidth,
@@ -52,7 +49,7 @@ internal fun setContentRect(
         }
 
         isVerticalBottomAligned -> {
-            rectContent.set(
+            BubbleRect(
                 0f,
                 0f,
                 width.toFloat(),
@@ -61,7 +58,7 @@ internal fun setContentRect(
         }
 
         else -> {
-            rectContent.set(
+            BubbleRect(
                 0f,
                 0f,
                 width.toFloat(),
@@ -147,15 +144,4 @@ internal fun Path.addRoundedRect(
 
     lineTo(x = topLeft.x, y = topLeft.y + topLeftRadius)
     close()
-}
-
-fun Color.darkenColor(factor: Float): Color {
-
-    val colorFactor = factor.coerceAtMost(1f)
-    return copy(
-        alpha,
-        red * colorFactor,
-        green * colorFactor,
-        blue * colorFactor
-    )
 }

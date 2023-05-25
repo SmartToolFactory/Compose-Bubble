@@ -152,16 +152,15 @@ private fun SentMessageRow(
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = SentMessageColor,
                 alignment = ArrowAlignment.RightTop,
                 cornerRadius = 8.dp,
                 drawArrow = drawArrow,
-                shadow = BubbleShadow(elevation = 1.dp),
-                clickable = true
+                shadow = BubbleShadow(elevation = 1.dp)
             )
         ) {
             ChatFlexBoxLayout(
                 modifier = Modifier
+                    .background(SentMessageColor)
                     .padding(start = 2.dp, top = 2.dp, end = 4.dp, bottom = 2.dp),
                 text = text,
                 messageStat = {
@@ -192,16 +191,15 @@ private fun ReceivedMessageRow(
     ) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
-                backgroundColor = DefaultBubbleColor,
                 alignment = ArrowAlignment.LeftTop,
                 drawArrow = drawArrow,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                clickable = true
+                shadow = BubbleShadow(elevation = 1.dp)
             )
         ) {
             ChatFlexBoxLayout(
                 modifier = Modifier
+                    .background(DefaultBubbleColor)
                     .padding(start = 2.dp, top = 2.dp, end = 4.dp, bottom = 2.dp),
                 text = text,
                 messageStat = {

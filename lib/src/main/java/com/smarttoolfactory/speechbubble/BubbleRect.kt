@@ -1,18 +1,12 @@
 package com.smarttoolfactory.speechbubble
 
 data class BubbleRect(
-    var left: Float = 0f,
-    var top: Float = 0f,
-    var right: Float = 0f,
-    var bottom: Float = 0f
+    val left: Float = 0f,
+    val top: Float = 0f,
+    val right: Float = 0f,
+    val bottom: Float = 0f
 ) {
 
-    fun set(left: Float, top: Float, right: Float, bottom: Float) {
-        this.left = left
-        this.top = top
-        this.right = right
-        this.bottom = bottom
-    }
 
     val height: Float
         get() {
