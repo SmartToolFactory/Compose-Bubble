@@ -83,8 +83,8 @@ fun DrawScope.drawShadow(
             }
 
         } else {
-            val dx = shadow.offsetX.toPx()* 0.2f
-            val dy = shadow.offsetY.toPx()* 0.7f
+            val dx = shadow.offsetX.toPx() * 0.2f
+            val dy = shadow.offsetY.toPx() * 0.7f
             translate(-dx, dy) {
                 drawPath(color = shadow.color.copy(shadow.alpha), path = path)
             }
@@ -99,25 +99,25 @@ fun DrawScope.drawShadow(
  * @param color Color of the shadow
  * @param alpha of the color of the shadow
  * @param useSoftwareLayer use software layer to draw shadow with blur
+ * @param shadowRadius radius of shadow blur if useSoftwareLayer is set to true
  * @param dX x offset of shadow blur
  * @param dY y offset of shadow blur
- * @param shadowRadius radius of shadow blur if useSoftwareLayer is set to true
  */
 fun BubbleShadow(
     color: Color = ShadowColor,
     alpha: Float = .7f,
     useSoftwareLayer: Boolean = true,
+    shadowRadius: Dp = 1.dp,
     dX: Dp = 1.dp,
     dY: Dp = 1.dp,
-    shadowRadius: Dp = 1.dp,
 ): BubbleShadow {
     return BubbleShadow(
-        color,
-        alpha,
-        dX,
-        dY,
-        shadowRadius,
-        useSoftwareLayer
+        color = color,
+        alpha = alpha,
+        shadowRadius = shadowRadius,
+        offsetX = dX,
+        offsetY = dY,
+        useSoftwareLayer = useSoftwareLayer
     )
 }
 
@@ -150,7 +150,7 @@ class BubbleShadow internal constructor(
     val color: Color = ShadowColor,
     val alpha: Float = .7f,
     val shadowRadius: Dp = 1.dp,
-    val offsetY: Dp = 1.dp,
     val offsetX: Dp = 1.dp,
+    val offsetY: Dp = 1.dp,
     val useSoftwareLayer: Boolean = true
 )

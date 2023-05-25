@@ -42,7 +42,6 @@ fun rememberBubbleState(
     arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null,
-    padding: BubblePadding? = null,
     clickable: Boolean = false,
 ): BubbleState {
 
@@ -64,7 +63,6 @@ fun rememberBubbleState(
             arrowRadius = arrowRadius,
             drawArrow = drawArrow,
             shadow = shadow,
-            padding = padding,
             clickable = clickable
         )
     }
@@ -111,7 +109,6 @@ fun rememberBubbleState(
     arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null,
-    padding: BubblePadding? = null,
     clickable:Boolean = false
 ): BubbleState {
 
@@ -128,7 +125,6 @@ fun rememberBubbleState(
             arrowRadius = arrowRadius,
             drawArrow = drawArrow,
             shadow = shadow,
-            padding = padding,
             clickable = clickable
         )
     }
@@ -174,7 +170,6 @@ class BubbleState internal constructor(
     var arrowRadius: Dp = 0.dp,
     var drawArrow: Boolean = true,
     var shadow: BubbleShadow? = null,
-    var padding: BubblePadding? = null,
     var clickable: Boolean = false
 ) {
 

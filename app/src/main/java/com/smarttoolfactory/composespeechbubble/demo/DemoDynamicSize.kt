@@ -82,13 +82,13 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 cornerRadius = 5.dp,
                 shadow = BubbleShadow(
                     elevation = 1.dp
-                ),
-                padding = Padding(8.dp)
+                )
             )
 
         ) {
             Text(
-                "BubbleLayout",
+                modifier = Modifier.padding(8.dp),
+                text = "BubbleLayout",
                 fontSize = 16.sp,
             )
         }
@@ -106,10 +106,14 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -121,10 +125,14 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 alignment = ArrowAlignment.RightTop,
                 arrowOffsetY = 6.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -137,9 +145,13 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -151,11 +163,13 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 alignment = ArrowAlignment.RightBottom,
                 drawArrow = false,
                 cornerRadius = 12.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
         ) {
-            Text(text = message)
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
         }
     }
 }
@@ -176,13 +190,14 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
                 cornerRadius = 5.dp,
                 shadow = BubbleShadow(
                     elevation = 1.dp
-                ),
-                padding = Padding(8.dp)
+                )
             )
 
         ) {
+
             Text(
-                "BubbleLayout",
+                modifier = Modifier.padding(8.dp),
+                text = "BubbleLayout",
                 fontSize = 16.sp,
             )
         }
@@ -199,10 +214,14 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -214,10 +233,14 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
                 arrowHeight = 20.dp,
                 arrowOffsetY = 6.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -229,10 +252,14 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -244,11 +271,13 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
                 arrowHeight = 20.dp,
                 drawArrow = false,
                 cornerRadius = 12.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
         ) {
-            Text(text = message)
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
         }
     }
 }
@@ -269,13 +298,13 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 cornerRadius = 5.dp,
                 shadow = BubbleShadow(
                     elevation = (.5).dp
-                ),
-                padding = Padding(8.dp)
+                )
             )
 
         ) {
             Text(
-                "BubbleLayout with arrow at bottom",
+                modifier = Modifier.padding(8.dp),
+                text = "BubbleLayout with arrow at bottom",
                 fontSize = 16.sp,
             )
         }
@@ -293,9 +322,13 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -308,9 +341,13 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 arrowOffsetY = 6.dp,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -322,10 +359,14 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -338,10 +379,14 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
@@ -352,10 +397,14 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
 
         BubbleLayout(
@@ -367,10 +416,14 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
@@ -381,10 +434,14 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
 
         BubbleLayout(
             bubbleState = rememberBubbleState(
@@ -394,10 +451,14 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 arrowWidth = 150.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp),
-                padding = Padding(8.dp)
+                shadow = BubbleShadow(elevation = 1.dp)
             )
-        ) { Text(text = message) }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = message
+            )
+        }
     }
 }
 
