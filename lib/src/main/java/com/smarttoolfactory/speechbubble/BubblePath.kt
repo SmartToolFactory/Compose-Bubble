@@ -7,41 +7,6 @@ import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Path
 import kotlin.math.min
 
-
-/**
- * Function that returns bubble path.
- *
- * @param state sum of properties of this layout which includes arrow alignment, position,etc.
- * @param contentRect rectangle of content area
- *
- */
-fun Path.addBubbleClipPath(
-    state: BubbleState,
-    contentRect: BubbleRect,
-    density: Float,
-) {
-
-    reset()
-
-    if (state.drawArrow) {
-        if (state.isArrowHorizontallyPositioned()) {
-            createHorizontalArrowPath(
-                contentRect = contentRect,
-                state = state,
-                density = density
-            )
-        } else if (state.isArrowVerticallyPositioned()) {
-            createVerticalArrowPath(
-                contentRect = contentRect,
-                state = state,
-                density = density
-            )
-        }
-    }
-
-    addRoundedBubbleRect(state, contentRect, density)
-}
-
 internal fun Path.addRoundedBubbleRect(
     state: BubbleState,
     contentRect: BubbleRect,

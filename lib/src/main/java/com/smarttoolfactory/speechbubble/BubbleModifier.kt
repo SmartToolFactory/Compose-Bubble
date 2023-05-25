@@ -1,11 +1,49 @@
 package com.smarttoolfactory.speechbubble
 
 
+import androidx.compose.foundation.background
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.*
 import kotlin.math.roundToInt
+
+
+fun Modifier.bubble(bubbleState: BubbleState) = composed(
+    // pass inspector information for debug
+    inspectorInfo = debugInspectorInfo {
+        // name should match the name of the modifier
+        name = "drawBubble"
+        // add name and value of each argument
+        properties["bubbleState"] = bubbleState
+    },
+
+    factory = {
+
+        val density = LocalDensity.current
+        val shape = remember {
+            createHorizontalBubbleShape(bubbleState, density.density)
+        }
+
+        Modifier
+            .background(
+                color = bubbleState.backgroundColor,
+                shape = shape
+            )
+            .layout { measurable, constraints ->
+                measureBubbleResult(
+                    bubbleState, measurable, constraints
+                )
+            }
+    }
+)
+
 
 /**
  * Measure layout to create a bubble with rounded rectangle with arrow is [bubbleState]
@@ -44,13 +82,6 @@ internal fun MeasureScope.measureBubbleResult(
     val desiredWidth = constraints.constrainWidth(placeable.width + offsetX)
     val desiredHeight: Int = constraints.constrainHeight(placeable.height + offsetY)
 
-    println(
-        "🚌 measureBubbleResult() align:${bubbleState.alignment}, arrowWidth: $arrowWidth, " +
-                "placeableWidth: ${placeable.width}, desiredWidth: $desiredWidth\n" +
-                "constraints: $constraints"
-    )
-
-
     // Position of content(Text or Column/Row/Box for instance) in Bubble
     // These positions effect placeable area for our content
     // if xPos is greater than 0 it's required to translate background path(bubble) to match total
@@ -60,14 +91,6 @@ internal fun MeasureScope.measureBubbleResult(
 
 
     return layout(desiredWidth, desiredHeight) {
-//        println(
-//            "🤡 measureBubbleResult() LAYOUT align: ${bubbleState.alignment}\n" +
-//                    "x: $xPos, y: $yPos, " +
-//                    "placeable width: ${placeable.width}, " +
-//                    "height: ${placeable.height}, " +
-//                    "rect: $rectContent"
-//        )
-
         placeable.placeRelative(xPos, yPos)
     }
 }

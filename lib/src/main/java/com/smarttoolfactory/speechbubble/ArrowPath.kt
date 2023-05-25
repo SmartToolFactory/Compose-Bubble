@@ -2,54 +2,6 @@ package com.smarttoolfactory.speechbubble
 
 import androidx.compose.ui.graphics.Path
 
-/**
- * Create path for arrow either aligned left or right side of the bubble
- */
-fun Path.createHorizontalArrowPath(
-    contentRect: BubbleRect,
-    state: BubbleState,
-    density: Float,
-) {
-    val alignment = state.alignment
-    if (alignment == ArrowAlignment.None) return
-
-    val contentWidth: Float = contentRect.width
-    val contentHeight: Float = contentRect.height
-    val contentTop: Float = contentRect.top
-
-    val arrowWidth: Float = state.arrowWidth.value * density
-    val arrowHeight: Float = (state.arrowHeight.value * density).coerceAtMost(contentHeight)
-
-    // This is offset from top/bottom or center for arrows on left or right.
-    // Maximum offset + arrow height cannot be bigger
-    // than bottom of bubble or smaller than top of bubble.
-    val arrowTop = calculateArrowTopPosition(
-        state,
-        arrowHeight,
-        contentTop,
-        contentHeight,
-        density
-    )
-    state.arrowTop = arrowTop
-    val arrowBottom = arrowTop + arrowHeight
-    state.arrowBottom = arrowBottom
-
-    val arrowShape = state.arrowShape
-
-    if (state.drawArrow) {
-        addHorizontalArrowToPath(
-            alignment = alignment,
-            arrowShape = arrowShape,
-            contentWidth = contentWidth,
-            arrowTop = arrowTop,
-            arrowBottom = arrowBottom,
-            arrowHeight = arrowHeight,
-            arrowWidth = arrowWidth
-        )
-    }
-}
-
-
 internal fun Path.addHorizontalArrowToPath(
     alignment: ArrowAlignment,
     arrowShape: ArrowShape,

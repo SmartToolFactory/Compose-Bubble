@@ -1,45 +1,8 @@
 package com.smarttoolfactory.speechbubble
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.GenericShape
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.layout.layout
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.LayoutDirection
-
-
-fun Modifier.bubble(bubbleState: BubbleState) = composed(
-    // pass inspector information for debug
-    inspectorInfo = debugInspectorInfo {
-        // name should match the name of the modifier
-        name = "drawBubble"
-        // add name and value of each argument
-        properties["bubbleState"] = bubbleState
-    },
-
-    factory = {
-
-        val density = LocalDensity.current
-        val shape = remember {
-            createHorizontalBubbleShape(bubbleState, density.density)
-        }
-
-        Modifier
-            .background(
-                color = bubbleState.backgroundColor,
-                shape = shape
-            )
-            .layout { measurable, constraints ->
-                measureBubbleResult(
-                    bubbleState, measurable, constraints
-                )
-            }
-    }
-)
 
 fun createHorizontalBubbleShape(
     state: BubbleState,
