@@ -2,7 +2,6 @@ package com.smarttoolfactory.speechbubble
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -22,7 +21,6 @@ import androidx.compose.ui.unit.dp
  * is limited between top of content and  content bottom minus arrow height.
  * @param arrowWidth width of the arrow
  * @param arrowHeight height of the arrow
- * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
  */
@@ -35,7 +33,6 @@ fun rememberBubbleState(
     arrowOffsetY: Dp = 0.dp,
     arrowWidth: Dp = 14.dp,
     arrowHeight: Dp = 14.dp,
-    arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null
 ): BubbleState {
@@ -54,7 +51,6 @@ fun rememberBubbleState(
             arrowOffsetY = arrowOffsetY,
             arrowWidth = arrowWidth,
             arrowHeight = arrowHeight,
-            arrowRadius = arrowRadius,
             drawArrow = drawArrow,
             shadow = shadow
         )
@@ -77,7 +73,6 @@ fun rememberBubbleState(
  * is limited between top of content and  content bottom minus arrow height.
  * @param arrowWidth width of the arrow
  * @param arrowHeight height of the arrow
- * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
  */
@@ -95,7 +90,6 @@ fun rememberBubbleState(
     arrowOffsetY: Dp = 0.dp,
     arrowWidth: Dp = 14.dp,
     arrowHeight: Dp = 14.dp,
-    arrowRadius: Dp = 0.dp,
     drawArrow: Boolean = true,
     shadow: BubbleShadow? = null
 ): BubbleState {
@@ -109,7 +103,6 @@ fun rememberBubbleState(
             arrowOffsetY = arrowOffsetY,
             arrowWidth = arrowWidth,
             arrowHeight = arrowHeight,
-            arrowRadius = arrowRadius,
             drawArrow = drawArrow,
             shadow = shadow
         )
@@ -132,26 +125,24 @@ fun rememberBubbleState(
  * is limited between top of content and  content bottom minus arrow height.
  * @param arrowWidth width of the arrow
  * @param arrowHeight height of the arrow
- * @param arrowRadius radius of the arrow curves the tip of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
  */
 class BubbleState internal constructor(
-    var cornerRadius: BubbleCornerRadius = BubbleCornerRadius(
+    val cornerRadius: BubbleCornerRadius = BubbleCornerRadius(
         topLeft = 8.dp,
         topRight = 8.dp,
         bottomLeft = 8.dp,
         bottomRight = 8.dp,
     ),
-    var alignment: ArrowAlignment = ArrowAlignment.None,
-    var arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
-    var arrowOffsetX: Dp = 0.dp,
-    var arrowOffsetY: Dp = 0.dp,
-    var arrowWidth: Dp = 14.dp,
-    var arrowHeight: Dp = 14.dp,
-    var arrowRadius: Dp = 0.dp,
-    var drawArrow: Boolean = true,
-    var shadow: BubbleShadow? = null
+    val alignment: ArrowAlignment = ArrowAlignment.None,
+    val arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
+    val arrowOffsetX: Dp = 0.dp,
+    val arrowOffsetY: Dp = 0.dp,
+    val arrowWidth: Dp = 14.dp,
+    val arrowHeight: Dp = 14.dp,
+    val drawArrow: Boolean = true,
+    val shadow: BubbleShadow? = null
 ) {
 
     /**

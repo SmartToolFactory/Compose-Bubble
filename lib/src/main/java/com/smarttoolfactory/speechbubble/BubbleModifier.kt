@@ -1,11 +1,12 @@
 package com.smarttoolfactory.speechbubble
 
-
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
@@ -14,7 +15,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.*
 import kotlin.math.roundToInt
-
 
 fun Modifier.bubble(bubbleState: BubbleState) = composed(
     // pass inspector information for debug
@@ -38,6 +38,8 @@ fun Modifier.bubble(bubbleState: BubbleState) = composed(
         }
 
         Modifier
+            .border(1.dp, Color.Red)
+            .background(Color.Yellow, shape)
             .clip(shape = shape)
             .layout { measurable, constraints ->
                 measureBubbleResult(

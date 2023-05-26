@@ -75,40 +75,36 @@ fun createVerticalBubbleShape(
 
         val contentWidth: Float = size.width
         val contentHeight: Float = size.height
-        val contentTop: Float = 0f
+        val contentLeft: Float = 0f
 
-        val arrowWidth: Float = state.arrowWidth.value * density
-        val arrowHeight: Float = (state.arrowHeight.value * density).coerceAtMost(contentHeight)
+        val arrowWidth = (state.arrowWidth.value * density).coerceAtMost(contentWidth)
+        val arrowHeight = state.arrowHeight.value * density
 
-        // This is offset from top/bottom or center for arrows on left or right.
-        // Maximum offset + arrow height cannot be bigger
-        // than bottom of bubble or smaller than top of bubble.
-        val arrowTop: Float = calculateArrowTopPosition(
+        val arrowLeft = calculateArrowLeftPosition(
             state,
-            arrowHeight,
-            contentTop,
-            contentHeight,
+            arrowWidth,
+            contentLeft,
+            contentWidth,
             density
         )
 
-        // Updated top value after comparing with Bubble height
-        state.arrowTop = arrowTop
-        val arrowBottom = arrowTop + arrowHeight
-        state.arrowBottom = arrowBottom
+        val arrowRight = arrowLeft + arrowWidth
+        val arrowBottom = contentHeight + arrowHeight
 
-        val arrowShape: ArrowShape = state.arrowShape
+        state.arrowLeft = arrowLeft
+        state.arrowRight = arrowRight
 
+        val arrowShape = state.arrowShape
 
         if (state.drawArrow) {
-            addHorizontalArrowToPath(
-                alignment = alignment,
-                arrowShape = arrowShape,
-                contentWidth = contentWidth,
-                arrowTop = arrowTop,
-                arrowBottom = arrowBottom,
-                arrowWidth = arrowWidth,
-                arrowHeight = arrowHeight
-
+            addVerticalArrowToPath(
+                alignment,
+                arrowLeft,
+                contentHeight,
+                arrowShape,
+                arrowBottom,
+                arrowRight,
+                arrowWidth
             )
         }
 

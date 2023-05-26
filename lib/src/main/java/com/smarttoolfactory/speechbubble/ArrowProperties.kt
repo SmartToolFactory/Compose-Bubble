@@ -4,10 +4,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 class BubbleCornerRadius(
-    var topLeft: Dp = 0.dp,
-    var topRight: Dp = 0.dp,
-    var bottomLeft: Dp = 0.dp,
-    var bottomRight: Dp = 0.dp,
+    val topLeft: Dp = 0.dp,
+    val topRight: Dp = 0.dp,
+    val bottomLeft: Dp = 0.dp,
+    val bottomRight: Dp = 0.dp,
 )
 
 

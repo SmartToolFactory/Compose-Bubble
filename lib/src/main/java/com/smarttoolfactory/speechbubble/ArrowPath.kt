@@ -265,7 +265,7 @@ fun Path.createVerticalArrowPath(
     }
 }
 
-private fun Path.addVerticalArrowToPath(
+internal fun Path.addVerticalArrowToPath(
     alignment: ArrowAlignment,
     arrowLeft: Float,
     contentBottom: Float,
@@ -344,7 +344,7 @@ private fun Path.addVerticalArrowToPath(
     }
 }
 
-private fun calculateArrowLeftPosition(
+internal fun calculateArrowLeftPosition(
     state: BubbleState,
     arrowWidth: Float,
     contentLeft: Float,
