@@ -23,18 +23,18 @@ internal fun Path.addHorizontalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     // Draw horizontal line to left
                     lineTo(0f, arrowTop)
                     lineTo(contentLeft, arrowBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     lineTo(0f, arrowTop + arrowHeight / 2f)
                     lineTo(contentLeft, arrowBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }
@@ -47,19 +47,19 @@ internal fun Path.addHorizontalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     // Draw horizontal line to left
                     lineTo(0f, arrowBottom)
                     lineTo(contentLeft, arrowBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     // Draw horizontal line to left
                     lineTo(0f, arrowTop + arrowHeight / 2f)
                     lineTo(contentLeft, arrowBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }
@@ -72,18 +72,18 @@ internal fun Path.addHorizontalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     // Draw horizontal line to left
                     lineTo(0f, arrowTop)
                     lineTo(contentLeft, arrowBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     lineTo(0f, arrowTop + arrowHeight / 2f)
                     lineTo(contentLeft, arrowBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }
@@ -96,17 +96,17 @@ internal fun Path.addHorizontalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     lineTo(contentRight + arrowWidth, arrowTop)
                     lineTo(contentRight, arrowBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     lineTo(contentRight + arrowWidth, arrowTop + arrowHeight / 2f)
                     lineTo(contentRight, arrowBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }
@@ -119,17 +119,17 @@ internal fun Path.addHorizontalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     lineTo(contentRight + arrowWidth, arrowBottom)
                     lineTo(contentRight, arrowBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     lineTo(contentRight + arrowWidth, arrowTop + arrowHeight / 2f)
                     lineTo(contentRight, arrowBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }
@@ -142,17 +142,17 @@ internal fun Path.addHorizontalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     lineTo(contentRight + arrowWidth, arrowTop)
                     lineTo(contentRight, arrowBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     lineTo(contentRight + arrowWidth, arrowTop + arrowHeight / 2f)
                     lineTo(contentRight, arrowBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }
@@ -280,17 +280,17 @@ internal fun Path.addVerticalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     lineTo(arrowLeft, arrowBottom)
                     lineTo(arrowRight, contentBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     lineTo(arrowLeft + arrowWidth / 2f, arrowBottom)
                     lineTo(arrowRight, contentBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }
@@ -302,17 +302,17 @@ internal fun Path.addVerticalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     lineTo(arrowRight, arrowBottom)
                     lineTo(arrowRight, contentBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     lineTo(arrowLeft + arrowWidth / 2f, arrowBottom)
                     lineTo(arrowRight, contentBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }
@@ -323,18 +323,18 @@ internal fun Path.addVerticalArrowToPath(
 
             when (arrowShape) {
 
-                ArrowShape.TRIANGLE_RIGHT -> {
+                ArrowShape.HalfTriangle -> {
                     // Draw horizontal line to left
                     lineTo(arrowLeft, arrowBottom)
                     lineTo(arrowRight, contentBottom)
                 }
 
-                ArrowShape.TRIANGLE_ISOSCELES -> {
+                ArrowShape.FullTriangle -> {
                     lineTo(arrowLeft + arrowWidth / 2f, arrowBottom)
                     lineTo(arrowRight, contentBottom)
                 }
 
-                ArrowShape.CURVED -> {
+                ArrowShape.Curved -> {
 
                 }
             }

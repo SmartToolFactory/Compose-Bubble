@@ -12,9 +12,9 @@ class BubbleCornerRadius(
 
 
 enum class ArrowShape {
-    TRIANGLE_RIGHT,
-    TRIANGLE_ISOSCELES,
-    CURVED
+    HalfTriangle,
+    FullTriangle,
+    Curved
 }
 
 

@@ -144,7 +144,7 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 alignment = ArrowAlignment.RightCenter,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
-                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowShape = ArrowShape.FullTriangle,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp),
             )
@@ -255,7 +255,7 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.LeftCenter,
-                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowShape = ArrowShape.FullTriangle,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
@@ -367,7 +367,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.BottomCenter,
-                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowShape = ArrowShape.FullTriangle,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
@@ -387,7 +387,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.BottomLeft,
-                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowShape = ArrowShape.FullTriangle,
                 arrowOffsetX = 8.dp,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -406,7 +406,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.BottomRight,
-                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowShape = ArrowShape.FullTriangle,
                 arrowOffsetX = (-8).dp,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -426,7 +426,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.BottomLeft,
-                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowShape = ArrowShape.FullTriangle,
                 arrowOffsetX = 20.dp,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -445,7 +445,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.BottomRight,
-                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowShape = ArrowShape.FullTriangle,
                 arrowOffsetX = (-20).dp,
                 arrowWidth = 20.dp,
                 arrowHeight = 20.dp,
@@ -464,7 +464,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.BottomRight,
-                arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+                arrowShape = ArrowShape.FullTriangle,
                 arrowWidth = 150.dp,
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,

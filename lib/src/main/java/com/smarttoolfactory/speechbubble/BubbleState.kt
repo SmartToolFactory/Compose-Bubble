@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 fun rememberBubbleState(
     cornerRadius: Dp = 8.dp,
     alignment: ArrowAlignment = ArrowAlignment.None,
-    arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
+    arrowShape: ArrowShape = ArrowShape.HalfTriangle,
     arrowOffsetX: Dp = 0.dp,
     arrowOffsetY: Dp = 0.dp,
     arrowWidth: Dp = 14.dp,
@@ -85,7 +85,7 @@ fun rememberBubbleState(
         bottomRight = 8.dp
     ),
     alignment: ArrowAlignment = ArrowAlignment.None,
-    arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
+    arrowShape: ArrowShape = ArrowShape.HalfTriangle,
     arrowOffsetX: Dp = 0.dp,
     arrowOffsetY: Dp = 0.dp,
     arrowWidth: Dp = 14.dp,
@@ -136,7 +136,7 @@ class BubbleState internal constructor(
         bottomRight = 8.dp,
     ),
     val alignment: ArrowAlignment = ArrowAlignment.None,
-    val arrowShape: ArrowShape = ArrowShape.TRIANGLE_RIGHT,
+    val arrowShape: ArrowShape = ArrowShape.HalfTriangle,
     val arrowOffsetX: Dp = 0.dp,
     val arrowOffsetY: Dp = 0.dp,
     val arrowWidth: Dp = 14.dp,

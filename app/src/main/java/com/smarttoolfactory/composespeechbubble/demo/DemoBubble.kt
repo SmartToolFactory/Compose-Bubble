@@ -235,7 +235,7 @@ fun DemoBubble() {
 
         val bubbleStateReceived4 = rememberBubbleState(
             alignment = ArrowAlignment.LeftCenter,
-            arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+            arrowShape = ArrowShape.FullTriangle,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
@@ -259,7 +259,7 @@ fun DemoBubble() {
 
         val bubbleStateBottom1 = rememberBubbleState(
             alignment = ArrowAlignment.BottomCenter,
-            arrowShape = ArrowShape.TRIANGLE_ISOSCELES,
+            arrowShape = ArrowShape.FullTriangle,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 1.dp
@@ -307,7 +307,7 @@ fun DemoBubble() {
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
                 elevation = 4.dp,
-                color = Color(0xffEC407A)
+                ambientColor = Color(0xffEC407A)
             ),
             arrowWidth = 20.dp
         )

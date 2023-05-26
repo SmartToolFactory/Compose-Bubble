@@ -1,11 +1,13 @@
 package com.smarttoolfactory.speechbubble
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.layout.MeasureResult
@@ -16,13 +18,21 @@ import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.*
 import kotlin.math.roundToInt
 
-fun Modifier.bubble(bubbleState: BubbleState) = composed(
+fun Modifier.bubble(
+    bubbleState: BubbleState,
+    color: Color = Color.Transparent,
+    shadow: BubbleShadow? = null,
+    borderStroke: BorderStroke? = null
+) = composed(
     // pass inspector information for debug
     inspectorInfo = debugInspectorInfo {
         // name should match the name of the modifier
         name = "drawBubble"
         // add name and value of each argument
         properties["bubbleState"] = bubbleState
+        properties["color"] = color
+        properties["shadow"] = shadow
+        properties["borderStroke"] = borderStroke
     },
 
     factory = {
@@ -38,9 +48,26 @@ fun Modifier.bubble(bubbleState: BubbleState) = composed(
         }
 
         Modifier
-            .border(1.dp, Color.Red)
-            .background(Color.Yellow, shape)
             .clip(shape = shape)
+            .then(
+                if (shadow != null) {
+                    Modifier.shadow(
+                        elevation = shadow.elevation,
+                        ambientColor = shadow.ambientColor,
+                        spotColor = shadow.spotColor
+                    )
+                } else {
+                    Modifier
+                }
+            )
+            .then(
+                if (borderStroke != null) {
+                    Modifier.border(border = borderStroke, shape = shape)
+                } else {
+                    Modifier
+                }
+            )
+            .background(color, shape)
             .layout { measurable, constraints ->
                 measureBubbleResult(
                     bubbleState, measurable, constraints
