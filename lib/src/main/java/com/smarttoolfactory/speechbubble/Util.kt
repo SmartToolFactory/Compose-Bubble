@@ -18,16 +18,17 @@ internal fun getContentRect(
     width: Int,
     height: Int,
     density: Float
-):BubbleRect {
+): BubbleRect {
 
     val isHorizontalRightAligned = bubbleState.isHorizontalRightAligned()
     val isHorizontalLeftAligned = bubbleState.isHorizontalLeftAligned()
     val isVerticalBottomAligned = bubbleState.isVerticalBottomAligned()
+    val isVerticalTopAligned = bubbleState.isVerticalTopAligned()
 
     val arrowWidth = bubbleState.arrowWidth.value * density
     val arrowHeight = bubbleState.arrowHeight.value * density
 
-   return when {
+    return when {
         isHorizontalLeftAligned -> {
             BubbleRect(
                 left = arrowWidth,
@@ -40,29 +41,38 @@ internal fun getContentRect(
 
         isHorizontalRightAligned -> {
             BubbleRect(
-                0f,
-                0f,
-                width.toFloat() - arrowWidth,
-                height.toFloat()
+                left = 0f,
+                top = 0f,
+                right = width.toFloat() - arrowWidth,
+                bottom = height.toFloat()
             )
 
         }
 
         isVerticalBottomAligned -> {
             BubbleRect(
-                0f,
-                0f,
-                width.toFloat(),
-                height.toFloat() - arrowHeight
+                left = 0f,
+                top = 0f,
+                right = width.toFloat(),
+                bottom = height.toFloat() - arrowHeight
+            )
+        }
+
+        isVerticalTopAligned -> {
+            BubbleRect(
+                left = 0f,
+                top = arrowHeight,
+                right = width.toFloat(),
+                bottom = height.toFloat()
             )
         }
 
         else -> {
             BubbleRect(
-                0f,
-                0f,
-                width.toFloat(),
-                height.toFloat()
+                left = 0f,
+                top = 0f,
+                right = width.toFloat(),
+                bottom = height.toFloat()
             )
         }
     }
