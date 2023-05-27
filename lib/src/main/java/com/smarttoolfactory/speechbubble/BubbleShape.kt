@@ -11,11 +11,11 @@ fun createHorizontalBubbleShape(
 
     return GenericShape { size: Size, layoutDirection: LayoutDirection ->
 
+        val arrowShape: ArrowShape = state.arrowShape
         val alignment: ArrowAlignment = state.alignment
 
         val contentWidth: Float = size.width
         val contentHeight: Float = size.height
-        val contentTop: Float = 0f
 
         val arrowWidth: Float = state.arrowWidth.value * density
         val arrowHeight: Float = (state.arrowHeight.value * density).coerceAtMost(contentHeight)
@@ -26,18 +26,19 @@ fun createHorizontalBubbleShape(
         val arrowTop: Float = calculateArrowTopPosition(
             state,
             arrowHeight,
-            contentTop,
             contentHeight,
             density
         )
 
-        // Updated top value after comparing with Bubble height
-        state.arrowTop = arrowTop
         val arrowBottom = arrowTop + arrowHeight
+        val arrowLeft = if (state.isHorizontalLeftAligned()) 0f
+        else contentWidth
+        val arrowRight = arrowLeft + arrowWidth
+
+        state.arrowTop = arrowTop
         state.arrowBottom = arrowBottom
-
-        val arrowShape: ArrowShape = state.arrowShape
-
+        state.arrowLeft = arrowLeft
+        state.arrowRight = arrowRight
 
         if (state.drawArrow) {
             addHorizontalArrowToPath(
@@ -48,7 +49,6 @@ fun createHorizontalBubbleShape(
                 arrowBottom = arrowBottom,
                 arrowWidth = arrowWidth,
                 arrowHeight = arrowHeight
-
             )
         }
 
@@ -71,11 +71,11 @@ fun createVerticalBubbleShape(
 
     return GenericShape { size: Size, layoutDirection: LayoutDirection ->
 
+        val arrowShape = state.arrowShape
         val alignment: ArrowAlignment = state.alignment
 
         val contentWidth: Float = size.width
         val contentHeight: Float = size.height
-        val contentLeft: Float = 0f
 
         val arrowWidth = (state.arrowWidth.value * density).coerceAtMost(contentWidth)
         val arrowHeight = state.arrowHeight.value * density
@@ -83,28 +83,28 @@ fun createVerticalBubbleShape(
         val arrowLeft = calculateArrowLeftPosition(
             state,
             arrowWidth,
-            contentLeft,
             contentWidth,
             density
         )
 
         val arrowRight = arrowLeft + arrowWidth
-        val arrowBottom = contentHeight + arrowHeight
+        val arrowTop = contentHeight - arrowHeight
+        val arrowBottom = contentHeight
 
         state.arrowLeft = arrowLeft
         state.arrowRight = arrowRight
-
-        val arrowShape = state.arrowShape
+        state.arrowBottom = arrowBottom
+        state.arrowTop = arrowTop
 
         if (state.drawArrow) {
             addVerticalArrowToPath(
-                alignment,
-                arrowLeft,
-                contentHeight,
-                arrowShape,
-                arrowBottom,
-                arrowRight,
-                arrowWidth
+                alignment = alignment,
+                arrowShape = arrowShape,
+                arrowLeft = arrowLeft,
+                arrowRight = arrowRight,
+                arrowBottom = arrowBottom,
+                arrowWidth = arrowWidth,
+                contentBottom = contentHeight - arrowHeight,
             )
         }
 

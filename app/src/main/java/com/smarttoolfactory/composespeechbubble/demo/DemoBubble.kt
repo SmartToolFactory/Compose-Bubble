@@ -1,22 +1,18 @@
 package com.smarttoolfactory.composespeechbubble.demo
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.composespeechbubble.BubbleLayout
-import com.smarttoolfactory.composespeechbubble.CustomColumnScope.Companion.horizontalAlign
 import com.smarttoolfactory.composespeechbubble.CustomColumnWithScope
 import com.smarttoolfactory.composespeechbubble.HorizontalAlignment
 import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
@@ -26,51 +22,13 @@ import com.smarttoolfactory.speechbubble.*
 
 @Preview
 @Composable
-private fun BubbleTopArrowTest() {
-    Column(
-        modifier = Modifier
-            .border(2.dp, Color.Green)
-    ) {
-
-        Spacer(modifier = Modifier.height(20.dp))
-        val bubbleStateDate = rememberBubbleState(
-            alignment = ArrowAlignment.TopCenter,
-            cornerRadius = 5.dp,
-            shadow = BubbleShadow(
-                elevation = 1.dp
-            )
-        )
-
-        BubbleLayout(
-            modifier = Modifier.horizontalAlign(HorizontalAlignment.Center),
-            bubbleState = bubbleStateDate
-        ) {
-            Text(
-                text = "Arrow Top",
-                fontSize = 16.sp,
-                modifier = Modifier
-                    .background(SentMessageColor)
-                    .padding(8.dp)
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
 fun DemoBubble() {
-
-    SideEffect {
-        println("🔥DemoBubble")
-    }
-
     CustomColumnWithScope(
         modifier = Modifier
             .fillMaxSize()
             .background(BackgroundColor)
             .padding(8.dp)
     ) {
-
 
         val bubbleStateDate = rememberBubbleState(
             alignment = ArrowAlignment.None,
@@ -82,13 +40,13 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.Center),
-            bubbleState = bubbleStateDate
+            bubbleState = bubbleStateDate,
+            backgroundColor = DateColor
         ) {
             Text(
                 text = "ArrowNone",
                 fontSize = 16.sp,
                 modifier = Modifier
-                    .background(DateColor)
                     .padding(8.dp)
             )
         }
@@ -109,13 +67,13 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
-            bubbleState = bubbleStateSent1
+            bubbleState = bubbleStateSent1,
+            backgroundColor = SentMessageColor
         ) {
             Text(
                 modifier = Modifier
-                    .background(SentMessageColor)
                     .padding(8.dp),
-                text = "Arrow RIGHT_TOP with offset 5dp"
+                text = "Arrow RightTop with offset 5dp"
             )
         }
 
@@ -131,13 +89,13 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
-            bubbleState = bubbleStateSent2
+            bubbleState = bubbleStateSent2,
+            backgroundColor = SentMessageColor
         ) {
             Text(
                 modifier = Modifier
-                    .background(SentMessageColor)
                     .padding(8.dp),
-                text = "Arrow RIGHT_BOTTOM"
+                text = "Arrow RightBottom"
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -154,13 +112,13 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier
-                .background(SentMessageColor)
                 .horizontalAlign(HorizontalAlignment.End),
-            bubbleState = bubbleStateSent3
+            bubbleState = bubbleStateSent3,
+            backgroundColor = SentMessageColor
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
-                text = "Arrow RIGHT_BOTTOM drawArrow=false"
+                text = "Arrow RightBottom drawArrow=false"
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -182,9 +140,8 @@ fun DemoBubble() {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
-                text = "Arrow LEFT_BOTTOM offset=-8dp"
+                text = "Arrow LeftBottom offset=-8dp"
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -204,9 +161,8 @@ fun DemoBubble() {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
-                text = "Arrow LEFT_TOP"
+                text = "Arrow LeftTop"
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -226,9 +182,8 @@ fun DemoBubble() {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
-                text = "Arrow LEFT_TOP drawArrow=false"
+                text = "Arrow LeftTop drawArrow=false"
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -248,9 +203,8 @@ fun DemoBubble() {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
-                text = "Arrow LEFT_CENTER shape=ISOSCELES"
+                text = "Arrow LeftCenter shape=FullTriangle"
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -262,19 +216,19 @@ fun DemoBubble() {
             arrowShape = ArrowShape.FullTriangle,
             cornerRadius = 8.dp,
             shadow = BubbleShadow(
-                elevation = 1.dp
+                elevation = 2.dp
             )
         )
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.Center),
-            bubbleState = bubbleStateBottom1
+            bubbleState = bubbleStateBottom1,
+            backgroundColor = Color(0xfffbc02d)
         ) {
             Text(
                 modifier = Modifier
-                    .background(Color(0xfffbc02d))
                     .padding(8.dp),
-                text = "Arrow BOTTOM_CENTER shape=ISOSCELES",
+                text = "Arrow BottomCenter shape=FullTriangle",
                 color = Color.White
             )
         }
@@ -291,13 +245,13 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
-            bubbleState = bubbleStateBottom2
+            bubbleState = bubbleStateBottom2,
+            backgroundColor = Color(0xff29B6F6)
         ) {
             Text(
                 modifier = Modifier
-                    .background(Color(0xff29B6F6))
                     .padding(8.dp),
-                text = "Arrow BOTTOM_LEFT", color = Color.White
+                text = "Arrow BottomLeft", color = Color.White
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -314,13 +268,13 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
-            bubbleState = bubbleStateBottom3
+            bubbleState = bubbleStateBottom3,
+            backgroundColor = Color(0xffEC407A)
         ) {
             Text(
                 modifier = Modifier
-                    .background(Color(0xffEC407A))
                     .padding(8.dp),
-                text = "Arrow BOTTOM_RIGHT",
+                text = "Arrow Right",
                 color = Color.White
             )
         }
@@ -343,11 +297,11 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
-            bubbleState = bubbleStateCustomRadius1
+            bubbleState = bubbleStateCustomRadius1,
+            backgroundColor = Color(0xff5c6bc0)
         ) {
             Text(
                 modifier = Modifier
-                    .background( Color(0xff5c6bc0))
                     .padding(8.dp),
                 text = "Arrow Custom radius1",
                 color = Color.White
@@ -371,11 +325,11 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
-            bubbleState = bubbleStateCustomRadius2
+            bubbleState = bubbleStateCustomRadius2,
+            backgroundColor = Color(0xff5c6bc0)
         ) {
             Text(
                 modifier = Modifier
-                    .background(Color(0xff5c6bc0))
                     .padding(8.dp),
                 text = "Arrow Custom radius2",
                 color = Color.White
@@ -401,11 +355,11 @@ fun DemoBubble() {
 
         BubbleLayout(
             modifier = Modifier.horizontalAlign(HorizontalAlignment.Start),
-            bubbleState = bubbleStateCustomRadius3
+            bubbleState = bubbleStateCustomRadius3,
+            backgroundColor = Color(0xff5c6bc0)
         ) {
             Text(
                 modifier = Modifier
-                    .background(Color(0xff5c6bc0))
                     .padding(8.dp),
                 text = "Arrow Custom radius3",
                 color = Color.White

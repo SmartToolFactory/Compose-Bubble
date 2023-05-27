@@ -168,7 +168,6 @@ internal fun Path.addHorizontalArrowToPath(
 internal fun calculateArrowTopPosition(
     state: BubbleState,
     arrowHeight: Float,
-    contentTop: Float,
     contentHeight: Float,
     density: Float,
 ): Float {
@@ -177,7 +176,7 @@ internal fun calculateArrowTopPosition(
 
     var arrowTop = when {
         state.isHorizontalTopAligned() -> {
-            contentTop + arrowOffsetY
+            arrowOffsetY
         }
 
         state.isHorizontalBottomAligned() -> {
@@ -196,83 +195,14 @@ internal fun calculateArrowTopPosition(
     return arrowTop
 }
 
-
-/**
- * Create path for arrow that is at the bottom of the bubble
- */
-fun Path.createVerticalArrowPath(
-    contentRect: BubbleRect,
-    state: BubbleState,
-    density: Float
-) {
-
-    val alignment = state.alignment
-
-    if (alignment == ArrowAlignment.None) return
-
-    val contentHeight = contentRect.height
-    val contentWidth = contentRect.width
-
-    val contentLeft = contentRect.left
-    val contentRight = contentRect.right
-    val contentTop = contentRect.top
-    val contentBottom = contentRect.bottom
-
-    val cornerRadius = state.cornerRadius
-
-    // TODO This is for bottom arrow, we take only bottom corners to have space to draw arrow
-//    val radiusSumOnArrowSide: Float =
-//        (cornerRadius.bottomLeft + cornerRadius.bottomRight).value * density
-//
-//    // Width of the arrow is limited to height of the bubble minus sum of corner radius
-//    // of top and bottom in respective side
-//
-//    val arrowWidthInPx = state.arrowWidth.value * density
-//
-//    val arrowWidth =
-//        if (arrowWidthInPx + radiusSumOnArrowSide > contentWidth)
-//            contentWidth - radiusSumOnArrowSide else arrowWidthInPx
-
-    val arrowWidth = (state.arrowWidth.value * density).coerceAtMost(contentRect.width)
-    val arrowHeight = state.arrowHeight.value * density
-
-    val arrowLeft = calculateArrowLeftPosition(
-        state,
-        arrowWidth,
-        contentLeft,
-        contentWidth,
-        density
-    )
-
-    val arrowRight = arrowLeft + arrowWidth
-    val arrowBottom = contentBottom + arrowHeight
-
-    state.arrowLeft = arrowLeft
-    state.arrowRight = arrowRight
-
-    val arrowShape = state.arrowShape
-
-    if (state.drawArrow) {
-        addVerticalArrowToPath(
-            alignment,
-            arrowLeft,
-            contentBottom,
-            arrowShape,
-            arrowBottom,
-            arrowRight,
-            arrowWidth
-        )
-    }
-}
-
 internal fun Path.addVerticalArrowToPath(
     alignment: ArrowAlignment,
-    arrowLeft: Float,
-    contentBottom: Float,
     arrowShape: ArrowShape,
-    arrowBottom: Float,
+    arrowLeft: Float,
     arrowRight: Float,
-    arrowWidth: Float
+    arrowBottom: Float,
+    arrowWidth: Float,
+    contentBottom: Float,
 ) {
     when (alignment) {
         ArrowAlignment.BottomLeft -> {
@@ -347,7 +277,6 @@ internal fun Path.addVerticalArrowToPath(
 internal fun calculateArrowLeftPosition(
     state: BubbleState,
     arrowWidth: Float,
-    contentLeft: Float,
     contentWidth: Float,
     density: Float
 ): Float {
@@ -356,7 +285,7 @@ internal fun calculateArrowLeftPosition(
 
     var arrowLeft = when {
         state.isVerticalLeftAligned() -> {
-            contentLeft + arrowOffsetX
+             arrowOffsetX
         }
 
         state.isVerticalRightAligned() -> {

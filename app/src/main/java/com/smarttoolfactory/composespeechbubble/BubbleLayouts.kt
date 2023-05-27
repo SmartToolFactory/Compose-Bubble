@@ -13,7 +13,7 @@ import com.smarttoolfactory.speechbubble.bubble
 fun BubbleLayout(
     modifier: Modifier = Modifier,
     bubbleState: BubbleState,
-    color: Color = Color.White,
+    backgroundColor: Color = Color.White,
     shadow: BubbleShadow? = null,
     borderStroke: BorderStroke? = null,
     content: @Composable () -> Unit
@@ -21,7 +21,7 @@ fun BubbleLayout(
     Column(
         modifier.bubble(
             bubbleState = bubbleState,
-            color = color,
+            color = backgroundColor,
             shadow = shadow,
             borderStroke = borderStroke
         )

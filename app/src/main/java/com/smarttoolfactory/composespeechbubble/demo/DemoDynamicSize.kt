@@ -81,13 +81,13 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 cornerRadius = 5.dp,
                 shadow = BubbleShadow(
                     elevation = 1.dp
-                )
-            )
+                ),
+            ),
+            backgroundColor = DateColor
 
         ) {
             Text(
                 modifier = Modifier
-                    .background(DateColor)
                     .padding(8.dp),
                 text = "BubbleLayout",
                 fontSize = 16.sp,
@@ -107,12 +107,11 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 arrowHeight = 20.dp,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp)
-            )
+            ),
+            backgroundColor = SentMessageColor
         ) {
             Text(
-                modifier = Modifier
-                    .background(SentMessageColor)
-                    .padding(8.dp),
+                modifier = Modifier.padding(8.dp),
                 text = message
             )
         }
@@ -127,12 +126,11 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 arrowOffsetY = 6.dp,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp)
-            )
+            ),
+            backgroundColor = SentMessageColor
         ) {
             Text(
-                modifier = Modifier
-                    .background(SentMessageColor)
-                    .padding(8.dp),
+                modifier = Modifier.padding(8.dp),
                 text = message
             )
         }
@@ -147,12 +145,11 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 arrowShape = ArrowShape.FullTriangle,
                 cornerRadius = 8.dp,
                 shadow = BubbleShadow(elevation = 1.dp),
-            )
+            ),
+            backgroundColor = SentMessageColor
         ) {
             Text(
-                modifier = Modifier
-                    .background(SentMessageColor)
-                    .padding(8.dp),
+                modifier = Modifier.padding(8.dp),
                 text = message
             )
         }
@@ -167,12 +164,11 @@ private fun RightArrowBubbleLayoutSamples(message: String) {
                 drawArrow = false,
                 cornerRadius = 12.dp,
                 shadow = BubbleShadow(elevation = 1.dp)
-            )
+            ),
+            backgroundColor = SentMessageColor
         ) {
             Text(
-                modifier = Modifier
-                    .background(SentMessageColor)
-                    .padding(8.dp),
+                modifier = Modifier.padding(8.dp),
                 text = message
             )
         }
@@ -195,13 +191,12 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
                 shadow = BubbleShadow(
                     elevation = 1.dp
                 )
-            )
-
+            ),
+            backgroundColor = DateColor
         ) {
 
             Text(
                 modifier = Modifier
-                    .background(DateColor)
                     .padding(8.dp),
                 text = "BubbleLayout",
                 fontSize = 16.sp,
@@ -223,9 +218,7 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier
-                    .background(DefaultBubbleColor)
-                    .padding(8.dp),
+                modifier = Modifier.padding(8.dp),
                 text = message
             )
         }
@@ -243,9 +236,7 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier
-                    .background(DefaultBubbleColor)
-                    .padding(8.dp),
+                modifier = Modifier.padding(8.dp),
                 text = message
             )
         }
@@ -263,9 +254,7 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier
-                    .background(DefaultBubbleColor)
-                    .padding(8.dp),
+                modifier = Modifier.padding(8.dp),
                 text = message
             )
         }
@@ -283,9 +272,7 @@ private fun LeftArrowBubbleLayoutSamples(message: String) {
             )
         ) {
             Text(
-                modifier = Modifier
-                    .background(DefaultBubbleColor)
-                    .padding(8.dp),
+                modifier = Modifier.padding(8.dp),
                 text = message
             )
         }
@@ -336,7 +323,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
                 text = message
             )
@@ -356,7 +342,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
                 text = message
             )
@@ -376,7 +361,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
                 text = message
             )
@@ -397,7 +381,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
                 text = message
             )
@@ -416,7 +399,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
                 text = message
             )
@@ -436,7 +418,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
                 text = message
             )
@@ -455,7 +436,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
                 text = message
             )
@@ -473,7 +453,6 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         ) {
             Text(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(8.dp),
                 text = message
             )

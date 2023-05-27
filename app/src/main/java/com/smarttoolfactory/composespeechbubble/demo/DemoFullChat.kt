@@ -22,7 +22,6 @@ import com.smarttoolfactory.composespeechbubble.ui.ChatInput
 import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor
 import com.smarttoolfactory.speechbubble.ArrowAlignment
 import com.smarttoolfactory.speechbubble.BubbleShadow
-import com.smarttoolfactory.speechbubble.DefaultBubbleColor
 import com.smarttoolfactory.speechbubble.rememberBubbleState
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -156,11 +155,11 @@ private fun SentMessageRow(
                 cornerRadius = 8.dp,
                 drawArrow = drawArrow,
                 shadow = BubbleShadow(elevation = 1.dp)
-            )
+            ),
+            backgroundColor = SentMessageColor
         ) {
             ChatFlexBoxLayout(
                 modifier = Modifier
-                    .background(SentMessageColor)
                     .padding(start = 2.dp, top = 2.dp, end = 4.dp, bottom = 2.dp),
                 text = text,
                 messageStat = {
@@ -199,7 +198,6 @@ private fun ReceivedMessageRow(
         ) {
             ChatFlexBoxLayout(
                 modifier = Modifier
-                    .background(DefaultBubbleColor)
                     .padding(start = 2.dp, top = 2.dp, end = 4.dp, bottom = 2.dp),
                 text = text,
                 messageStat = {

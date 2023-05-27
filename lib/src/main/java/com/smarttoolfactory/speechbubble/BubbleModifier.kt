@@ -121,7 +121,6 @@ internal fun MeasureScope.measureBubbleResult(
     val xPos = if (isHorizontalLeftAligned) arrowWidth else 0
     val yPos = if (isVerticalTopAligned) arrowHeight else 0
 
-
     return layout(desiredWidth, desiredHeight) {
         placeable.placeRelative(xPos, yPos)
     }

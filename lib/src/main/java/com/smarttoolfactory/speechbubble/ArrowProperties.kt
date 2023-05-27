@@ -17,7 +17,6 @@ enum class ArrowShape {
     Curved
 }
 
-
 enum class ArrowAlignment {
     None,
     LeftTop,
