@@ -5,57 +5,28 @@ import androidx.compose.ui.graphics.Path
 internal fun Path.addHorizontalArrowToPath(
     alignment: ArrowAlignment,
     arrowShape: ArrowShape,
-    contentWidth: Float,
+    arrowLeft: Float,
+    arrowRight: Float,
     arrowTop: Float,
     arrowBottom: Float,
-    arrowWidth: Float,
     arrowHeight: Float
 ) {
     when (alignment) {
 
         ArrowAlignment.LeftTop -> {
-            val contentLeft = arrowWidth
 
-            // move to top of arrow at the top of left corner
-            moveTo(contentLeft, arrowTop)
-
+            moveTo(arrowRight, arrowBottom)
             when (arrowShape) {
 
                 ArrowShape.HalfTriangle -> {
                     // Draw horizontal line to left
-                    lineTo(0f, arrowTop)
-                    lineTo(contentLeft, arrowBottom)
+                    lineTo(arrowLeft, arrowTop)
+                    lineTo(arrowRight, arrowTop)
                 }
 
                 ArrowShape.FullTriangle -> {
-                    lineTo(0f, arrowTop + arrowHeight / 2f)
-                    lineTo(contentLeft, arrowBottom)
-                }
-
-                ArrowShape.Curved -> {
-
-                }
-            }
-        }
-
-        ArrowAlignment.LeftBottom -> {
-            val contentLeft = arrowWidth
-
-            // move to top of arrow at the bottom left corner
-            moveTo(contentLeft, arrowTop)
-
-            when (arrowShape) {
-
-                ArrowShape.HalfTriangle -> {
-                    // Draw horizontal line to left
-                    lineTo(0f, arrowBottom)
-                    lineTo(contentLeft, arrowBottom)
-                }
-
-                ArrowShape.FullTriangle -> {
-                    // Draw horizontal line to left
-                    lineTo(0f, arrowTop + arrowHeight / 2f)
-                    lineTo(contentLeft, arrowBottom)
+                    lineTo(arrowLeft, arrowBottom - arrowHeight / 2)
+                    lineTo(arrowRight, arrowTop)
                 }
 
                 ArrowShape.Curved -> {
@@ -65,22 +36,39 @@ internal fun Path.addHorizontalArrowToPath(
         }
 
         ArrowAlignment.LeftCenter -> {
-            val contentLeft = arrowWidth
-
-            // move to top of arrow at the top of left corner
-            moveTo(contentLeft, arrowTop)
-
+            moveTo(arrowRight, arrowBottom)
             when (arrowShape) {
 
                 ArrowShape.HalfTriangle -> {
                     // Draw horizontal line to left
-                    lineTo(0f, arrowTop)
-                    lineTo(contentLeft, arrowBottom)
+                    lineTo(arrowLeft, arrowTop)
+                    lineTo(arrowRight, arrowTop)
                 }
 
                 ArrowShape.FullTriangle -> {
-                    lineTo(0f, arrowTop + arrowHeight / 2f)
-                    lineTo(contentLeft, arrowBottom)
+                    lineTo(arrowLeft, arrowBottom - arrowHeight / 2)
+                    lineTo(arrowRight, arrowTop)
+                }
+
+                ArrowShape.Curved -> {
+
+                }
+            }
+        }
+
+        ArrowAlignment.LeftBottom -> {
+            moveTo(arrowRight, arrowBottom)
+            when (arrowShape) {
+
+                ArrowShape.HalfTriangle -> {
+                    // Draw horizontal line to left
+                    lineTo(arrowLeft, arrowBottom)
+                    lineTo(arrowRight, arrowTop)
+                }
+
+                ArrowShape.FullTriangle -> {
+                    lineTo(arrowLeft, arrowBottom - arrowHeight / 2)
+                    lineTo(arrowRight, arrowTop)
                 }
 
                 ArrowShape.Curved -> {
@@ -90,45 +78,17 @@ internal fun Path.addHorizontalArrowToPath(
         }
 
         ArrowAlignment.RightTop -> {
-            val contentRight = contentWidth - arrowWidth
-
-            // move to top right corner of the content
-            moveTo(contentRight, arrowTop)
-
+            moveTo(arrowLeft, arrowTop)
             when (arrowShape) {
 
                 ArrowShape.HalfTriangle -> {
-                    lineTo(contentRight + arrowWidth, arrowTop)
-                    lineTo(contentRight, arrowBottom)
+                    lineTo(arrowRight, arrowTop)
+                    lineTo(arrowLeft, arrowBottom)
                 }
 
                 ArrowShape.FullTriangle -> {
-                    lineTo(contentRight + arrowWidth, arrowTop + arrowHeight / 2f)
-                    lineTo(contentRight, arrowBottom)
-                }
-
-                ArrowShape.Curved -> {
-
-                }
-            }
-        }
-
-        ArrowAlignment.RightBottom -> {
-            val contentRight = contentWidth - arrowWidth
-
-            // move to bottom right corner of the content
-            moveTo(contentRight, arrowTop)
-
-            when (arrowShape) {
-
-                ArrowShape.HalfTriangle -> {
-                    lineTo(contentRight + arrowWidth, arrowBottom)
-                    lineTo(contentRight, arrowBottom)
-                }
-
-                ArrowShape.FullTriangle -> {
-                    lineTo(contentRight + arrowWidth, arrowTop + arrowHeight / 2f)
-                    lineTo(contentRight, arrowBottom)
+                    lineTo(arrowRight, arrowBottom - arrowHeight / 2)
+                    lineTo(arrowLeft, arrowBottom)
                 }
 
                 ArrowShape.Curved -> {
@@ -138,21 +98,37 @@ internal fun Path.addHorizontalArrowToPath(
         }
 
         ArrowAlignment.RightCenter -> {
-            val contentRight = contentWidth - arrowWidth
-
-            // move to top right corner of the content
-            moveTo(contentRight, arrowTop)
-
+            moveTo(arrowLeft, arrowTop)
             when (arrowShape) {
 
                 ArrowShape.HalfTriangle -> {
-                    lineTo(contentRight + arrowWidth, arrowTop)
-                    lineTo(contentRight, arrowBottom)
+                    lineTo(arrowRight, arrowTop)
+                    lineTo(arrowLeft, arrowBottom)
                 }
 
                 ArrowShape.FullTriangle -> {
-                    lineTo(contentRight + arrowWidth, arrowTop + arrowHeight / 2f)
-                    lineTo(contentRight, arrowBottom)
+                    lineTo(arrowRight, arrowBottom - arrowHeight / 2)
+                    lineTo(arrowLeft, arrowBottom)
+                }
+
+                ArrowShape.Curved -> {
+
+                }
+            }
+        }
+
+        ArrowAlignment.RightBottom -> {
+            moveTo(arrowLeft, arrowTop)
+            when (arrowShape) {
+
+                ArrowShape.HalfTriangle -> {
+                    lineTo(arrowRight, arrowBottom)
+                    lineTo(arrowLeft, arrowBottom)
+                }
+
+                ArrowShape.FullTriangle -> {
+                    lineTo(arrowRight, arrowBottom - arrowHeight / 2)
+                    lineTo(arrowLeft, arrowBottom)
                 }
 
                 ArrowShape.Curved -> {
@@ -201,55 +177,27 @@ internal fun calculateArrowTopPosition(
 internal fun Path.addVerticalArrowToPath(
     alignment: ArrowAlignment,
     arrowShape: ArrowShape,
-    contentHeight: Float,
     arrowLeft: Float,
     arrowRight: Float,
     arrowBottom: Float,
-    arrowWidth: Float,
-    arrowHeight: Float
+    arrowTop: Float,
+    arrowWidth: Float
 ) {
 
     when (alignment) {
         ArrowAlignment.BottomLeft -> {
-
-            val contentBottom = contentHeight - arrowHeight
-
-            moveTo(arrowRight, contentBottom)
+            moveTo(arrowRight, arrowTop)
 
             when (arrowShape) {
 
                 ArrowShape.HalfTriangle -> {
                     lineTo(arrowLeft, arrowBottom)
-                    lineTo(arrowRight, contentBottom)
+                    lineTo(arrowLeft, arrowTop)
                 }
 
                 ArrowShape.FullTriangle -> {
-                    lineTo(arrowLeft + arrowWidth / 2f, arrowBottom)
-                    lineTo(arrowRight, contentBottom)
-                }
-
-                ArrowShape.Curved -> {
-
-                }
-            }
-
-        }
-
-        ArrowAlignment.BottomRight -> {
-            val contentBottom = contentHeight - arrowHeight
-
-            moveTo(arrowLeft, contentBottom)
-
-            when (arrowShape) {
-
-                ArrowShape.HalfTriangle -> {
-                    lineTo(arrowRight, arrowBottom)
-                    lineTo(arrowRight, contentBottom)
-                }
-
-                ArrowShape.FullTriangle -> {
-                    lineTo(arrowLeft + arrowWidth / 2f, arrowBottom)
-                    lineTo(arrowRight, contentBottom)
+                    lineTo(arrowRight - arrowWidth / 2, arrowBottom)
+                    lineTo(arrowLeft, arrowTop)
                 }
 
                 ArrowShape.Curved -> {
@@ -259,21 +207,39 @@ internal fun Path.addVerticalArrowToPath(
         }
 
         ArrowAlignment.BottomCenter -> {
-            val contentBottom = contentHeight - arrowHeight
-
-            moveTo(arrowLeft, contentBottom)
+            moveTo(arrowRight, arrowTop)
 
             when (arrowShape) {
 
                 ArrowShape.HalfTriangle -> {
-                    // Draw horizontal line to left
                     lineTo(arrowLeft, arrowBottom)
-                    lineTo(arrowRight, contentBottom)
+                    lineTo(arrowLeft, arrowTop)
                 }
 
                 ArrowShape.FullTriangle -> {
-                    lineTo(arrowLeft + arrowWidth / 2f, arrowBottom)
-                    lineTo(arrowRight, contentBottom)
+                    lineTo(arrowRight - arrowWidth / 2, arrowBottom)
+                    lineTo(arrowLeft, arrowTop)
+                }
+
+                ArrowShape.Curved -> {
+
+                }
+            }
+        }
+
+        ArrowAlignment.BottomRight -> {
+            moveTo(arrowRight, arrowTop)
+
+            when (arrowShape) {
+
+                ArrowShape.HalfTriangle -> {
+                    lineTo(arrowRight, arrowBottom)
+                    lineTo(arrowLeft, arrowTop)
+                }
+
+                ArrowShape.FullTriangle -> {
+                    lineTo(arrowRight - arrowWidth / 2, arrowBottom)
+                    lineTo(arrowLeft, arrowTop)
                 }
 
                 ArrowShape.Curved -> {
@@ -283,17 +249,17 @@ internal fun Path.addVerticalArrowToPath(
         }
 
         ArrowAlignment.TopLeft -> {
-            val contentTop = arrowWidth
-            moveTo(arrowLeft, contentTop)
+            moveTo(arrowLeft, arrowBottom)
 
             when (arrowShape) {
                 ArrowShape.HalfTriangle -> {
-                    lineTo(0f, arrowRight)
-                    lineTo(contentTop, arrowRight)
+                    lineTo(arrowLeft, arrowTop)
+                    lineTo(arrowRight, arrowBottom)
                 }
 
                 ArrowShape.FullTriangle -> {
-
+                    lineTo(arrowLeft + arrowWidth / 2, arrowTop)
+                    lineTo(arrowRight, arrowBottom)
                 }
 
                 ArrowShape.Curved -> {
@@ -303,36 +269,37 @@ internal fun Path.addVerticalArrowToPath(
         }
 
         ArrowAlignment.TopCenter -> {
-            val contentTop = arrowWidth
+            moveTo(arrowLeft, arrowBottom)
 
             when (arrowShape) {
-
                 ArrowShape.HalfTriangle -> {
-
+                    lineTo(arrowLeft, arrowTop)
+                    lineTo(arrowRight, arrowBottom)
                 }
 
                 ArrowShape.FullTriangle -> {
-
+                    lineTo(arrowLeft + arrowWidth / 2, arrowTop)
+                    lineTo(arrowRight, arrowBottom)
                 }
 
                 ArrowShape.Curved -> {
 
                 }
             }
-
         }
 
         ArrowAlignment.TopRight -> {
-            val contentTop = arrowWidth
+            moveTo(arrowLeft, arrowBottom)
 
             when (arrowShape) {
-
                 ArrowShape.HalfTriangle -> {
-
+                    lineTo(arrowRight, arrowTop)
+                    lineTo(arrowRight, arrowBottom)
                 }
 
                 ArrowShape.FullTriangle -> {
-
+                    lineTo(arrowLeft + arrowWidth / 2, arrowTop)
+                    lineTo(arrowRight, arrowBottom)
                 }
 
                 ArrowShape.Curved -> {

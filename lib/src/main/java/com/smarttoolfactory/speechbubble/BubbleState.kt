@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
  * @param arrowWidth width of the arrow
  * @param arrowHeight height of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
- * @param shadow of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
  */
 @Composable
 fun rememberBubbleState(
@@ -40,7 +39,18 @@ fun rememberBubbleState(
     drawArrow: Boolean = true
 ): BubbleState {
 
-    return remember {
+    return remember(
+        keys = arrayOf(
+            cornerRadius,
+            alignment,
+            arrowShape,
+            arrowOffsetX,
+            arrowOffsetY,
+            arrowWidth,
+            arrowHeight,
+            drawArrow
+        )
+    ) {
         BubbleState(
             cornerRadius = BubbleCornerRadius(
                 topLeft = cornerRadius,
@@ -94,7 +104,18 @@ fun rememberBubbleState(
     drawArrow: Boolean = true
 ): BubbleState {
 
-    return remember {
+    return remember(
+        keys = arrayOf(
+            cornerRadius,
+            alignment,
+            arrowShape,
+            arrowOffsetX,
+            arrowOffsetY,
+            arrowWidth,
+            arrowHeight,
+            drawArrow
+        )
+    ) {
         BubbleState(
             cornerRadius = cornerRadius,
             alignment = alignment,

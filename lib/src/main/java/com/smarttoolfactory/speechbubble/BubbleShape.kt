@@ -32,7 +32,7 @@ fun createHorizontalBubbleShape(
 
         val arrowBottom = arrowTop + arrowHeight
         val arrowLeft = if (state.isHorizontalLeftAligned()) 0f
-        else contentWidth
+        else contentWidth - arrowWidth
         val arrowRight = arrowLeft + arrowWidth
 
         state.arrowTop = arrowTop
@@ -44,10 +44,10 @@ fun createHorizontalBubbleShape(
             addHorizontalArrowToPath(
                 alignment = alignment,
                 arrowShape = arrowShape,
-                contentWidth = contentWidth,
+                arrowLeft = arrowLeft,
+                arrowRight = arrowRight,
                 arrowTop = arrowTop,
                 arrowBottom = arrowBottom,
-                arrowWidth = arrowWidth,
                 arrowHeight = arrowHeight
             )
         }
@@ -97,19 +97,18 @@ fun createVerticalBubbleShape(
 
         state.arrowLeft = arrowLeft
         state.arrowRight = arrowRight
-        state.arrowBottom = arrowBottom
         state.arrowTop = arrowTop
+        state.arrowBottom = arrowBottom
 
         if (state.drawArrow) {
             addVerticalArrowToPath(
                 alignment = alignment,
                 arrowShape = arrowShape,
-                contentHeight = contentHeight,
                 arrowLeft = arrowLeft,
                 arrowRight = arrowRight,
                 arrowBottom = arrowBottom,
-                arrowWidth = arrowWidth,
-                arrowHeight = arrowHeight
+                arrowTop = arrowTop,
+                arrowWidth = arrowWidth
             )
         }
 

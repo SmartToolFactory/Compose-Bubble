@@ -39,7 +39,9 @@ fun Modifier.bubble(
 
         val horizontalArrow = bubbleState.isArrowHorizontallyPositioned()
         val density = LocalDensity.current
-        val shape = remember {
+        val shape = remember(
+            key1 = bubbleState
+        ) {
             if (horizontalArrow) {
                 createHorizontalBubbleShape(bubbleState, density.density)
             } else {
@@ -60,7 +62,6 @@ fun Modifier.bubble(
                     Modifier
                 }
             )
-
             .then(
                 if (borderStroke != null) {
                     Modifier.border(border = borderStroke, shape = shape)
@@ -68,6 +69,7 @@ fun Modifier.bubble(
                     Modifier
                 }
             )
+            .clip(shape)
             .background(color, shape)
             .layout { measurable, constraints ->
                 measureBubbleResult(
