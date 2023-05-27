@@ -9,15 +9,13 @@ internal fun Path.addHorizontalArrowToPath(
     arrowTop: Float,
     arrowBottom: Float,
     arrowWidth: Float,
-    arrowHeight: Float,
+    arrowHeight: Float
 ) {
-
-    val contentLeft = arrowWidth
-    val contentRight = contentWidth - arrowWidth
-
     when (alignment) {
 
         ArrowAlignment.LeftTop -> {
+            val contentLeft = arrowWidth
+
             // move to top of arrow at the top of left corner
             moveTo(contentLeft, arrowTop)
 
@@ -41,6 +39,7 @@ internal fun Path.addHorizontalArrowToPath(
         }
 
         ArrowAlignment.LeftBottom -> {
+            val contentLeft = arrowWidth
 
             // move to top of arrow at the bottom left corner
             moveTo(contentLeft, arrowTop)
@@ -66,6 +65,7 @@ internal fun Path.addHorizontalArrowToPath(
         }
 
         ArrowAlignment.LeftCenter -> {
+            val contentLeft = arrowWidth
 
             // move to top of arrow at the top of left corner
             moveTo(contentLeft, arrowTop)
@@ -90,6 +90,7 @@ internal fun Path.addHorizontalArrowToPath(
         }
 
         ArrowAlignment.RightTop -> {
+            val contentRight = contentWidth - arrowWidth
 
             // move to top right corner of the content
             moveTo(contentRight, arrowTop)
@@ -113,6 +114,7 @@ internal fun Path.addHorizontalArrowToPath(
         }
 
         ArrowAlignment.RightBottom -> {
+            val contentRight = contentWidth - arrowWidth
 
             // move to bottom right corner of the content
             moveTo(contentRight, arrowTop)
@@ -136,6 +138,7 @@ internal fun Path.addHorizontalArrowToPath(
         }
 
         ArrowAlignment.RightCenter -> {
+            val contentRight = contentWidth - arrowWidth
 
             // move to top right corner of the content
             moveTo(contentRight, arrowTop)
@@ -198,15 +201,20 @@ internal fun calculateArrowTopPosition(
 internal fun Path.addVerticalArrowToPath(
     alignment: ArrowAlignment,
     arrowShape: ArrowShape,
+    contentHeight: Float,
     arrowLeft: Float,
     arrowRight: Float,
     arrowBottom: Float,
     arrowWidth: Float,
-    contentBottom: Float,
+    arrowHeight: Float
 ) {
+
     when (alignment) {
         ArrowAlignment.BottomLeft -> {
-            moveTo(arrowLeft, contentBottom)
+
+            val contentBottom = contentHeight - arrowHeight
+
+            moveTo(arrowRight, contentBottom)
 
             when (arrowShape) {
 
@@ -228,6 +236,8 @@ internal fun Path.addVerticalArrowToPath(
         }
 
         ArrowAlignment.BottomRight -> {
+            val contentBottom = contentHeight - arrowHeight
+
             moveTo(arrowLeft, contentBottom)
 
             when (arrowShape) {
@@ -249,6 +259,8 @@ internal fun Path.addVerticalArrowToPath(
         }
 
         ArrowAlignment.BottomCenter -> {
+            val contentBottom = contentHeight - arrowHeight
+
             moveTo(arrowLeft, contentBottom)
 
             when (arrowShape) {
@@ -270,6 +282,66 @@ internal fun Path.addVerticalArrowToPath(
             }
         }
 
+        ArrowAlignment.TopLeft -> {
+            val contentTop = arrowWidth
+            moveTo(arrowLeft, contentTop)
+
+            when (arrowShape) {
+                ArrowShape.HalfTriangle -> {
+                    lineTo(0f, arrowRight)
+                    lineTo(contentTop, arrowRight)
+                }
+
+                ArrowShape.FullTriangle -> {
+
+                }
+
+                ArrowShape.Curved -> {
+
+                }
+            }
+        }
+
+        ArrowAlignment.TopCenter -> {
+            val contentTop = arrowWidth
+
+            when (arrowShape) {
+
+                ArrowShape.HalfTriangle -> {
+
+                }
+
+                ArrowShape.FullTriangle -> {
+
+                }
+
+                ArrowShape.Curved -> {
+
+                }
+            }
+
+        }
+
+        ArrowAlignment.TopRight -> {
+            val contentTop = arrowWidth
+
+            when (arrowShape) {
+
+                ArrowShape.HalfTriangle -> {
+
+                }
+
+                ArrowShape.FullTriangle -> {
+
+                }
+
+                ArrowShape.Curved -> {
+
+                }
+            }
+
+        }
+
         else -> Unit
     }
 }
@@ -285,7 +357,7 @@ internal fun calculateArrowLeftPosition(
 
     var arrowLeft = when {
         state.isVerticalLeftAligned() -> {
-             arrowOffsetX
+            arrowOffsetX
         }
 
         state.isVerticalRightAligned() -> {

@@ -88,8 +88,12 @@ fun createVerticalBubbleShape(
         )
 
         val arrowRight = arrowLeft + arrowWidth
-        val arrowTop = contentHeight - arrowHeight
-        val arrowBottom = contentHeight
+        val arrowTop = if (state.isVerticalBottomAligned()) {
+            contentHeight - arrowHeight
+        } else {
+            0f
+        }
+        val arrowBottom = arrowTop + arrowHeight
 
         state.arrowLeft = arrowLeft
         state.arrowRight = arrowRight
@@ -100,11 +104,12 @@ fun createVerticalBubbleShape(
             addVerticalArrowToPath(
                 alignment = alignment,
                 arrowShape = arrowShape,
+                contentHeight = contentHeight,
                 arrowLeft = arrowLeft,
                 arrowRight = arrowRight,
                 arrowBottom = arrowBottom,
                 arrowWidth = arrowWidth,
-                contentBottom = contentHeight - arrowHeight,
+                arrowHeight = arrowHeight
             )
         }
 

@@ -70,6 +70,7 @@ fun DemoFullChat() {
                         )
 
                     }
+
                     2 -> {
                         SentMessageRow(
                             drawArrow = false,
@@ -79,6 +80,7 @@ fun DemoFullChat() {
                         )
 
                     }
+
                     3 -> {
                         SentMessageRow(
                             drawArrow = false,
@@ -88,6 +90,7 @@ fun DemoFullChat() {
                         )
 
                     }
+
                     4 -> {
                         ReceivedMessageRow(
                             drawArrow = true,
@@ -96,6 +99,7 @@ fun DemoFullChat() {
                         )
 
                     }
+
                     5 -> {
                         ReceivedMessageRow(
                             drawArrow = false,
@@ -104,6 +108,7 @@ fun DemoFullChat() {
                         )
 
                     }
+
                     else -> {
                         ReceivedMessageRow(
                             drawArrow = false,
@@ -154,8 +159,8 @@ private fun SentMessageRow(
                 alignment = ArrowAlignment.RightTop,
                 cornerRadius = 8.dp,
                 drawArrow = drawArrow,
-                shadow = BubbleShadow(elevation = 1.dp)
             ),
+            shadow = BubbleShadow(elevation = 1.dp),
             backgroundColor = SentMessageColor
         ) {
             ChatFlexBoxLayout(
@@ -193,8 +198,8 @@ private fun ReceivedMessageRow(
                 alignment = ArrowAlignment.LeftTop,
                 drawArrow = drawArrow,
                 cornerRadius = 8.dp,
-                shadow = BubbleShadow(elevation = 1.dp)
-            )
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
         ) {
             ChatFlexBoxLayout(
                 modifier = Modifier

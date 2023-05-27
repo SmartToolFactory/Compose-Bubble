@@ -48,18 +48,19 @@ fun Modifier.bubble(
         }
 
         Modifier
-            .clip(shape = shape)
             .then(
                 if (shadow != null) {
                     Modifier.shadow(
                         elevation = shadow.elevation,
                         ambientColor = shadow.ambientColor,
-                        spotColor = shadow.spotColor
+                        spotColor = shadow.spotColor,
+                        shape = shape
                     )
                 } else {
                     Modifier
                 }
             )
+
             .then(
                 if (borderStroke != null) {
                     Modifier.border(border = borderStroke, shape = shape)
