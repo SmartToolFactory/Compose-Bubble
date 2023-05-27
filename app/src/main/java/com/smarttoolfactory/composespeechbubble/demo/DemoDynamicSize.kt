@@ -49,6 +49,10 @@ fun DemoDynamicSize() {
                 item {
                     BottomArrowBubbleLayoutSamples(message)
                 }
+
+                item {
+                    TopArrowBubbleLayoutSamples(message)
+                }
             })
 
         OutlinedTextField(
@@ -297,7 +301,7 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
                 modifier = Modifier
                     .background(Color(0xffffeecc))
                     .padding(8.dp),
-                text = "BubbleLayout with arrow at bottom",
+                text = "BubbleLayout with arrow at the bottom",
                 fontSize = 16.sp,
             )
         }
@@ -438,6 +442,184 @@ private fun BottomArrowBubbleLayoutSamples(message: String) {
         BubbleLayout(
             bubbleState = rememberBubbleState(
                 alignment = ArrowAlignment.BottomRight,
+                arrowShape = ArrowShape.FullTriangle,
+                arrowWidth = 150.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(8.dp),
+                text = message
+            )
+        }
+    }
+}
+
+
+@Composable
+private fun TopArrowBubbleLayoutSamples(message: String) {
+
+    Box(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth(),
+        contentAlignment = Alignment.Center
+    ) {
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.None,
+                cornerRadius = 5.dp,
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .background(Color(0xffffeecc))
+                    .padding(8.dp),
+                text = "BubbleLayout with arrow on top",
+                fontSize = 16.sp,
+            )
+        }
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.TopCenter,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp
+            )
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(8.dp),
+                text = message
+            )
+        }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.TopLeft,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                arrowOffsetY = 6.dp,
+                cornerRadius = 8.dp,
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(8.dp),
+                text = message
+            )
+        }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.TopCenter,
+                arrowShape = ArrowShape.FullTriangle,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(8.dp),
+                text = message
+            )
+        }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.TopLeft,
+                arrowShape = ArrowShape.FullTriangle,
+                arrowOffsetX = 8.dp,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(8.dp),
+                text = message
+            )
+        }
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.TopRight,
+                arrowShape = ArrowShape.FullTriangle,
+                arrowOffsetX = (-8).dp,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(8.dp),
+                text = message
+            )
+        }
+
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.TopLeft,
+                arrowShape = ArrowShape.FullTriangle,
+                arrowOffsetX = 20.dp,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(8.dp),
+                text = message
+            )
+        }
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.TopRight,
+                arrowShape = ArrowShape.FullTriangle,
+                arrowOffsetX = (-20).dp,
+                arrowWidth = 20.dp,
+                arrowHeight = 20.dp,
+                cornerRadius = 8.dp,
+            ),
+            shadow = BubbleShadow(elevation = 1.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(8.dp),
+                text = message
+            )
+        }
+
+        BubbleLayout(
+            bubbleState = rememberBubbleState(
+                alignment = ArrowAlignment.TopRight,
                 arrowShape = ArrowShape.FullTriangle,
                 arrowWidth = 150.dp,
                 arrowHeight = 20.dp,
