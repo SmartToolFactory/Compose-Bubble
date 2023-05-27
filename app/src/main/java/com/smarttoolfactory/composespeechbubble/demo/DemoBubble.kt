@@ -1,7 +1,6 @@
 package com.smarttoolfactory.composespeechbubble.demo
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -14,39 +13,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.composespeechbubble.BubbleLayout
-import com.smarttoolfactory.composespeechbubble.CustomColumnScope.Companion.horizontalAlign
 import com.smarttoolfactory.composespeechbubble.CustomColumnWithScope
 import com.smarttoolfactory.composespeechbubble.HorizontalAlignment
 import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
 import com.smarttoolfactory.composespeechbubble.ui.theme.DateColor
 import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor
 import com.smarttoolfactory.speechbubble.*
-
-@Preview
-@Composable
-private fun Test() {
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        val bubbleStateSent1 = rememberBubbleState(
-            alignment = ArrowAlignment.RightTop,
-            cornerRadius = 8.dp
-        )
-
-        BubbleLayout(
-            modifier = Modifier.horizontalAlign(HorizontalAlignment.End),
-            bubbleState = bubbleStateSent1,
-            backgroundColor = SentMessageColor,
-            shadow = BubbleShadow(elevation = 5.dp)
-        ) {
-            Text(
-                modifier = Modifier
-                    .padding(8.dp),
-                text = "Arrow RightTop with offset 5dp"
-            )
-        }
-    }
-}
 
 @Preview
 @Composable

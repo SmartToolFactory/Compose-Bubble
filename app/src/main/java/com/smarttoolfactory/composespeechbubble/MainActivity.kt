@@ -1,4 +1,5 @@
 @file:OptIn(ExperimentalFoundationApi::class, ExperimentalFoundationApi::class)
+
 package com.smarttoolfactory.composespeechbubble
 
 import android.os.Bundle
@@ -10,17 +11,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.smarttoolfactory.composespeechbubble.demo.DemoBubble
 import com.smarttoolfactory.composespeechbubble.demo.DemoDynamicSize
 import com.smarttoolfactory.composespeechbubble.demo.DemoFullChat
+import com.smarttoolfactory.composespeechbubble.demo.DemoPropertiesBubble
 import com.smarttoolfactory.composespeechbubble.ui.theme.ComposeSpeechBubbleTheme
 import kotlinx.coroutines.launch
 
@@ -30,7 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ComposeSpeechBubbleTheme {
                 // A surface container using the 'background' color from the theme
-                Surface{
+                Surface {
 
                     Column(
                         modifier = Modifier.fillMaxSize()
@@ -49,9 +52,10 @@ private fun HomeContent() {
     val pagerState: PagerState = rememberPagerState(initialPage = 0)
     val coroutineScope = rememberCoroutineScope()
 
-    TabRow(
+    ScrollableTabRow(
         containerColor = Color(0xff00897B),
         contentColor = Color.White,
+        edgePadding = 8.dp,
         // Our selected tab is our current page
         selectedTabIndex = pagerState.currentPage,
     ) {
@@ -76,11 +80,12 @@ private fun HomeContent() {
     ) { page: Int ->
 
         when (page) {
-            0 ->  DemoFullChat()
+            0 -> DemoFullChat()
             1 -> DemoDynamicSize()
-            else ->  DemoBubble()
+            2 -> DemoPropertiesBubble()
+            else -> DemoBubble()
         }
     }
 }
 
-internal val tabList = listOf("Chat", "Dynamic Size", "Bubbles")
+internal val tabList = listOf("Chat", "Dynamic Size", "Properties", "Bubbles")
