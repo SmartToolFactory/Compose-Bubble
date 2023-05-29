@@ -21,6 +21,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.isSpecified
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -78,11 +80,11 @@ fun DemoPropertiesBubble() {
         }
 
         var arrowWidth by remember {
-            mutableStateOf(18f)
+            mutableStateOf(20f)
         }
 
         var arrowHeight by remember {
-            mutableStateOf(18f)
+            mutableStateOf(20f)
         }
 
         var drawArrow by remember {
@@ -131,6 +133,16 @@ fun DemoPropertiesBubble() {
         Spacer(modifier = Modifier.height(20.dp))
 
         BubbleLayout(
+            modifier = Modifier.drawWithContent {
+                drawContent()
+                if (bubbleState.arrowTip.isSpecified) {
+                    drawCircle(
+                        color = Color.Cyan,
+                        radius = 20f,
+                        center = bubbleState.arrowTip
+                    )
+                }
+            },
             bubbleState = bubbleState,
             shadow = BubbleShadow(
                 elevation = elevation.dp
@@ -142,7 +154,7 @@ fun DemoPropertiesBubble() {
             Text(
                 modifier = Modifier.padding(8.dp),
                 text = "Multiple line text to test\nproperties",
-                fontSize = 18.sp
+                fontSize = 20f.sp
             )
         }
 

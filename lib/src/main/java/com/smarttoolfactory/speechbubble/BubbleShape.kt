@@ -1,6 +1,7 @@
 package com.smarttoolfactory.speechbubble
 
 import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathOperation
@@ -42,6 +43,7 @@ fun createHorizontalBubbleShape(
         state.arrowLeft = arrowLeft
         state.arrowRight = arrowRight
 
+
         val rect: BubbleRect = getContentRect(
             bubbleState = state,
             width = size.width.toInt(),
@@ -61,10 +63,106 @@ fun createHorizontalBubbleShape(
                     arrowHeight = arrowHeight
                 )
             }
+
+            state.arrowTip = getArrowTip(
+                arrowAlignment = alignment,
+                arrowShape = arrowShape,
+                arrowLeft = arrowLeft,
+                arrowRight = arrowRight,
+                arrowTop = arrowTop,
+                arrowBottom = arrowBottom,
+                arrowWidth = arrowBottom,
+                arrowHeight = arrowHeight
+            )
         }
         addRoundedBubbleRect(state, rect, density)
         this.op(this, path, PathOperation.Union)
     }
+}
+
+private fun getArrowTip(
+    arrowAlignment: ArrowAlignment,
+    arrowShape: ArrowShape,
+    arrowLeft: Float,
+    arrowTop: Float,
+    arrowRight: Float,
+    arrowWidth: Float,
+    arrowHeight: Float,
+    arrowBottom: Float
+): Offset {
+
+    return when (arrowAlignment) {
+        ArrowAlignment.LeftTop,
+        ArrowAlignment.LeftCenter -> {
+            if (arrowShape == ArrowShape.FullTriangle) {
+                Offset(arrowLeft, arrowTop + arrowHeight / 2)
+            } else {
+                Offset(arrowLeft, arrowTop)
+            }
+        }
+
+        ArrowAlignment.LeftBottom -> {
+            if (arrowShape == ArrowShape.FullTriangle) {
+                Offset(arrowLeft, arrowTop + arrowHeight / 2)
+            } else {
+                Offset(arrowLeft, arrowBottom)
+            }
+        }
+
+        ArrowAlignment.RightTop,
+        ArrowAlignment.RightCenter -> {
+            if (arrowShape == ArrowShape.FullTriangle) {
+                Offset(arrowRight, arrowTop + arrowHeight / 2)
+            } else {
+                Offset(arrowRight, arrowTop)
+            }
+        }
+
+        ArrowAlignment.RightBottom -> {
+            if (arrowShape == ArrowShape.FullTriangle) {
+                Offset(arrowRight, arrowTop + arrowHeight / 2)
+            } else {
+                Offset(arrowRight, arrowBottom)
+            }
+        }
+
+        ArrowAlignment.BottomLeft,
+        ArrowAlignment.BottomCenter -> {
+            if (arrowShape == ArrowShape.FullTriangle) {
+                Offset(arrowLeft + arrowWidth / 2, arrowBottom)
+            } else {
+                Offset(arrowLeft, arrowBottom)
+            }
+        }
+
+        ArrowAlignment.BottomRight -> {
+            if (arrowShape == ArrowShape.FullTriangle) {
+                Offset(arrowLeft + arrowWidth / 2, arrowBottom)
+            } else {
+                Offset(arrowRight, arrowBottom)
+            }
+        }
+
+        ArrowAlignment.TopLeft,
+        ArrowAlignment.TopCenter -> {
+            if (arrowShape == ArrowShape.FullTriangle) {
+                Offset(arrowLeft + arrowWidth / 2, arrowTop)
+            } else {
+                Offset(arrowLeft, arrowTop)
+            }
+        }
+
+        ArrowAlignment.TopRight -> {
+            if (arrowShape == ArrowShape.FullTriangle) {
+                Offset(arrowLeft + arrowWidth / 2, arrowTop)
+            } else {
+                Offset(arrowRight, arrowTop)
+            }
+        }
+
+        else -> Offset.Zero
+    }
+
 }
 
 
@@ -104,6 +202,7 @@ fun createVerticalBubbleShape(
         state.arrowTop = arrowTop
         state.arrowBottom = arrowBottom
 
+
         val rect: BubbleRect = getContentRect(
             bubbleState = state,
             width = size.width.toInt(),
@@ -112,19 +211,30 @@ fun createVerticalBubbleShape(
         )
 
 
-       val path = Path().apply {
-           if (state.drawArrow) {
-               addVerticalArrowToPath(
-                   alignment = alignment,
-                   arrowShape = arrowShape,
-                   arrowLeft = arrowLeft,
-                   arrowRight = arrowRight,
-                   arrowBottom = arrowBottom,
-                   arrowTop = arrowTop,
-                   arrowWidth = arrowWidth
-               )
-           }
-       }
+        val path = Path().apply {
+            if (state.drawArrow) {
+                addVerticalArrowToPath(
+                    alignment = alignment,
+                    arrowShape = arrowShape,
+                    arrowLeft = arrowLeft,
+                    arrowRight = arrowRight,
+                    arrowBottom = arrowBottom,
+                    arrowTop = arrowTop,
+                    arrowWidth = arrowWidth
+                )
+
+                state.arrowTip = getArrowTip(
+                    arrowAlignment = alignment,
+                    arrowShape = arrowShape,
+                    arrowLeft = arrowLeft,
+                    arrowRight = arrowRight,
+                    arrowTop = arrowTop,
+                    arrowBottom = arrowBottom,
+                    arrowWidth = arrowWidth,
+                    arrowHeight = arrowHeight
+                )
+            }
+        }
 
         addRoundedBubbleRect(state, rect, density)
 
