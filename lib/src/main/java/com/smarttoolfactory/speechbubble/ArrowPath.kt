@@ -15,18 +15,18 @@ internal fun Path.addHorizontalArrowToPath(
 
         ArrowAlignment.LeftTop -> {
 
-            moveTo(arrowRight, arrowBottom)
+            moveTo(arrowRight, arrowTop)
             when (arrowShape) {
 
                 ArrowShape.HalfTriangle -> {
                     // Draw horizontal line to left
                     lineTo(arrowLeft, arrowTop)
-                    lineTo(arrowRight, arrowTop)
+                    lineTo(arrowRight, arrowBottom)
                 }
 
                 ArrowShape.FullTriangle -> {
                     lineTo(arrowLeft, arrowBottom - arrowHeight / 2)
-                    lineTo(arrowRight, arrowTop)
+                    lineTo(arrowRight, arrowBottom)
                 }
 
                 ArrowShape.Curved -> {
@@ -139,6 +139,8 @@ internal fun Path.addHorizontalArrowToPath(
 
         else -> Unit
     }
+
+    close()
 }
 
 /**
@@ -289,17 +291,17 @@ internal fun Path.addVerticalArrowToPath(
         }
 
         ArrowAlignment.TopRight -> {
-            moveTo(arrowLeft, arrowBottom)
+            moveTo(arrowRight, arrowBottom)
 
             when (arrowShape) {
                 ArrowShape.HalfTriangle -> {
                     lineTo(arrowRight, arrowTop)
-                    lineTo(arrowRight, arrowBottom)
+                    lineTo(arrowLeft, arrowBottom)
                 }
 
                 ArrowShape.FullTriangle -> {
                     lineTo(arrowLeft + arrowWidth / 2, arrowTop)
-                    lineTo(arrowRight, arrowBottom)
+                    lineTo(arrowLeft, arrowBottom)
                 }
 
                 ArrowShape.Curved -> {
@@ -311,6 +313,8 @@ internal fun Path.addVerticalArrowToPath(
 
         else -> Unit
     }
+
+    close()
 }
 
 internal fun calculateArrowLeftPosition(

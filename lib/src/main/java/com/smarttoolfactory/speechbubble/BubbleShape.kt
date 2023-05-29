@@ -2,6 +2,8 @@ package com.smarttoolfactory.speechbubble
 
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathOperation
 import androidx.compose.ui.unit.LayoutDirection
 
 fun createHorizontalBubbleShape(
@@ -40,18 +42,6 @@ fun createHorizontalBubbleShape(
         state.arrowLeft = arrowLeft
         state.arrowRight = arrowRight
 
-        if (state.drawArrow) {
-            addHorizontalArrowToPath(
-                alignment = alignment,
-                arrowShape = arrowShape,
-                arrowLeft = arrowLeft,
-                arrowRight = arrowRight,
-                arrowTop = arrowTop,
-                arrowBottom = arrowBottom,
-                arrowHeight = arrowHeight
-            )
-        }
-
         val rect: BubbleRect = getContentRect(
             bubbleState = state,
             width = size.width.toInt(),
@@ -59,7 +49,21 @@ fun createHorizontalBubbleShape(
             density = density
         )
 
+        val path = Path().apply {
+            if (state.drawArrow) {
+                addHorizontalArrowToPath(
+                    alignment = alignment,
+                    arrowShape = arrowShape,
+                    arrowLeft = arrowLeft,
+                    arrowRight = arrowRight,
+                    arrowTop = arrowTop,
+                    arrowBottom = arrowBottom,
+                    arrowHeight = arrowHeight
+                )
+            }
+        }
         addRoundedBubbleRect(state, rect, density)
+        this.op(this, path, PathOperation.Union)
     }
 }
 
@@ -100,18 +104,6 @@ fun createVerticalBubbleShape(
         state.arrowTop = arrowTop
         state.arrowBottom = arrowBottom
 
-        if (state.drawArrow) {
-            addVerticalArrowToPath(
-                alignment = alignment,
-                arrowShape = arrowShape,
-                arrowLeft = arrowLeft,
-                arrowRight = arrowRight,
-                arrowBottom = arrowBottom,
-                arrowTop = arrowTop,
-                arrowWidth = arrowWidth
-            )
-        }
-
         val rect: BubbleRect = getContentRect(
             bubbleState = state,
             width = size.width.toInt(),
@@ -119,6 +111,23 @@ fun createVerticalBubbleShape(
             density = density
         )
 
+
+       val path = Path().apply {
+           if (state.drawArrow) {
+               addVerticalArrowToPath(
+                   alignment = alignment,
+                   arrowShape = arrowShape,
+                   arrowLeft = arrowLeft,
+                   arrowRight = arrowRight,
+                   arrowBottom = arrowBottom,
+                   arrowTop = arrowTop,
+                   arrowWidth = arrowWidth
+               )
+           }
+       }
+
         addRoundedBubbleRect(state, rect, density)
+
+        this.op(this, path, PathOperation.Union)
     }
 }
