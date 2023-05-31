@@ -80,11 +80,11 @@ fun DemoPropertiesBubble() {
         }
 
         var arrowWidth by remember {
-            mutableStateOf(20f)
+            mutableStateOf(30f)
         }
 
         var arrowHeight by remember {
-            mutableStateOf(20f)
+            mutableStateOf(30f)
         }
 
         var drawArrow by remember {
@@ -307,7 +307,7 @@ fun DemoPropertiesBubble() {
 }
 
 @Composable
-private fun TextAndSlider(
+internal fun TextAndSlider(
     text: String,
     value: Float,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,

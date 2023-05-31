@@ -202,14 +202,12 @@ fun createVerticalBubbleShape(
         state.arrowTop = arrowTop
         state.arrowBottom = arrowBottom
 
-
         val rect: BubbleRect = getContentRect(
             bubbleState = state,
             width = size.width.toInt(),
             height = size.height.toInt(),
             density = density
         )
-
 
         val path = Path().apply {
             if (state.drawArrow) {
@@ -222,19 +220,19 @@ fun createVerticalBubbleShape(
                     arrowTop = arrowTop,
                     arrowWidth = arrowWidth
                 )
-
-                state.arrowTip = getArrowTip(
-                    arrowAlignment = alignment,
-                    arrowShape = arrowShape,
-                    arrowLeft = arrowLeft,
-                    arrowRight = arrowRight,
-                    arrowTop = arrowTop,
-                    arrowBottom = arrowBottom,
-                    arrowWidth = arrowWidth,
-                    arrowHeight = arrowHeight
-                )
             }
         }
+
+        state.arrowTip = getArrowTip(
+            arrowAlignment = alignment,
+            arrowShape = arrowShape,
+            arrowLeft = arrowLeft,
+            arrowRight = arrowRight,
+            arrowTop = arrowTop,
+            arrowBottom = arrowBottom,
+            arrowWidth = arrowWidth,
+            arrowHeight = arrowHeight
+        )
 
         addRoundedBubbleRect(state, rect, density)
 

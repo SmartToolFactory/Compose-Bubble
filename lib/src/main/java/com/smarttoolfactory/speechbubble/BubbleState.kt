@@ -1,6 +1,7 @@
 package com.smarttoolfactory.speechbubble
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -147,7 +148,8 @@ fun rememberBubbleState(
  * @param arrowHeight height of the arrow
  * @param drawArrow whether we should draw arrow or only have rectangle shape bubble
  */
-class BubbleState internal constructor(
+@Stable
+open class BubbleState(
     val cornerRadius: BubbleCornerRadius = BubbleCornerRadius(
         topLeft = 8.dp,
         topRight = 8.dp,
