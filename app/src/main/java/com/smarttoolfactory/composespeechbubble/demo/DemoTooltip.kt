@@ -118,7 +118,7 @@ fun DemoToolTip() {
         }
 
         var show by remember {
-            mutableStateOf(true)
+            mutableStateOf(false)
         }
 
         val tooltipState = remember(
