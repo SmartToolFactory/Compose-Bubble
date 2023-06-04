@@ -37,23 +37,12 @@ fun Modifier.bubble(
 
     factory = {
 
-        val horizontalArrow = bubbleState.isArrowHorizontallyPositioned()
         val density = LocalDensity.current
         val shape = remember(
             key1 = bubbleState
         ) {
-            if (horizontalArrow) {
-                createHorizontalBubbleShape(bubbleState, density.density)
-            } else {
-                createVerticalBubbleShape(bubbleState, density.density)
-            }
+            createBubbleShape(bubbleState, density.density)
         }
-
-        println(
-            "⚽️ BubbleModifier " +
-                    "shape: $shape, horizontalArrow: $horizontalArrow, " +
-                    "tooltip: ${bubbleState.arrowTip}"
-        )
 
         Modifier
             .then(

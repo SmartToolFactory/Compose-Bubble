@@ -165,13 +165,16 @@ open class BubbleState(
     val drawArrow: Boolean = true
 ) {
 
+    var arrowRect:BubbleRect = BubbleRect.Zero
+    var bubbleRect: BubbleRect = BubbleRect.Zero
+
     /**
      * Top position of arrow. This is read-only for implementation. It's calculated when arrow
      * positions are calculated or adjusted based on width/height of bubble,
      * offsetX/y, arrow width/height.
      */
-    var arrowTop: Float = 0f
-        internal set
+    val arrowTop: Float
+        get() = arrowRect.top
 
     /**
      * Bottom position of arrow.  This is read-only for implementation. It's calculated when arrow
@@ -179,24 +182,26 @@ open class BubbleState(
      * offsetX/y, arrow width/height.
      */
 
-    var arrowBottom: Float = 0f
-        internal set
+    val arrowBottom: Float
+        get() = arrowRect.bottom
+
 
     /**
      * Right position of arrow.  This is read-only for implementation. It's calculated when arrow
      * positions are calculated or adjusted based on width/height of bubble,
      * offsetX/y, arrow width/height.
      */
-    var arrowLeft: Float = 0f
-        internal set
+    val arrowLeft: Float
+        get() = arrowRect.left
 
     /**
      * Right position of arrow.  This is read-only for implementation. It's calculated when arrow
      * positions are calculated or adjusted based on width/height of bubble,
      * offsetX/y, arrow width/height.
      */
-    var arrowRight: Float = 0f
-        internal set
+    val arrowRight: Float
+        get() = arrowRect.right
+
 
     var arrowTip by mutableStateOf(
         Offset.Unspecified

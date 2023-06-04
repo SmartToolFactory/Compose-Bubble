@@ -5,6 +5,63 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Path
 
+fun getArrowRect(
+    state: BubbleState,
+    arrowWidth: Float,
+    arrowHeight: Float,
+    density: Float,
+    contentWidth: Float,
+    contentHeight: Float
+): BubbleRect {
+    val isHorizontalArrow = state.isArrowHorizontallyPositioned()
+
+    return if (isHorizontalArrow) {
+        // This is offset from top/bottom or center for arrows on left or right.
+        // Maximum offset + arrow height cannot be bigger
+        // than bottom of bubble or smaller than top of bubble.
+        val arrowTop: Float = calculateArrowTopPosition(
+            state,
+            arrowHeight,
+            contentHeight,
+            density
+        )
+
+        val arrowBottom = arrowTop + arrowHeight
+        val arrowLeft = if (state.isHorizontalLeftAligned()) 0f
+        else contentWidth - arrowWidth
+        val arrowRight = arrowLeft + arrowWidth
+
+        BubbleRect(
+            left = arrowLeft,
+            top = arrowTop,
+            right = arrowRight,
+            bottom = arrowBottom
+        )
+    } else {
+        val arrowLeft = calculateArrowLeftPosition(
+            state,
+            arrowWidth,
+            contentWidth,
+            density
+        )
+
+        val arrowRight = arrowLeft + arrowWidth
+        val arrowTop = if (state.isVerticalBottomAligned()) {
+            contentHeight - arrowHeight
+        } else {
+            0f
+        }
+        val arrowBottom = arrowTop + arrowHeight
+
+        BubbleRect(
+            left = arrowLeft,
+            top = arrowTop,
+            right = arrowRight,
+            bottom = arrowBottom
+        )
+    }
+}
+
 /**
  * Retrieve rectangle for measuring for space to be used content other than arrow itself.
  *

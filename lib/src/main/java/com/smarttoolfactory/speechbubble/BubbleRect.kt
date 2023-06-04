@@ -1,6 +1,7 @@
 package com.smarttoolfactory.speechbubble
 
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 
 @Immutable
 data class BubbleRect(
@@ -23,5 +24,10 @@ data class BubbleRect(
     override fun toString(): String {
         return "left: $left, top: $top, right: $right, bottom: $bottom, " +
                 "width: $width, height: $height"
+    }
+
+    companion object {
+        @Stable
+        val Zero = BubbleRect(0f, 0f, 0f, 0f)
     }
 }
