@@ -49,6 +49,12 @@ fun Modifier.bubble(
             }
         }
 
+        println(
+            "⚽️ BubbleModifier " +
+                    "shape: $shape, horizontalArrow: $horizontalArrow, " +
+                    "tooltip: ${bubbleState.arrowTip}"
+        )
+
         Modifier
             .then(
                 if (shadow != null) {

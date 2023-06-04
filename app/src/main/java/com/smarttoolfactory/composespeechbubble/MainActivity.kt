@@ -24,6 +24,7 @@ import com.smarttoolfactory.composespeechbubble.demo.DemoBubble
 import com.smarttoolfactory.composespeechbubble.demo.DemoDynamicSize
 import com.smarttoolfactory.composespeechbubble.demo.DemoFullChat
 import com.smarttoolfactory.composespeechbubble.demo.DemoPropertiesBubble
+import com.smarttoolfactory.composespeechbubble.demo.DemoToolTip
 import com.smarttoolfactory.composespeechbubble.ui.theme.ComposeSpeechBubbleTheme
 import kotlinx.coroutines.launch
 
@@ -83,9 +84,10 @@ private fun HomeContent() {
             0 -> DemoFullChat()
             1 -> DemoDynamicSize()
             2 -> DemoPropertiesBubble()
-            else -> DemoBubble()
+            3 -> DemoBubble()
+            else -> DemoToolTip()
         }
     }
 }
 
-internal val tabList = listOf("Chat", "Dynamic Size", "Properties", "Bubbles")
+internal val tabList = listOf("Chat", "Dynamic Size", "Properties", "Bubbles", "Tooltip")

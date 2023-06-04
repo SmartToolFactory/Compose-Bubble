@@ -43,7 +43,6 @@ fun createHorizontalBubbleShape(
         state.arrowLeft = arrowLeft
         state.arrowRight = arrowRight
 
-
         val rect: BubbleRect = getContentRect(
             bubbleState = state,
             width = size.width.toInt(),
@@ -63,17 +62,6 @@ fun createHorizontalBubbleShape(
                     arrowHeight = arrowHeight
                 )
             }
-
-            state.arrowTip = getArrowTip(
-                arrowAlignment = alignment,
-                arrowShape = arrowShape,
-                arrowLeft = arrowLeft,
-                arrowRight = arrowRight,
-                arrowTop = arrowTop,
-                arrowBottom = arrowBottom,
-                arrowWidth = arrowBottom,
-                arrowHeight = arrowHeight
-            )
         }
         addRoundedBubbleRect(state, rect, density)
         this.op(this, path, PathOperation.Union)
@@ -202,6 +190,17 @@ fun createVerticalBubbleShape(
         state.arrowTop = arrowTop
         state.arrowBottom = arrowBottom
 
+        state.arrowTip = getArrowTip(
+            arrowAlignment = alignment,
+            arrowShape = arrowShape,
+            arrowLeft = arrowLeft,
+            arrowRight = arrowRight,
+            arrowTop = arrowTop,
+            arrowBottom = arrowBottom,
+            arrowWidth = arrowWidth,
+            arrowHeight = arrowHeight
+        )
+
         val rect: BubbleRect = getContentRect(
             bubbleState = state,
             width = size.width.toInt(),
@@ -222,17 +221,6 @@ fun createVerticalBubbleShape(
                 )
             }
         }
-
-        state.arrowTip = getArrowTip(
-            arrowAlignment = alignment,
-            arrowShape = arrowShape,
-            arrowLeft = arrowLeft,
-            arrowRight = arrowRight,
-            arrowTop = arrowTop,
-            arrowBottom = arrowBottom,
-            arrowWidth = arrowWidth,
-            arrowHeight = arrowHeight
-        )
 
         addRoundedBubbleRect(state, rect, density)
 
