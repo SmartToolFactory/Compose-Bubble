@@ -33,9 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.composespeechbubble.tooltip.ToolTipLayout
 import com.smarttoolfactory.composespeechbubble.tooltip.TooltipState
-import com.smarttoolfactory.speechbubble.ArrowAlignment
-import com.smarttoolfactory.speechbubble.ArrowShape
-import com.smarttoolfactory.speechbubble.BubbleCornerRadius
+import com.smarttoolfactory.bubble.ArrowAlignment
+import com.smarttoolfactory.bubble.ArrowShape
+import com.smarttoolfactory.bubble.BubbleCornerRadius
 import kotlin.math.roundToInt
 
 @Preview

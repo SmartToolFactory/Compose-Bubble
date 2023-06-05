@@ -1,4 +1,4 @@
-package com.smarttoolfactory.speechbubble
+package com.smarttoolfactory.bubble
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp

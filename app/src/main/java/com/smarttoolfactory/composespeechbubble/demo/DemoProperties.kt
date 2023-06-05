@@ -30,11 +30,11 @@ import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.composespeechbubble.BubbleLayout
 import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
 import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor
-import com.smarttoolfactory.speechbubble.ArrowAlignment
-import com.smarttoolfactory.speechbubble.ArrowShape
-import com.smarttoolfactory.speechbubble.BubbleCornerRadius
-import com.smarttoolfactory.speechbubble.BubbleShadow
-import com.smarttoolfactory.speechbubble.rememberBubbleState
+import com.smarttoolfactory.bubble.ArrowAlignment
+import com.smarttoolfactory.bubble.ArrowShape
+import com.smarttoolfactory.bubble.BubbleCornerRadius
+import com.smarttoolfactory.bubble.BubbleShadow
+import com.smarttoolfactory.bubble.rememberBubbleState
 import kotlin.math.roundToInt
 
 @Preview

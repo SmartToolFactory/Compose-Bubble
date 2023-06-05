@@ -1,4 +1,4 @@
-package com.smarttoolfactory.speechbubble
+package com.smarttoolfactory.bubble
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background

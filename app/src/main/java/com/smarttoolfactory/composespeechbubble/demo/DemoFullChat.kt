@@ -20,9 +20,9 @@ import com.smarttoolfactory.composespeechbubble.chat.ChatFlexBoxLayout
 import com.smarttoolfactory.composespeechbubble.chat.MessageTimeText
 import com.smarttoolfactory.composespeechbubble.ui.ChatInput
 import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor
-import com.smarttoolfactory.speechbubble.ArrowAlignment
-import com.smarttoolfactory.speechbubble.BubbleShadow
-import com.smarttoolfactory.speechbubble.rememberBubbleState
+import com.smarttoolfactory.bubble.ArrowAlignment
+import com.smarttoolfactory.bubble.BubbleShadow
+import com.smarttoolfactory.bubble.rememberBubbleState
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*

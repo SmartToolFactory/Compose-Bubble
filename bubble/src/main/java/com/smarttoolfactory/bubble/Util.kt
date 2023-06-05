@@ -1,4 +1,4 @@
-package com.smarttoolfactory.speechbubble
+package com.smarttoolfactory.bubble
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect

@@ -22,7 +22,7 @@ import com.smarttoolfactory.composespeechbubble.HorizontalAlignment
 import com.smarttoolfactory.composespeechbubble.ui.theme.BackgroundColor
 import com.smarttoolfactory.composespeechbubble.ui.theme.DateColor
 import com.smarttoolfactory.composespeechbubble.ui.theme.SentMessageColor
-import com.smarttoolfactory.speechbubble.*
+import com.smarttoolfactory.bubble.*
 
 @Preview
 @Composable

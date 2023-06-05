@@ -15,11 +15,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.smarttoolfactory.composespeechbubble.BubbleLayout
 import com.smarttoolfactory.composespeechbubble.ui.theme.Purple40
-import com.smarttoolfactory.speechbubble.ArrowAlignment
-import com.smarttoolfactory.speechbubble.ArrowShape
-import com.smarttoolfactory.speechbubble.BubbleCornerRadius
-import com.smarttoolfactory.speechbubble.BubbleShadow
-import com.smarttoolfactory.speechbubble.BubbleState
+import com.smarttoolfactory.bubble.ArrowAlignment
+import com.smarttoolfactory.bubble.ArrowShape
+import com.smarttoolfactory.bubble.BubbleCornerRadius
+import com.smarttoolfactory.bubble.BubbleShadow
+import com.smarttoolfactory.bubble.BubbleState
 
 class TooltipState(
     show: Boolean,

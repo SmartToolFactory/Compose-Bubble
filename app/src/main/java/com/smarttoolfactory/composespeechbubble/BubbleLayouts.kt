@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.smarttoolfactory.speechbubble.BubbleShadow
-import com.smarttoolfactory.speechbubble.BubbleState
-import com.smarttoolfactory.speechbubble.bubble
+import com.smarttoolfactory.bubble.BubbleShadow
+import com.smarttoolfactory.bubble.BubbleState
+import com.smarttoolfactory.bubble.bubble
 
 @Composable
 fun BubbleLayout(
