@@ -4,9 +4,35 @@ Chat/Speech bubble width different arrow, background, shadow properties to creat
 like whatsapp, telegram or other messaging apps have or arrows with arrow at bottom to create
 info bubble.
 
-`Modifier.drawBubble` or Modifier.drawBubbleWithShape` modifiers draws bubble behind
-composable content using `BubbleState` with remember to store state from previous composition or use `BubbleColumn` if
-you don't want to wrap with a Column using neither of these modifiers.
+`Modifier.bubble`, or creatBubbleShape function to create this as `Shape` or `BubbleLayout` as in demo such as
+
+```kotlin
+@Composable
+fun BubbleLayout(
+    modifier: Modifier = Modifier,
+    bubbleState: BubbleState,
+    backgroundColor: Color = Color.White,
+    shadow: BubbleShadow? = null,
+    borderStroke: BorderStroke? = null,
+    content: @Composable () -> Unit
+) {
+    Column(
+        modifier.bubble(
+            bubbleState = bubbleState,
+            color = backgroundColor,
+            shadow = shadow,
+            borderStroke = borderStroke
+        )
+    ) {
+        content()
+    }
+}
+
+```
+
+
+https://github.com/SmartToolFactory/Compose-Bubble/assets/35650605/f6bdd5fe-bb4f-4725-bd22-2696d29079bc
+
 
 There are 4 demos to test **bubbles**.
 * `DemoFullChat` is small chatting sample which displays arrow on first message from sender or user
@@ -38,7 +64,6 @@ class BubbleState internal constructor(
     var arrowRadius: Dp = 0.dp,
     var drawArrow: Boolean = true,
     var shadow: BubbleShadow? = null,
-    var padding: BubblePadding? = null
 ) 
 ```
 
@@ -56,7 +81,6 @@ arrowHeight: Dp = 14.dp,
 arrowRadius: Dp = 0.dp,
 drawArrow: Boolean = true,
 shadow: BubbleShadow? = null,
-padding: BubblePadding? = null
 )
 ```
 ### Properties
@@ -71,85 +95,6 @@ padding: BubblePadding? = null
 * **arrowRadius**: radius of the arrow curves the tip of the arrow
 * **drawArrow**: whether we should draw arrow or only have rectangle shape bubble
 * **shadow**: of the arrow contains elevation, dx, dy, radius and color to draw shadow below bubble
-* **padding**: padding between bubble and it's content. Use this instead of **Modifier.padding()**
 
 ### Usage
 
-Create a `Column`, `Row` or `Box` and set `Modifier.dawBubble` or `Modifier.dawBubbleWithShape` with a `BubbleState`
-```
-@Composable
-private fun BubbleLayout(
-    modifier: Modifier = Modifier,
-    bubbleState: BubbleState,
-    content: @Composable () -> Unit
-) {
-    Column(
-        modifier.drawBubble(bubbleState)
-    ) {
-        content()
-    }
-}
-
-@Composable
-private fun BubbleLayoutWithShape(
-    modifier: Modifier = Modifier,
-    bubbleState: BubbleState,
-    content: @Composable () -> Unit
-) {
-
-    Column(
-        modifier
-            .drawBubbleWithShape(bubbleState)
-    ) {
-        content()
-    }
-}
-```
-And create a `Composable` as
-```
-val bubbleState = rememberBubbleState(
-    backgroundColor = SentMessageColor,
-    alignment = ArrowAlignment.RIGHT_BOTTOM,
-    cornerRadius = 8.dp,
-    shadow = BubbleShadow(
-        elevation = 1.dp
-    ),
-    padding = Padding(8.dp)
-)
-
-BubbleLayout(
-    bubbleState = bubbleState
-) {
-    Text(text = "Arrow RIGHT_BOTTOM")
-}
-```
-
-Or use a `BubbleColumn` as
-
-```
-BubbleColumn(
-    bubbleState = rememberBubbleState(
-        alignment = ArrowAlignment.None,
-        backgroundColor = DateColor,
-        cornerRadius = 5.dp,
-        shadow = BubbleShadow(
-            elevation = 1.dp
-        ),
-        padding = Padding(8.dp)
-    )
-
-) {
-    Text(
-        "BubbleColumn",
-        fontSize = 16.sp,
-    )
-}
-```
-
-### Shadow
-`Modifier.dawBubble` uses shadow software layer to draw colorful shadows with radius and transparency.
-Customized and set calculations almost similar with default Android api Modifier.shadow()
-but if you are not happy with shadows you can use `Modifier.dawBubbleWithShape` to
-create a **shape** from bubble **path** and use that shape to create shadow with `Modifier.shadow`
-
-!Note: `Modifier.drawBubbleWithShape` has a bug displaying shadow at correct place when it's size dynamically changes
