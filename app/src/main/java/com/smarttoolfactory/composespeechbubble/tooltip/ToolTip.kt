@@ -10,7 +10,6 @@ import androidx.compose.ui.geometry.isSpecified
 import androidx.compose.ui.geometry.isUnspecified
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Measurable
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -21,9 +20,6 @@ import com.smarttoolfactory.speechbubble.ArrowShape
 import com.smarttoolfactory.speechbubble.BubbleCornerRadius
 import com.smarttoolfactory.speechbubble.BubbleShadow
 import com.smarttoolfactory.speechbubble.BubbleState
-import com.smarttoolfactory.speechbubble.getArrowRect
-import com.smarttoolfactory.speechbubble.getArrowTip
-
 
 class TooltipState(
     show: Boolean,
@@ -64,8 +60,6 @@ fun ToolTipLayout(
     content: @Composable () -> Unit = {},
     tooltip: @Composable () -> Unit = {}
 ) {
-
-    val density = LocalDensity.current.density
 
     val tooltipContent = @Composable {
         BubbleLayout(
@@ -111,36 +105,6 @@ fun ToolTipLayout(
             val width = if (hasFixedWidth) constraints.maxWidth else maxContentWidth
             val height = if (hasFixedHeight) constraints.maxHeight else maxContentHeight
 
-            val arrowWidth: Float =
-                (tooltipState.arrowWidth.value * density).coerceAtMost(toolTipWidth.toFloat())
-            val arrowHeight: Float =
-                (tooltipState.arrowHeight.value * density).coerceAtMost(toolTipHeight.toFloat())
-
-            val alignment = tooltipState.alignment
-            val arrowShape = tooltipState.arrowShape
-
-            tooltipState.arrowRect = getArrowRect(
-                tooltipState, arrowWidth, arrowHeight, density,
-                toolTipWidth.toFloat(), toolTipHeight.toFloat()
-            )
-
-            val arrowRect = tooltipState.arrowRect
-            val arrowLeft = arrowRect.left
-            val arrowRight = arrowRect.right
-            val arrowTop = arrowRect.top
-            val arrowBottom = arrowRect.bottom
-
-            tooltipState.arrowTip = getArrowTip(
-                arrowAlignment = alignment,
-                arrowShape = arrowShape,
-                arrowLeft = arrowLeft,
-                arrowRight = arrowRight,
-                arrowTop = arrowTop,
-                arrowBottom = arrowBottom,
-                arrowWidth = arrowWidth,
-                arrowHeight = arrowHeight
-            )
-
             val arrowAlignment = tooltipState.alignment
             val toolTipOffset = tooltipState.arrowTip
 
@@ -152,8 +116,6 @@ fun ToolTipLayout(
                 toolTipWidth = toolTipWidth,
                 toolTipHeight = toolTipHeight
             )
-
-            println("🍏Layout toolTipPosition: $toolTipPosition")
 
             layout(width, height) {
                 contentPlaceable.placeRelative(0, 0)

@@ -26,10 +26,15 @@ fun createBubbleShape(
         val arrowHeight: Float = (state.arrowHeight.value * density).coerceAtMost(contentHeight)
 
         state.arrowRect = getArrowRect(
-            state, arrowWidth, arrowHeight, density, contentWidth, contentHeight
+            state,
+            arrowWidth,
+            arrowHeight,
+            density,
+            contentWidth,
+            contentHeight
         )
 
-        val arrowRect =  state.arrowRect
+        val arrowRect = state.arrowRect
         val arrowLeft = arrowRect.left
         val arrowRight = arrowRect.right
         val arrowTop = arrowRect.top
@@ -90,9 +95,9 @@ fun getArrowTip(
     arrowLeft: Float,
     arrowTop: Float,
     arrowRight: Float,
+    arrowBottom: Float,
     arrowWidth: Float,
-    arrowHeight: Float,
-    arrowBottom: Float
+    arrowHeight: Float
 ): Offset {
 
     return when (arrowAlignment) {

@@ -166,7 +166,6 @@ open class BubbleState(
 ) {
 
     var arrowRect:BubbleRect = BubbleRect.Zero
-    var bubbleRect: BubbleRect = BubbleRect.Zero
 
     /**
      * Top position of arrow. This is read-only for implementation. It's calculated when arrow

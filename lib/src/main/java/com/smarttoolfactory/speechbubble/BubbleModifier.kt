@@ -112,6 +112,38 @@ internal fun MeasureScope.measureBubbleResult(
     val desiredWidth = constraints.constrainWidth(placeable.width + offsetX)
     val desiredHeight: Int = constraints.constrainHeight(placeable.height + offsetY)
 
+    val alignment = bubbleState.alignment
+    val arrowShape = bubbleState.arrowShape
+
+    val arrowMaxWidth = arrowWidth.coerceAtMost(desiredWidth).toFloat()
+    val arrowMaxHeight = arrowHeight.coerceAtMost(desiredHeight).toFloat()
+
+    bubbleState.arrowRect = getArrowRect(
+        bubbleState,
+        arrowMaxWidth,
+        arrowMaxHeight,
+        density,
+        desiredWidth.toFloat(),
+        desiredHeight.toFloat()
+    )
+
+    val arrowRect = bubbleState.arrowRect
+    val arrowLeft = arrowRect.left
+    val arrowRight = arrowRect.right
+    val arrowTop = arrowRect.top
+    val arrowBottom = arrowRect.bottom
+
+    bubbleState.arrowTip = getArrowTip(
+        arrowAlignment = alignment,
+        arrowShape = arrowShape,
+        arrowLeft = arrowLeft,
+        arrowRight = arrowRight,
+        arrowTop = arrowTop,
+        arrowBottom = arrowBottom,
+        arrowWidth = arrowMaxWidth,
+        arrowHeight = arrowMaxHeight
+    )
+
     // Position of content(Text or Column/Row/Box for instance) in Bubble
     // These positions effect placeable area for our content
     // if xPos is greater than 0 it's required to translate background path(bubble) to match total
