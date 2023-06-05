@@ -1,10 +1,37 @@
 ### Jetpack Compose Speech Chat Bubble
 
+[![](https://jitpack.io/v/SmartToolFactory/Compose-Bubble.svg)](https://jitpack.io/#SmartToolFactory/Compose-Bubble)
+
+
 Chat/Speech bubble width different arrow, background, shadow properties to create chat bubbles
 like whatsapp, telegram or other messaging apps have or arrows with arrow at bottom to create
 info bubble.
 
-`Modifier.bubble`, or creatBubbleShape function to create this as `Shape` or `BubbleLayout` as in demo such as
+## Gradle Setup
+
+To get a Git project into your build:
+
+* Step 1. Add the JitPack repository to your build file Add it in your root build.gradle at the end
+  of repositories:
+
+```
+allprojects {
+  repositories {
+      ...
+      maven { url 'https://jitpack.io' }
+  }
+}
+```
+
+* Step 2. Add the dependency
+
+```
+dependencies {
+	  implementation 'com.github.SmartToolFactory:Compose-Bubble:Tag'
+}
+```
+
+`Modifier.bubble`, or createBubbleShape function to create this as `Shape` or `BubbleLayout` as in demo such as
 
 ```kotlin
 @Composable
