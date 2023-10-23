@@ -1,5 +1,6 @@
 package com.smarttoolfactory.composespeechbubble.tooltip
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -8,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.isSpecified
 import androidx.compose.ui.geometry.isUnspecified
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.unit.Constraints
@@ -67,6 +69,7 @@ fun ToolTipLayout(
             shadow = BubbleShadow(
                 elevation = 2.dp
             ),
+            borderStroke = BorderStroke(1.dp, Color.Red),
 
             backgroundColor = Purple40
         ) {
@@ -75,7 +78,6 @@ fun ToolTipLayout(
     }
 
     Layout(
-        modifier = modifier,
         contents = listOf(content, tooltipContent),
         measurePolicy = { measurables: List<List<Measurable>>, constraints: Constraints ->
 

@@ -52,7 +52,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun HomeContent() {
 
-    val pagerState: PagerState = rememberPagerState(initialPage = 0)
+    val pagerState: PagerState = rememberPagerState(initialPage = 0) {
+        tabList.size
+    }
     val coroutineScope = rememberCoroutineScope()
 
     ScrollableTabRow(
@@ -78,7 +80,6 @@ private fun HomeContent() {
 
     HorizontalPager(
         state = pagerState,
-        pageCount = tabList.size,
         beyondBoundsPageCount = 3
     ) { page: Int ->
 

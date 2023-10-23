@@ -21,6 +21,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -52,7 +53,7 @@ fun DemoToolTip() {
 
         val alignmentMap = remember {
             linkedMapOf<Int, ArrowAlignment>().apply {
-                ArrowAlignment.values().forEach { alignment ->
+                ArrowAlignment.entries.forEach { alignment ->
                     this[alignment.ordinal] = alignment
                 }
             }
@@ -60,14 +61,14 @@ fun DemoToolTip() {
 
         val arrowShapeMap = remember {
             linkedMapOf<Int, ArrowShape>().apply {
-                ArrowShape.values().forEach { shape ->
+                ArrowShape.entries.forEach { shape ->
                     this[shape.ordinal] = shape
                 }
             }
         }
 
         var arrowAlignment by remember {
-            mutableStateOf(ArrowAlignment.LeftCenter)
+            mutableStateOf(ArrowAlignment.TopCenter)
         }
 
         var arrowShape by remember {
@@ -75,19 +76,19 @@ fun DemoToolTip() {
         }
 
         var arrowOffsetX by remember {
-            mutableStateOf(0f)
+            mutableFloatStateOf(0f)
         }
 
         var arrowOffsetY by remember {
-            mutableStateOf(0f)
+            mutableFloatStateOf(0f)
         }
 
         var arrowWidth by remember {
-            mutableStateOf(25f)
+            mutableFloatStateOf(25f)
         }
 
         var arrowHeight by remember {
-            mutableStateOf(25f)
+            mutableFloatStateOf(25f)
         }
 
         var drawArrow by remember {
@@ -95,26 +96,26 @@ fun DemoToolTip() {
         }
 
         var elevation by remember {
-            mutableStateOf(2f)
+            mutableFloatStateOf(2f)
         }
 
         var borderStrokeWidth by remember {
-            mutableStateOf(0f)
+            mutableFloatStateOf(0f)
         }
 
         var cornerRadiusTopLeft by remember {
-            mutableStateOf(8f)
+            mutableFloatStateOf(8f)
         }
 
         var cornerRadiusTopRight by remember {
-            mutableStateOf(8f)
+            mutableFloatStateOf(8f)
         }
 
         var cornerRadiusBottomLeft by remember {
-            mutableStateOf(8f)
+            mutableFloatStateOf(8f)
         }
         var cornerRadiusBottomRight by remember {
-            mutableStateOf(8f)
+            mutableFloatStateOf(8f)
         }
 
         var show by remember {
